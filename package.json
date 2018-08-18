@@ -2,9 +2,10 @@
   "name": "fpl_2018-19",
   "version": "1.0.0",
   "description": "Fantasy Premier League, 2018/19 season",
-  "main": "server.js",
+  "main": "./backend/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./backend/server.js",
+    "server": "nodemon ./backend/server.js"
   },
   "author": "Benjamin Sinaiko",
   "license": "MIT",
