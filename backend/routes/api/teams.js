@@ -11,6 +11,23 @@ const Team = require('../../models/Team');
 // @access Public
 router.get('/test', (req, res) => res.json({ msg: 'Teams works' }));
 
+// @route GET api/teams/:id
+// @desc Get Team by ID
+// @access Public
+router.get('/:id', (req, res) => {
+  const errors = {};
+
+  Team.find({ entry: req.params.id })
+    .then(team => {
+      if (!team) {
+        errors.noteam = 'There is no team with this id';
+      }
+
+      res.json(team);
+    })
+    .catch(err => res.status(404).json(err));
+});
+
 // @route POST api/teams
 // @desc Add/Update team results
 // @access Public
