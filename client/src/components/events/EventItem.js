@@ -21,47 +21,80 @@ class EventItem extends Component {
       .format('ddd MMM Do h:mm a z');
 
     let activeContent;
-    if (event.is_current === true && event.finished === true) {
+
+    if (event.is_previous === true) {
+      // Previous Gameweek
+      console.log(`Event ${event.name} is previous`);
       activeContent = (
         <span>
           <button
             type="button"
-            className="btn btn-success active-btn"
-            style={{ opacity: '85%' }}
+            className="btn btn-outline-success active-btn"
             disabled
           >
-            Active
+            Completed
           </button>
           <hr />
         </span>
       );
-    } else if (event.is_next === true) {
-      activeContent = (
-        <span>
-          <button type="button" className="btn btn-outline-danger" disabled>
-            <i>Coming Soon...</i>
-          </button>
-          <hr />
-        </span>
-      );
-    } else {
-      activeContent = (
-        <div>
-          <div className="row">
-            <div className="col">
-              <h3>
-                <span className="badge badge-success">Finshed</span>
-              </h3>
-              <hr />
-            </div>
-            <div className="col">
-              <h3>
-                <span className="badge badge-success">Checked</span>
-              </h3>
-              <hr />
+    } else if (event.is_current === true) {
+      // Current Gameweek
+      if (event.finished === false) {
+        activeContent = (
+          <span>
+            <button
+              type="button"
+              className="btn btn-success active-btn"
+              disabled
+            >
+              Active
+            </button>
+            <hr />
+          </span>
+        );
+      } else {
+        activeContent = (
+          <div>
+            <div className="row">
+              <div className="col">
+                <button
+                  type="button"
+                  className={classnames('btn', {
+                    'btn-outline-danger': event.finished === false,
+                    'btn-outline-success': event.finished === true
+                  })}
+                  disabled
+                >
+                  Games Done
+                </button>
+                <hr />
+              </div>
+              <div className="col">
+                <button
+                  type="button"
+                  className={classnames('btn', {
+                    'btn-outline-danger': event.data_checked === false,
+                    'btn-outline-success': event.data_checked === true
+                  })}
+                  disabled
+                >
+                  Points Updated
+                </button>
+                <hr />
+              </div>
             </div>
           </div>
-        </div>
+        );
+      }
+    } else {
+      // Next Gameweek
+      activeContent = (
+        <span>
+          <button type="button" className="btn btn-warning active-btn" disabled>
+            <i>Comming Soon...</i>
+          </button>
+          <hr />
+        </span>
       );
     }
 
@@ -86,10 +119,10 @@ class EventItem extends Component {
             <div className="col">
               {event.average_entry_score !== 0
                 ? event.average_entry_score
-                : 'N/A'}
+                : '0'}
             </div>
             <div className="col">
-              {event.highest_score !== null ? event.highest_score : 'N/A'}
+              {event.highest_score !== null ? event.highest_score : '0'}
             </div>
           </div>
         </div>

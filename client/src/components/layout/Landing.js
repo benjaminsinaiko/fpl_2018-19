@@ -10,10 +10,10 @@ class Landing extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-12 text-center">
-                <div class="jumbotron jumbotron-fluid landing-header">
-                  <div class="container">
-                    <h1 class="display-4 ">Fish & Crumple-Ones</h1>
-                    <p class="lead">2018/19 Season</p>
+                <div className="jumbotron jumbotron-fluid landing-header">
+                  <div className="container">
+                    <h1 className="display-4 ">Fish & Crumple-Ones</h1>
+                    <p className="lead">2018/19 Season</p>
                   </div>
                 </div>
               </div>
