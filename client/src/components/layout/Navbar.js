@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Navbar extends Component {
   render() {
@@ -22,7 +23,7 @@ class Navbar extends Component {
               <li className="nav-item">
                 <a className="nav-link" href="profiles.html">
                   {' '}
-                  Developers
+                  Standings
                 </a>
               </li>
             </ul>
