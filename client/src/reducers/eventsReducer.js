@@ -1,4 +1,4 @@
-import { GET_EVENTS, GET_EVENT, EVENTS_LOADING } from '../actions/types';
+import { GET_EVENTS, EVENTS_LOADING } from '../actions/types';
 
 const initialState = {
   events: null,
