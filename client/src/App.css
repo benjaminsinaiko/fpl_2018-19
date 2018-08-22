@@ -1,3 +1,7 @@
+body {
+  min-height: 100%;
+}
+
 img {
   width: 100%;
 }
@@ -9,20 +13,32 @@ img {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  height: 100vh;
+  height: 100%;
   margin-top: -24px;
   margin-bottom: -50px;
 }
 
-@media (min-width: 640px) {
+@media (min-width: 576px) {
   .landing {
-    background-size: auto;
-    background-repeat: repeat;
+    height: 200vh;
   }
 }
 
 .landing-inner {
   padding-top: 80px;
+}
+
+.landing-header {
+  border-radius: 90px;
+  color: white;
+  background-image: url('./img/Premier_League_Rebrands_DesignStudio_05.jpg');
+  background-size: cover;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-variant: small-caps;
+  font-size: larger;
+  -webkit-box-shadow: 0 10px 6px -6px black;
+  -moz-box-shadow: 0 10px 6px -6px black;
+  box-shadow: 0 10px 7px 4px rgb(66, 66, 66);
 }
 
 .dark-overlay {
