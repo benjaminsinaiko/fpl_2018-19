@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Events from '../events/Events';
+
 class Landing extends Component {
   render() {
     return (
@@ -21,6 +23,11 @@ class Landing extends Component {
                 <a href="login.html" className="btn btn-lg btn-light">
                   Login
                 </a>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-md-12 text-center">
+                <Events />
               </div>
             </div>
           </div>

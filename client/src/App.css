@@ -8,6 +8,7 @@ img {
   background-repeat: repeat;
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
   height: 100vh;
   margin-top: -24px;
   margin-bottom: -50px;
@@ -44,6 +45,18 @@ img {
 
 .form-control::placeholder {
   color: #bbb !important;
+}
+
+.current-events {
+  padding-top: 100px;
+  color: black;
+}
+
+.active-btn {
+  width: 150px;
+}
+.active-btn:disabled {
+  opacity: 85%;
 }
 
 .footer {

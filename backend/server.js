@@ -39,4 +39,5 @@ app.use('/api/leagues', leagues);
 app.use('/api/results', results);
 
 app.get('/', (req, res) => res.send(process.env.MONGO_USER));
+
 app.listen(port, () => console.log(`Server is running on port ${port}`));
