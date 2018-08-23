@@ -26,6 +26,12 @@ class Navbar extends Component {
                   League Standings
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/results">
+                  {' '}
+                  F&C Results
+                </Link>
+              </li>
             </ul>
 
             <ul className="navbar-nav ml-auto">
