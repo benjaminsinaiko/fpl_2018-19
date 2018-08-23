@@ -50,6 +50,26 @@ img {
   height: 100%;
 }
 
+.league {
+  position: relative;
+  background: url('./img/Premier_League_Rebrands_DesignStudio_04.jpg');
+  background-repeat: repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  height: 100;
+  margin-top: -24px;
+  margin-bottom: -50px;
+}
+
+.league-table {
+  background-color: ghostwhite;
+  margin: auto;
+  display: table !important;
+  width: 95%;
+  padding: 10px;
+}
+
 .card-form {
   opacity: 0.9;
 }

@@ -24,7 +24,6 @@ class EventItem extends Component {
 
     if (event.is_previous === true) {
       // Previous Gameweek
-      console.log(`Event ${event.name} is previous`);
       activeContent = (
         <span>
           <button

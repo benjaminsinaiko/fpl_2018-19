@@ -2,7 +2,6 @@ import { GET_EVENTS, EVENTS_LOADING } from '../actions/types';
 
 const initialState = {
   events: null,
-  event: null,
   loading: false
 };
 

@@ -6,6 +6,7 @@ import store from './store';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Landing from './components/layout/Landing';
+import League from './components/league/League';
 
 import './App.css';
 
@@ -17,6 +18,7 @@ class App extends Component {
           <div className="App">
             <Navbar />
             <Route exact path="/" component={Landing} />
+            <Route exact path="/league" component={League} />
             <Footer />
           </div>
         </Router>
