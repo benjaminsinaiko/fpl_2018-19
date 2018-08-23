@@ -5,6 +5,7 @@
 
 body {
   min-height: 100%;
+  font-family: PremierSans-Regular, Geneva, Tahoma, sans-serif;
 }
 
 img {
@@ -95,12 +96,16 @@ img {
   opacity: 85%;
 }
 
+.navbar {
+  background-color: #38003c;
+}
+
 .footer {
   position: absolute;
   right: 0;
   bottom: 0;
   left: 0;
   padding: 1rem;
-  background-color: #efefef;
+  color: #38003c;
   text-align: center;
 }
