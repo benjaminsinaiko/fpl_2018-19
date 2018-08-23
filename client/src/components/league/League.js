@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../common/Spinner';
-import Header from '../common/leagueHeader';
+import Header from '../common/Header';
 import LeagueTable from './LeagueTable';
 import { getLeagueStandings } from '../../actions/leagueActions';
-import LeagueTableItem from './LeagueTableItem';
 
 class League extends Component {
   componentDidMount() {

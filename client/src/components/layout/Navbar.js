@@ -6,9 +6,9 @@ class Navbar extends Component {
     return (
       <nav className="navbar navbar-expand-sm navbar-dark bg-dark mb-4">
         <div className="container">
-          <a className="navbar-brand" href="landing.html">
-            DevConnector
-          </a>
+          <Link className="navbar-brand" to="/">
+            FPL 2018/19
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -23,7 +23,7 @@ class Navbar extends Component {
               <li className="nav-item">
                 <Link className="nav-link" to="/league">
                   {' '}
-                  FPL Standings
+                  League Standings
                 </Link>
               </li>
             </ul>
