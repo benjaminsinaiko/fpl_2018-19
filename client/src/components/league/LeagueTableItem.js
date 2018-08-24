@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 class LeagueTableItem extends Component {
   render() {
     const { result } = this.props;
-    console.log('result', result);
 
     let moveArrow;
     if (result.movement === 'up') {
@@ -17,11 +16,11 @@ class LeagueTableItem extends Component {
     return (
       <tr>
         <td>{moveArrow}</td>
+        <td>{result.entry_name}</td>
         <td>{result.rank}</td>
         <td>{result.last_rank}</td>
         <td>{result.event_total}</td>
         <td>{result.total}</td>
-        <td>{result.entry_name}</td>
         <td>{result.player_name}</td>
       </tr>
     );

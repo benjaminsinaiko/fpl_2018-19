@@ -17,7 +17,7 @@ class League extends Component {
     let leagueItems;
 
     if (league === null || loading) {
-      leagueItems = <Spinner />;
+      leagueItems = null;
     } else {
       leagueItems = <LeagueTable leagueResults={league.standings.results} />;
     }
@@ -40,11 +40,11 @@ class League extends Component {
               <th scope="col">
                 <i className="fa fa-arrows-v" />
               </th>
+              <th scope="col">Team</th>
               <th scope="col">Rank</th>
               <th scope="col">Last</th>
               <th scope="col">GW</th>
               <th scope="col">Total</th>
-              <th scope="col">Team</th>
               <th scope="col">Player</th>
             </tr>
           </thead>
