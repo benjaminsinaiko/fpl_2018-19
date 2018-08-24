@@ -54,25 +54,26 @@ router.post('/history/:id', (req, res) => {
     event: req.body.event,
     week_id: req.body.id
   };
-  console.log('newHistory: ', newHistory);
 
-  Player.findOne({ id: req.params.id }).then(player => {
-    if (player.history.length > 0) {
-      let gwIndex = player.history.findIndex(
-        gw => gw.event === newHistory.event
-      );
-      if (gwIndex === -1) {
-        // res.json({ msg: 'not found' });
-        player.history.push(newHistory);
+  Player.findOne({ id: req.params.id })
+    .then(player => {
+      if (player.history.length > 0) {
+        let gwIndex = player.history.findIndex(
+          gw => gw.event === newHistory.event
+        );
+        if (gwIndex === -1) {
+          // res.json({ msg: 'not found' });
+          player.history.push(newHistory);
+        } else {
+          player.history[gwIndex] = newHistory;
+        }
       } else {
-        res.json({ msg: 'found' });
+        player.history.push(newHistory);
       }
-    } else {
-      player.history.push(newHistory);
-    }
 
-    player.save().then(player => res.json(player));
-  });
+      player.save().then(player => res.json(player));
+    })
+    .catch(err => res.status(404).json({ noplayer: 'No player found' }));
 });
 
 module.exports = router;

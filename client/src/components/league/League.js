@@ -15,11 +15,14 @@ class League extends Component {
     const { league, loading } = this.props.league;
 
     let leagueItems;
+    let loadSpinner;
 
     if (league === null || loading) {
       leagueItems = null;
+      loadSpinner = <Spinner />;
     } else {
       leagueItems = <LeagueTable leagueResults={league.standings.results} />;
+      loadSpinner = null;
     }
 
     return (
@@ -50,6 +53,7 @@ class League extends Component {
           </thead>
           <tbody>{leagueItems}</tbody>
         </table>
+        {loadSpinner}
       </div>
     );
   }

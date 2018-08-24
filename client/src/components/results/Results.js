@@ -15,10 +15,13 @@ class Results extends Component {
     const { players, loading } = this.props.players;
 
     let playerItems;
+    let loadSpinner;
     if (players === null || loading) {
       playerItems = null;
+      loadSpinner = <Spinner />;
     } else {
       playerItems = <ResultsTable players={players} />;
+      loadSpinner = null;
     }
 
     let weeks = Array.from(Array(38).keys()).map(num => num + 1);
@@ -50,6 +53,7 @@ class Results extends Component {
           </thead>
           <tbody>{playerItems}</tbody>
         </table>
+        {loadSpinner}
       </div>
     );
   }

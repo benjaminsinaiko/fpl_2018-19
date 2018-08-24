@@ -10,9 +10,9 @@ class ResultsTable extends Component {
   render() {
     const { players } = this.props;
 
-    return players.map(player => (
-      <ResultsTableItem key={player._id} player={player} />
-    ));
+    return players
+      .sort((a, b) => a.handle.localeCompare(b.handle))
+      .map(player => <ResultsTableItem key={player._id} player={player} />);
   }
 }
 
