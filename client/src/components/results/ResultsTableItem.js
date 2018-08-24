@@ -3,14 +3,21 @@ import React, { Component } from 'react';
 class ResultsTableItem extends Component {
   render() {
     const { player } = this.props;
-    console.log('player', player);
+
+    let score;
+    if (player.history.length > 0) {
+      score = player.history.map((week, index) => (
+        <th key={index} scope="col">
+          {week.points}
+        </th>
+      ));
+    }
 
     return (
-      <thead>
-        <tr>
-          <th scope="col">{player.handle}</th>
-        </tr>
-      </thead>
+      <tr>
+        <th scope="row">{player.handle}</th>
+        {score}
+      </tr>
     );
   }
 }

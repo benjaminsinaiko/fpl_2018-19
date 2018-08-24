@@ -8,7 +8,7 @@ export const getPlayers = () => dispatch => {
   axios
     .get('/api/players/all')
     .then(res => dispatch({ type: GET_PLAYERS, payload: res.data }))
-    .catch(err => dispatch({ type: GET_PLAYERS, payload: null }));
+    .catch(err => dispatch({ type: GET_PLAYERS, payload: err.data }));
 };
 
 export const setPlayersLoading = () => {

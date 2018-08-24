@@ -54,23 +54,24 @@ router.post('/history/:id', (req, res) => {
     event: req.body.event,
     week_id: req.body.id
   };
+  console.log('newHistory: ', newHistory);
 
   Player.findOne({ id: req.params.id }).then(player => {
-    let history = player.history;
-    if (history.lenght > 0) {
-      history.map(week => {
-        if (week.event === req.body.event) {
-          week = newHistory;
-          console.log('History Updated');
-        } else {
-          player.history.push(newHistory);
-        }
-      });
+    if (player.history.length > 0) {
+      let gwIndex = player.history.findIndex(
+        gw => gw.event === newHistory.event
+      );
+      if (gwIndex === -1) {
+        // res.json({ msg: 'not found' });
+        player.history.push(newHistory);
+      } else {
+        res.json({ msg: 'found' });
+      }
+    } else {
+      player.history.push(newHistory);
     }
-    player.history.push(newHistory);
 
     player.save().then(player => res.json(player));
-    // res.json(newHistory);
   });
 });
 

@@ -16,11 +16,17 @@ class Results extends Component {
 
     let playerItems;
     if (players === null || loading) {
-      playerItems = <Spinner />;
+      playerItems = null;
     } else {
       playerItems = <ResultsTable players={players} />;
     }
-    console.log('playerItems', playerItems);
+
+    let weeks = Array.from(Array(38).keys()).map(num => num + 1);
+    let gameweeks = weeks.map((week, index) => (
+      <th key={index} scope="col">
+        GW {week}
+      </th>
+    ));
 
     return (
       <div>
@@ -34,9 +40,15 @@ class Results extends Component {
           </div>
         </div>
 
-        <table className="table table-responsive table-hover league-table">
-          {playerItems}
+        <table className="table table-responsive table-striped table-bordered table-hover league-table">
           <caption>Weekly Results</caption>
+          <thead className="black white-text text-center">
+            <tr>
+              <th scope="col">Team</th>
+              {gameweeks}
+            </tr>
+          </thead>
+          <tbody>{playerItems}</tbody>
         </table>
       </div>
     );
