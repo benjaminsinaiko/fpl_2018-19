@@ -20,7 +20,9 @@ class LeagueTableItem extends Component {
         <td>{result.rank}</td>
         <td>{result.last_rank}</td>
         <td>{result.event_total}</td>
-        <td>{result.total}</td>
+        <td>
+          <b>{result.total}</b>
+        </td>
         <td>{result.player_name}</td>
       </tr>
     );

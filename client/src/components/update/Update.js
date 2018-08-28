@@ -31,7 +31,7 @@ class Update extends Component {
         `https://cors-anywhere.herokuapp.com/https://fantasy.premierleague.com/drf/entry/${playerId}/history`
       )
       .then(res => {
-        res.data.history.map(gw => {
+        res.data.history.forEach(gw => {
           axios
             .post(`api/players/history/${playerId}`, gw)
             .then(res => {
@@ -91,7 +91,7 @@ class Update extends Component {
           <div className="row">
             <div className="col-md-12">
               <div className="text-center">
-                <Header />
+                <Header page="Update Players" />
                 <div className="card-columns">{playerCards}</div>
               </div>
             </div>

@@ -19,24 +19,16 @@ img {
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  height: 100%;
+  height: 100vh;
   margin-top: -24px;
   margin-bottom: -50px;
 }
 
-@media (min-width: 576px) {
-  .landing {
-    height: 100vh;
-  }
-}
-
-.landing-inner {
-  padding-top: 80px;
-}
-
-.league-header {
+.page-header {
   border-radius: 90px;
   color: black;
+  padding: 2rem;
+  margin-top: 20px;
   background-color: springgreen;
   background-size: cover;
   font-family: PremierSans-Bold, Geneva, Tahoma, sans-serif;
@@ -55,17 +47,22 @@ img {
   height: 100%;
 }
 
-.league {
+.league,
+.results {
+  position: relative;
   background: url('./img/Premier_League_Rebrands_DesignStudio_04.jpg');
   background-repeat: repeat;
-  min-height: 100% important!;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  height: 100vh;
   margin-top: -24px;
   margin-bottom: -50px;
 }
 
 .league-table {
   background-color: ghostwhite;
-  margin: 20px;
+  margin: 0 auto;
   display: table;
   padding: 10px;
   overflow-x: auto;
