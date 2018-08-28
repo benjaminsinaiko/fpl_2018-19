@@ -27,35 +27,33 @@ class League extends Component {
 
     return (
       <div className="league">
-        <div className="dark-overlay">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-12">
-                <div className="text-center">
-                  <Header page="League Table" />
-                </div>
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="text-center">
+                <Header page="League Table" />
               </div>
             </div>
           </div>
-          <div className="league-table">
-            <table className="table table-responsive table-hover">
-              <caption>FPL League Standings</caption>
-              <thead className="thead-dark">
-                <tr>
-                  <th scope="col" />
-                  <th scope="col">Team</th>
-                  <th scope="col">Rank</th>
-                  <th scope="col">Last</th>
-                  <th scope="col">GW</th>
-                  <th scope="col">Total</th>
-                  <th scope="col">Player</th>
-                </tr>
-              </thead>
-              <tbody>{leagueItems}</tbody>
-            </table>
-          </div>
-          {loadSpinner}
         </div>
+        <div className="league-table">
+          <table className="table table-responsive table-hover">
+            <caption>FPL League Standings</caption>
+            <thead className="thead-dark">
+              <tr>
+                <th scope="col" />
+                <th scope="col">Team</th>
+                <th scope="col">Rank</th>
+                <th scope="col">Last</th>
+                <th scope="col">GW</th>
+                <th scope="col">Total</th>
+                <th scope="col">Player</th>
+              </tr>
+            </thead>
+            <tbody>{leagueItems}</tbody>
+          </table>
+        </div>
+        {loadSpinner}
       </div>
     );
   }

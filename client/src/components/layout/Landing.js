@@ -7,13 +7,11 @@ class Landing extends Component {
   render() {
     return (
       <div className="landing">
-        <div className="dark-overlay text-light">
-          <div className="container">
-            <Header page="Gameweek Status" />
-            <div className="row">
-              <div className="col-md-12 text-center">
-                <Events />
-              </div>
+        <div className="container">
+          <Header page="Gameweek Status" />
+          <div className="row">
+            <div className="col-md-12 text-center">
+              <Events />
             </div>
           </div>
         </div>

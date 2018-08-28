@@ -14,12 +14,12 @@ img {
 
 .landing {
   position: relative;
-  background: url('./img/PL-logos.jpg');
+  background: url('./img/pl_logos-bkground.jpg');
   background-repeat: repeat;
-  background-size: cover;
+  background-size: 100% auto;
   background-position: center;
   background-attachment: fixed;
-  height: 100vh;
+  min-height: 90vh;
   margin-top: -24px;
   margin-bottom: -50px;
 }
@@ -38,34 +38,29 @@ img {
   box-shadow: 0 10px 7px 4px rgb(66, 66, 66);
 }
 
-.dark-overlay {
-  background-color: rgba(100, 100, 100, 0.8);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
 .league,
 .results {
   position: relative;
-  background: url('./img/Premier_League_Rebrands_DesignStudio_04.jpg');
+  background: url('./img/pl_green-bkground.jpg');
   background-repeat: repeat;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  height: 100vh;
+  min-height: 90vh;
   margin-top: -24px;
   margin-bottom: -50px;
 }
 
+.table-wrapper {
+  overflow-x: scroll;
+}
+
 .league-table {
   background-color: ghostwhite;
-  margin: 0 auto;
+  margin: 162px auto;
+  width: 1000px;
   display: table;
   padding: 10px;
-  overflow-x: auto;
 }
 
 .card-form {

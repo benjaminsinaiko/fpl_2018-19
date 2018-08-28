@@ -33,28 +33,30 @@ class Results extends Component {
 
     return (
       <div className="results">
-        <div className="dark-overlay">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-12">
-                <div className="text-center">
-                  <Header page="Weekly Results" />
-                </div>
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="text-center">
+                <Header page="Weekly Results" />
               </div>
             </div>
           </div>
-
-          <table className="table table-responsive-lg table-striped table-bordered table-hover league-table">
-            <caption>Weekly Results</caption>
-            <thead className="black white-text text-center">
-              <tr>
-                <th scope="col">Team</th>
-                {gameweeks}
-              </tr>
-            </thead>
-            <tbody>{playerItems}</tbody>
-          </table>
-          {loadSpinner}
+        </div>
+        <div className="container-fluid table-wrapper">
+          <div className="row">
+            <div className="col-md-12">
+              <table className="table table-responsive-lg table-striped table-bordered table-hover league-table">
+                <thead className="text-center">
+                  <tr>
+                    <th scope="col">Team</th>
+                    {gameweeks}
+                  </tr>
+                </thead>
+                <tbody>{playerItems}</tbody>
+              </table>
+              {loadSpinner}
+            </div>
+          </div>
         </div>
       </div>
     );
