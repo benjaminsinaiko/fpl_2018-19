@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import classnames from 'classnames';
 import moment from 'moment';
 import 'moment-timezone';
@@ -19,6 +20,10 @@ class EventItem extends Component {
     const deadlineChi = deadlineUTC
       .tz('America/Chicago')
       .format('ddd MMM Do h:mm a z');
+
+    // Update button checker
+    let currentAndChecked =
+      event.is_current === true && event.data_checked === true;
 
     let activeContent;
 
@@ -124,6 +129,13 @@ class EventItem extends Component {
               {event.highest_score !== null ? event.highest_score : '0'}
             </div>
           </div>
+          <Link to="/update">
+            {currentAndChecked ? (
+              <button type="button" className="btn btn-outline-primary btn-sm">
+                Update
+              </button>
+            ) : null}
+          </Link>
         </div>
         <div className="card-footer">
           <small
