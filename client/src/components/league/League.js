@@ -36,23 +36,25 @@ class League extends Component {
             </div>
           </div>
         </div>
-        <table className="table table-responsive table-hover league-table">
-          <caption>FPL Standings</caption>
-          <thead>
-            <tr>
-              <th scope="col">
-                <i className="fa fa-arrows-v" />
-              </th>
-              <th scope="col">Team</th>
-              <th scope="col">Rank</th>
-              <th scope="col">Last</th>
-              <th scope="col">GW</th>
-              <th scope="col">Total</th>
-              <th scope="col">Player</th>
-            </tr>
-          </thead>
-          <tbody>{leagueItems}</tbody>
-        </table>
+        <div className="league-table">
+          <table className="table table-responsive table-hover">
+            <caption>FPL League Standings</caption>
+            <thead>
+              <tr>
+                <th scope="col">
+                  <i className="fa fa-arrows-v" />
+                </th>
+                <th scope="col">Team</th>
+                <th scope="col">Rank</th>
+                <th scope="col">Last</th>
+                <th scope="col">GW</th>
+                <th scope="col">Total</th>
+                <th scope="col">Player</th>
+              </tr>
+            </thead>
+            <tbody>{leagueItems}</tbody>
+          </table>
+        </div>
         {loadSpinner}
       </div>
     );

@@ -65,10 +65,10 @@ img {
 
 .league-table {
   background-color: ghostwhite;
-  margin: auto;
+  margin: 20px;
   display: table;
-  width: 95%;
   padding: 10px;
+  overflow-x: auto;
 }
 
 .card-form {

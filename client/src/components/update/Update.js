@@ -12,7 +12,8 @@ class Update extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedPlayer: null
+      selectedPlayer: null,
+      playersUpdated: []
     };
     this.onSubmit = this.onSubmit.bind(this);
   }
@@ -33,7 +34,9 @@ class Update extends Component {
         res.data.history.map(gw => {
           axios
             .post(`api/players/history/${playerId}`, gw)
-            .then(res => console.log(res.data))
+            .then(res => {
+              console.log(`${res.data.handle} updated`);
+            })
             .catch(err => console.log(err));
         });
       })
@@ -63,6 +66,7 @@ class Update extends Component {
                   this.setState({
                     selectedPlayer: player.id
                   });
+                  this.state.playersUpdated.push(player.id);
                 }}
               >
                 Update
@@ -70,7 +74,11 @@ class Update extends Component {
             </form>
             <br />
             <small style={{ color: '#28a745' }}>
-              <Moment format="MMM DD, YYYY">{player.updated_at}</Moment>
+              {this.state.playersUpdated.includes(player.id) ? (
+                <time>Player Updated</time>
+              ) : (
+                <Moment fromNow>{player.updatedAt}</Moment>
+              )}
             </small>
           </div>
         </div>

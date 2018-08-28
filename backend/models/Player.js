@@ -85,7 +85,12 @@ const PlayerSchema = new Schema(
       }
     ]
   },
-  { timestamps: true }
+  {
+    timestamps: {
+      createdAt: 'createdAt',
+      updatedAt: 'updatedAt'
+    }
+  }
 );
 
 module.exports = Player = mongoose.model('Player', PlayerSchema);
