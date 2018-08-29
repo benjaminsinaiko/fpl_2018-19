@@ -6,7 +6,8 @@ class ResultsWeekly extends Component {
     this.state = {
       gameweeksComplete: 0,
       playerNames: [],
-      playerScores: []
+      playerScores: [],
+      weeklyWinners: []
     };
   }
 
@@ -15,24 +16,33 @@ class ResultsWeekly extends Component {
       this.setState({
         gameweeksComplete: this.props.players[0].history.length
       });
+      this.props.players.map(player => {
+        this.state.playerNames.push(player.handle);
+      });
     }
+  }
+
+  gameweekWinner(arr, gw) {
+    const gwScores = arr.map(
+      scores =>
+        scores.history[gw].points - scores.history[gw].event_transfers_cost
+    );
+    const highScore = Math.max(...gwScores);
+    const gwWinner = arr.filter(
+      player =>
+        player.history[gw].points - player.history[gw].event_transfers_cost ===
+        highScore
+    );
+    return gwWinner;
   }
 
   render() {
     const { players } = this.props;
 
-    let playerNames = [];
-
     if (players) {
-      players.map(player => {
-        let scores = [];
-        playerNames.push(player.handle);
-
-        player.history.map(week => {
-          scores.push(week.points - week.event_transfers_cost);
-        });
-        this.state.playerScores.push(scores);
-      });
+      let winners = this.gameweekWinner(players, 0);
+      let handles = winners.map(winner => winner.handle);
+      console.log('winner: ', handles);
     }
 
     console.log(this.state);
