@@ -57,9 +57,9 @@ img {
 
 .league-table {
   background-color: ghostwhite;
-  margin: 162px auto;
+  margin: 30px auto 50px auto;
   display: table;
-  padding: 10px;
+  padding: 5px;
 }
 
 .card-form {
