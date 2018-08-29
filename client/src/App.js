@@ -9,6 +9,7 @@ import Landing from './components/layout/Landing';
 import Update from './components/update/Update';
 import League from './components/league/League';
 import Results from './components/results/Results';
+import ResultsWeekly from './components/results/ResultsWeekly';
 
 import './App.css';
 
@@ -23,6 +24,7 @@ class App extends Component {
             <Route exact path="/update" component={Update} />
             <Route exact path="/league" component={League} />
             <Route exact path="/results" component={Results} />
+            <Route exact path="/weekly" component={ResultsWeekly} />
             <Footer />
           </div>
         </Router>

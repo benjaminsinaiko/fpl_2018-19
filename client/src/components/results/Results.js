@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Spinner from '../common/Spinner';
 import Header from '../common/Header';
 import ResultsTable from './ResultsTable';
+import ResultsWeekly from './ResultsWeekly';
 import { getPlayers } from '../../actions/playersActions';
 
 class Results extends Component {
@@ -14,13 +15,15 @@ class Results extends Component {
   render() {
     const { players, loading } = this.props.players;
 
+    let weeklyWinners;
     let playerItems;
     let loadSpinner;
     if (players === null || loading) {
       playerItems = null;
       loadSpinner = <Spinner />;
     } else {
-      playerItems = <ResultsTable players={players} />;
+      weeklyWinners = <ResultsWeekly players={players} />;
+      // playerItems = <ResultsTable players={players} />;
       loadSpinner = null;
     }
 
@@ -42,7 +45,10 @@ class Results extends Component {
             </div>
           </div>
         </div>
-        <div className="container-fluid table-wrapper">
+
+        {weeklyWinners}
+
+        {/* <div className="container-fluid table-wrapper">
           <div className="row">
             <div className="col-md-12">
               <div className="league-table">
@@ -60,7 +66,7 @@ class Results extends Component {
               {loadSpinner}
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     );
   }

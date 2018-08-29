@@ -79,7 +79,7 @@ router.post('/history/:id', (req, res) => {
 // @route GET api/players/gameweek/:id
 // @desc Get Gameweek scores
 // @access Public
-router.get('/gameweek/:id', (req, res) => {
+router.get('/gameweek/', (req, res) => {
   Player.find()
     .select('handle history.event history.points history.event_transfers_cost')
     .then(name => res.json(name));
