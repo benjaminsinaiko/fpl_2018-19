@@ -8,7 +8,7 @@ class ResultsTableItem extends Component {
     if (player.history.length > 0) {
       score = player.history.map((week, index) => (
         <th key={index} scope="col">
-          {week.points}
+          {week.points - week.event_transfers_cost}
         </th>
       ));
     }

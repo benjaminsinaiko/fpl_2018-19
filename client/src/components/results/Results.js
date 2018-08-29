@@ -45,15 +45,18 @@ class Results extends Component {
         <div className="container-fluid table-wrapper">
           <div className="row">
             <div className="col-md-12">
-              <table className="table table-responsive-lg table-striped table-bordered table-hover league-table">
-                <thead className="text-center">
-                  <tr>
-                    <th scope="col">Team</th>
-                    {gameweeks}
-                  </tr>
-                </thead>
-                <tbody>{playerItems}</tbody>
-              </table>
+              <div className="league-table">
+                <table className="table table-responsive-lg table-striped table-bordered table-hover">
+                  <caption>Gameweek Points - Transfer Costs</caption>
+                  <thead className="text-center thead-dark">
+                    <tr>
+                      <th scope="col">Team</th>
+                      {gameweeks}
+                    </tr>
+                  </thead>
+                  <tbody>{playerItems}</tbody>
+                </table>
+              </div>
               {loadSpinner}
             </div>
           </div>

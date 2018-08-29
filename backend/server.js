@@ -18,6 +18,9 @@ app.use(
 );
 app.use(bodyParser.json());
 
+// Set mongoose.Promise to any Promise implementation
+mongoose.Promise = Promise;
+
 // DB Config
 const db = `mongodb://${process.env.MONGO_USER}:${
   process.env.MONGO_PASSWORD
