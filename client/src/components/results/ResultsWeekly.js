@@ -6,8 +6,8 @@ class ResultsWeekly extends Component {
     this.state = {
       gameweeksComplete: 0,
       playerNames: [],
-      playerScores: [],
-      weeklyWinners: []
+      weeklyWinners: [],
+      weeklyHighScores: []
     };
   }
 
@@ -16,7 +16,7 @@ class ResultsWeekly extends Component {
       this.setState({
         gameweeksComplete: this.props.players[0].history.length
       });
-      this.props.players.map(player => {
+      this.props.players.forEach(player => {
         this.state.playerNames.push(player.handle);
       });
     }
@@ -28,6 +28,7 @@ class ResultsWeekly extends Component {
         scores.history[gw].points - scores.history[gw].event_transfers_cost
     );
     const highScore = Math.max(...gwScores);
+    this.state.weeklyHighScores.push(highScore);
     const gwWinner = arr.filter(
       player =>
         player.history[gw].points - player.history[gw].event_transfers_cost ===
@@ -39,10 +40,28 @@ class ResultsWeekly extends Component {
   render() {
     const { players } = this.props;
 
+    // Find weekly Winners
     if (players) {
-      let winners = this.gameweekWinner(players, 0);
-      let handles = winners.map(winner => winner.handle);
-      console.log('winner: ', handles);
+      for (let i = 0; i < this.state.gameweeksComplete; i++) {
+        let winners = this.gameweekWinner(players, i);
+        let handles = winners.map(winner => winner.handle);
+        this.state.weeklyWinners.push(handles);
+      }
+    }
+
+    let gwCard;
+    if (this.state.weeklyWinners.length > 0) {
+      gwCard = this.state.weeklyWinners.map((week, index) => (
+        <div key={index} className="card">
+          <div className="card-header text-center">
+            GW {index + 1} |{' '}
+            <small>High Score: {this.state.weeklyHighScores[index]}</small>
+          </div>
+          <div className="card-body">
+            <p className="card-text">{week}</p>
+          </div>
+        </div>
+      ));
     }
 
     console.log(this.state);
@@ -51,14 +70,7 @@ class ResultsWeekly extends Component {
       <div className="container">
         <div className="row">
           <div className="col-md-12">
-            <div className="card-columns">
-              <div className="card">
-                <div className="card-body">
-                  <h5 className="card-title">GW</h5>
-                  <p className="card-text">Winner</p>
-                </div>
-              </div>
-            </div>
+            <div className="card-columns">{gwCard}</div>
           </div>
         </div>
       </div>

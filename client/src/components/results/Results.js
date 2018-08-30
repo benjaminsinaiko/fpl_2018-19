@@ -23,7 +23,7 @@ class Results extends Component {
       loadSpinner = <Spinner />;
     } else {
       weeklyWinners = <ResultsWeekly players={players} />;
-      // playerItems = <ResultsTable players={players} />;
+      playerItems = <ResultsTable players={players} />;
       loadSpinner = null;
     }
 
@@ -48,7 +48,7 @@ class Results extends Component {
 
         {weeklyWinners}
 
-        {/* <div className="container-fluid table-wrapper">
+        <div className="container-fluid table-wrapper">
           <div className="row">
             <div className="col-md-12">
               <div className="league-table">
@@ -66,7 +66,7 @@ class Results extends Component {
               {loadSpinner}
             </div>
           </div>
-        </div> */}
+        </div>
       </div>
     );
   }
