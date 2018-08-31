@@ -68,6 +68,7 @@ class ResultsWeekly extends Component {
     if (this.state.weeklyWinners.length > 0) {
       winningsTable = (
         <ResultsMoney
+          gameweeksComplete={gameweeksComplete}
           teamNames={teamNames}
           weeklyWinners={weeklyWinners}
           players={players}

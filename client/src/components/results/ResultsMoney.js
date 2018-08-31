@@ -9,42 +9,69 @@ class ResultsMoney extends Component {
       teamNames: [],
       weeklyWinners: [],
       numberOfWins: {},
-      amountFromWins: {}
+      amountFromWins: {},
+      totalPoints: {},
+      bonus: {},
+      totalPL: {}
     };
 
-    this.numWins = this.numWins.bind(this);
+    this.getPlayerData = this.getPlayerData.bind(this);
+  }
+
+  componentWillMount() {
+    this.setState({ gameweeksComplete: this.props.gameweeksComplete });
+    this.setState({ teamNames: this.props.teamNames });
+    this.setState({ weeklyWinners: this.props.weeklyWinners });
   }
 
   componentDidMount() {
-    this.setState({ teamNames: this.props.teamNames });
-    this.setState({ weeklyWinners: this.props.weeklyWinners });
-
-    this.numWins(this.state.teamNames);
+    this.getPlayerData(this.props.players);
   }
 
-  numWins(players) {
+  // Find number of wins
+  getPlayerData(players) {
     players.forEach(player => {
+      let gw = this.state.gameweeksComplete - 1;
       let winsTotal = 0;
       let amountTotal = 0;
+
+      // Get Total Score
+      this.setState(prevState => ({
+        totalPoints: {
+          ...prevState.totalPoints,
+          [player.handle]: player.history[gw].total_points
+        }
+      }));
 
       this.state.weeklyWinners.forEach(week => {
         let numOfWinners = week.length;
 
-        if (week.includes(player)) {
+        if (week.includes(player.handle)) {
           winsTotal += 1 / numOfWinners;
           amountTotal += this.state.weeklyWinnings / numOfWinners;
         }
       });
 
       this.setState(prevState => ({
-        numberOfWins: { ...prevState.numberOfWins, [player]: winsTotal }
+        numberOfWins: { ...prevState.numberOfWins, [player.handle]: winsTotal }
       }));
       this.setState(prevState => ({
-        amountFromWins: { ...prevState.amountFromWins, [player]: amountTotal }
+        amountFromWins: {
+          ...prevState.amountFromWins,
+          [player.handle]: amountTotal
+        }
       }));
     });
   }
 
+  // Find total score
+  findScore(players) {
+    players.forEach(player => {
+      //
+    });
+  }
+
+  // Format Weekly $ column
   winningsFormat(amount) {
     if (amount) {
       return `$${amount.toFixed(2)}`;
@@ -52,9 +79,9 @@ class ResultsMoney extends Component {
   }
 
   render() {
-    const { teamNames, numberOfWins, amountFromWins } = this.state;
+    const { teamNames, numberOfWins, amountFromWins, totalPoints } = this.state;
     const { players } = this.props;
-    console.log('players', players);
+    // console.log('players', players);
     console.log('state: ', this.state);
 
     let teams;
@@ -64,7 +91,7 @@ class ResultsMoney extends Component {
           <td>{team}</td>
           <td>{numberOfWins[team]}</td>
           <td>{this.winningsFormat(amountFromWins[team])}</td>
-          <td>3</td>
+          <td>{totalPoints[team]}</td>
           <td>4</td>
           <td>5</td>
         </tr>
