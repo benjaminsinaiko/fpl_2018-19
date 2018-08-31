@@ -37,8 +37,8 @@ class ResultsMoney extends Component {
         winsTotal += 1 / numOfWinners;
       }
       console.log('winsTotal: ', player, winsTotal);
-      return winsTotal;
     });
+    return winsTotal === 0 ? '--' : winsTotal;
   }
 
   winnings(player) {
@@ -50,8 +50,8 @@ class ResultsMoney extends Component {
         winningsTotal += this.state.weeklyWinnings / numOfWinners;
       }
       console.log('winningsTotal: ', player, winningsTotal.toFixed(2));
-      return winningsTotal.toFixed(2);
     });
+    return winningsTotal === 0 ? '--' : `$${winningsTotal.toFixed(2)}`;
   }
 
   render() {
@@ -65,7 +65,7 @@ class ResultsMoney extends Component {
     let team;
     if (playerNames) {
       team = playerNames.map((name, index) => (
-        <tr key={index}>
+        <tr key={index} className="text-center">
           <td>{name}</td>
           <td>{this.numWins(name)}</td>
           <td>{this.winnings(name)}</td>
