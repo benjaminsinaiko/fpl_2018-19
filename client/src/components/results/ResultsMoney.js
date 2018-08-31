@@ -6,69 +6,64 @@ class ResultsMoney extends Component {
     this.state = {
       bonusMoney: [960, 600, -50, -100],
       weeklyWinnings: 840 / 38,
-      playerNames: [
-        '@ChicagoSeagulls',
-        'babybelend',
-        'CHANGE NAME',
-        'Goldberg\'s Dele',
-        'Kim Jong Kün',
-        'Mmmbappe ba duba dop',
-        'Obama\'s Yang',
-        'Sergio VARmos',
-        'WINP \'17'
-      ],
-      weeklyWinners: [['babybelend'], ['Obama\'s Yang'], ['CHANGE NAME']]
+      teamNames: [],
+      weeklyWinners: [],
+      numberOfWins: {},
+      amountFromWins: {}
     };
 
     this.numWins = this.numWins.bind(this);
-    this.winnings = this.winnings.bind(this);
   }
 
   componentDidMount() {
-    this.numWins(this.state.playerNames);
+    this.setState({ teamNames: this.props.teamNames });
+    this.setState({ weeklyWinners: this.props.weeklyWinners });
+
+    this.numWins(this.state.teamNames);
   }
 
-  numWins(player) {
-    let winsTotal = 0;
+  numWins(players) {
+    players.forEach(player => {
+      let winsTotal = 0;
+      let amountTotal = 0;
 
-    this.state.weeklyWinners.forEach(week => {
-      let numOfWinners = week.length;
-      if (week.includes(player)) {
-        winsTotal += 1 / numOfWinners;
-      }
-      console.log('winsTotal: ', player, winsTotal);
+      this.state.weeklyWinners.forEach(week => {
+        let numOfWinners = week.length;
+
+        if (week.includes(player)) {
+          winsTotal += 1 / numOfWinners;
+          amountTotal += this.state.weeklyWinnings / numOfWinners;
+        }
+      });
+
+      this.setState(prevState => ({
+        numberOfWins: { ...prevState.numberOfWins, [player]: winsTotal }
+      }));
+      this.setState(prevState => ({
+        amountFromWins: { ...prevState.amountFromWins, [player]: amountTotal }
+      }));
     });
-    return winsTotal === 0 ? '--' : winsTotal;
   }
 
-  winnings(player) {
-    let winningsTotal = 0;
-
-    this.state.weeklyWinners.forEach(week => {
-      let numOfWinners = week.length;
-      if (week.includes(player)) {
-        winningsTotal += this.state.weeklyWinnings / numOfWinners;
-      }
-      console.log('winningsTotal: ', player, winningsTotal.toFixed(2));
-    });
-    return winningsTotal === 0 ? '--' : `$${winningsTotal.toFixed(2)}`;
+  winningsFormat(amount) {
+    if (amount) {
+      return `$${amount.toFixed(2)}`;
+    }
   }
 
   render() {
-    const {
-      playerNames,
-      bonusMoney,
-      weeklyWinnings,
-      weeklyWinners
-    } = this.state;
+    const { teamNames, numberOfWins, amountFromWins } = this.state;
+    const { players } = this.props;
+    console.log('players', players);
+    console.log('state: ', this.state);
 
-    let team;
-    if (playerNames) {
-      team = playerNames.map((name, index) => (
+    let teams;
+    if (teamNames) {
+      teams = teamNames.map((team, index) => (
         <tr key={index} className="text-center">
-          <td>{name}</td>
-          <td>{this.numWins(name)}</td>
-          <td>{this.winnings(name)}</td>
+          <td>{team}</td>
+          <td>{numberOfWins[team]}</td>
+          <td>{this.winningsFormat(amountFromWins[team])}</td>
           <td>3</td>
           <td>4</td>
           <td>5</td>
@@ -78,8 +73,6 @@ class ResultsMoney extends Component {
 
     return (
       <div>
-        <h1>Money Page</h1>
-
         <div className="container">
           <div className="row">
             <div className="col-md-12">
@@ -96,7 +89,7 @@ class ResultsMoney extends Component {
                       <th scope="col">Total P/L</th>
                     </tr>
                   </thead>
-                  <tbody>{team}</tbody>
+                  <tbody>{teams}</tbody>
                 </table>
               </div>
             </div>

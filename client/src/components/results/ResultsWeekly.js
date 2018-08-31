@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
+import ResultsMoney from './ResultsMoney';
 
 class ResultsWeekly extends Component {
   constructor(props) {
     super(props);
     this.state = {
       gameweeksComplete: 0,
-      playerNames: [],
+      teamNames: [],
       weeklyWinners: [],
       weeklyHighScores: []
     };
+
+    this.sortedTeamNames = this.sortedTeamNames.bind(this);
   }
 
   componentDidMount() {
@@ -16,10 +19,16 @@ class ResultsWeekly extends Component {
       this.setState({
         gameweeksComplete: this.props.players[0].history.length
       });
-      this.props.players.forEach(player => {
-        this.state.playerNames.push(player.handle);
-      });
     }
+  }
+
+  sortedTeamNames(teams, gw) {
+    let sortedTeams = teams.sort(
+      (a, b) => b.history[gw].total_points - a.history[gw].total_points
+    );
+    sortedTeams.forEach(team => {
+      this.state.teamNames.push(team.handle);
+    });
   }
 
   gameweekWinner(arr, gw) {
@@ -39,6 +48,11 @@ class ResultsWeekly extends Component {
 
   render() {
     const { players } = this.props;
+    const { teamNames, weeklyWinners, gameweeksComplete } = this.state;
+
+    if (gameweeksComplete > 0) {
+      this.sortedTeamNames(players, gameweeksComplete - 1);
+    }
 
     // Find weekly Winners
     if (players) {
@@ -49,8 +63,16 @@ class ResultsWeekly extends Component {
       }
     }
 
+    let winningsTable;
     let gwCard;
     if (this.state.weeklyWinners.length > 0) {
+      winningsTable = (
+        <ResultsMoney
+          teamNames={teamNames}
+          weeklyWinners={weeklyWinners}
+          players={players}
+        />
+      );
       gwCard = this.state.weeklyWinners.map((week, index) => (
         <div key={index} className="card">
           <div className="card-header text-center">
@@ -64,10 +86,9 @@ class ResultsWeekly extends Component {
       ));
     }
 
-    console.log('weekly state: ', this.state);
-
     return (
       <div className="container">
+        {winningsTable}
         <div className="row">
           <div className="col-md-12">
             <div className="card-columns">{gwCard}</div>
