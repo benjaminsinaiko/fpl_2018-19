@@ -64,7 +64,7 @@ class ResultsWeekly extends Component {
       ));
     }
 
-    console.log(this.state);
+    console.log('weekly state: ', this.state);
 
     return (
       <div className="container">

@@ -100,3 +100,31 @@ img {
   color: #38003c;
   text-align: center;
 }
+
+.moneyTable {
+  display: table;
+  margin: auto;
+  width: 60%;
+  table-layout: fixed;
+}
+
+.moneyRow {
+  display: table-row;
+}
+
+.moneyCell {
+  display: table-cell;
+  text-align: left;
+  padding: 10px;
+  vertical-align: middle;
+  width: 32%;
+}
+
+p {
+  outline: 1px solid black;
+}
+
+.red {
+  color: red;
+  font-weight: 700;
+}
