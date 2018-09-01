@@ -10,8 +10,7 @@ class ResultsMoney extends Component {
       weeklyWinners: [],
       numberOfWins: {},
       amountFromWins: {},
-      totalPoints: {},
-      totalPL: {}
+      totalPoints: {}
     };
 
     this.getPlayerData = this.getPlayerData.bind(this);
@@ -95,7 +94,6 @@ class ResultsMoney extends Component {
 
   // Format Weekly $ column
   weeklyFormat(amount) {
-    console.log(amount);
     if (amount !== 0) {
       return `$${amount.toFixed(2)}`;
     } else {
@@ -118,14 +116,11 @@ class ResultsMoney extends Component {
       numberOfWins,
       amountFromWins,
       totalPoints,
-      bonusPenalty,
-      totalPL
+      bonusPenalty
     } = this.state;
-    console.log('state: ', this.state);
 
     let teams;
     if (teamNames && bonusPenalty) {
-      console.log('amount', totalPL);
       teams = teamNames.map((team, index) => (
         <tr key={index} className="text-center">
           <td>{team}</td>
@@ -133,6 +128,7 @@ class ResultsMoney extends Component {
           <td>{this.weeklyFormat(amountFromWins[team])}</td>
           <td>{totalPoints[team]}</td>
           <td>{this.totalFormat(bonusPenalty[team])}</td>
+          <td>{this.totalFormat(amountFromWins[team] - 250)}</td>
           <td>
             {this.totalFormat(amountFromWins[team] + bonusPenalty[team] - 250)}
           </td>
@@ -155,6 +151,7 @@ class ResultsMoney extends Component {
                       <th scope="col">Weekly $</th>
                       <th scope="col">Total Score</th>
                       <th scope="col">Bonus/Penalty</th>
+                      <th scope="col">Max Loss</th>
                       <th scope="col">Total P/L</th>
                     </tr>
                   </thead>
