@@ -16,21 +16,22 @@ class ResultsMoney extends Component {
 
     this.getPlayerData = this.getPlayerData.bind(this);
     this.getBonusPenalty = this.getBonusPenalty.bind(this);
-    this.getTotal = this.getTotal.bind(this);
   }
 
   componentWillMount() {
-    this.setState({ gameweeksComplete: this.props.gameweeksComplete });
-    this.setState({ teamNames: this.props.teamNames });
-    this.setState({ weeklyWinners: this.props.weeklyWinners });
+    this.setState({
+      gameweeksComplete: this.props.gameweeksComplete,
+      teamNames: this.props.teamNames,
+      weeklyWinners: this.props.weeklyWinners
+    });
   }
 
   componentDidMount() {
     this.getBonusPenalty(this.state.teamNames);
     this.getPlayerData(this.props.players);
-
-    this.getTotal(this.state.teamNames);
   }
+
+  componentDidUpdate() {}
 
   // Find number of wins
   getPlayerData(players) {
@@ -92,29 +93,22 @@ class ResultsMoney extends Component {
     });
   }
 
-  getTotal(teams) {
-    teams.forEach(team => {
-      console.log('team', team);
-      let total = 0;
-
-      console.log('fromWins', this.state.amountFromWins[team]);
-
-      // total += this.state.amountFromWins[team];
-      // total += this.state.bonusPenalty[team];
-
-      this.setState(prevState => ({
-        totalPL: {
-          ...prevState.totalPL,
-          [team]: total
-        }
-      }));
-    });
+  // Format Weekly $ column
+  weeklyFormat(amount) {
+    console.log(amount);
+    if (amount !== 0) {
+      return `$${amount.toFixed(2)}`;
+    } else {
+      return '--';
+    }
   }
 
   // Format Weekly $ column
-  winningsFormat(amount) {
-    if (amount) {
+  totalFormat(amount) {
+    if (amount >= 0) {
       return `$${amount.toFixed(2)}`;
+    } else {
+      return `$(${Math.abs(amount.toFixed(2))})`;
     }
   }
 
@@ -130,16 +124,18 @@ class ResultsMoney extends Component {
     console.log('state: ', this.state);
 
     let teams;
-    if (teamNames && bonusPenalty && Object.keys(totalPL).length > 0) {
+    if (teamNames && bonusPenalty) {
       console.log('amount', totalPL);
       teams = teamNames.map((team, index) => (
         <tr key={index} className="text-center">
           <td>{team}</td>
           <td>{numberOfWins[team]}</td>
-          <td>{this.winningsFormat(amountFromWins[team])}</td>
+          <td>{this.weeklyFormat(amountFromWins[team])}</td>
           <td>{totalPoints[team]}</td>
-          <td>{bonusPenalty[team]}</td>
-          <td>{totalPL[team]}</td>
+          <td>{this.totalFormat(bonusPenalty[team])}</td>
+          <td>
+            {this.totalFormat(amountFromWins[team] + bonusPenalty[team] - 250)}
+          </td>
         </tr>
       ));
     }
