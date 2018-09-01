@@ -11,11 +11,12 @@ class ResultsMoney extends Component {
       numberOfWins: {},
       amountFromWins: {},
       totalPoints: {},
-      bonus: {},
       totalPL: {}
     };
 
     this.getPlayerData = this.getPlayerData.bind(this);
+    this.getBonusPenalty = this.getBonusPenalty.bind(this);
+    this.getTotal = this.getTotal.bind(this);
   }
 
   componentWillMount() {
@@ -25,7 +26,10 @@ class ResultsMoney extends Component {
   }
 
   componentDidMount() {
+    this.getBonusPenalty(this.state.teamNames);
     this.getPlayerData(this.props.players);
+
+    this.getTotal(this.state.teamNames);
   }
 
   // Find number of wins
@@ -35,14 +39,7 @@ class ResultsMoney extends Component {
       let winsTotal = 0;
       let amountTotal = 0;
 
-      // Get Total Score
-      this.setState(prevState => ({
-        totalPoints: {
-          ...prevState.totalPoints,
-          [player.handle]: player.history[gw].total_points
-        }
-      }));
-
+      // Calculate weekly wins and weekly $
       this.state.weeklyWinners.forEach(week => {
         let numOfWinners = week.length;
 
@@ -61,13 +58,56 @@ class ResultsMoney extends Component {
           [player.handle]: amountTotal
         }
       }));
+
+      // Get Total Score
+      this.setState(prevState => ({
+        totalPoints: {
+          ...prevState.totalPoints,
+          [player.handle]: player.history[gw].total_points
+        }
+      }));
     });
   }
 
-  // Find total score
-  findScore(players) {
-    players.forEach(player => {
-      //
+  getBonusPenalty(teams) {
+    teams.forEach(team => {
+      let bonusPenalty = 0;
+      let index = teams.indexOf(team);
+
+      if (index === 0) {
+        bonusPenalty = 960;
+      } else if (index === 1) {
+        bonusPenalty = 600;
+      } else if (index === teams.length - 2) {
+        bonusPenalty = -50;
+      } else if (index === teams.length - 1) {
+        bonusPenalty = -100;
+      }
+      this.setState(prevState => ({
+        bonusPenalty: {
+          ...prevState.bonusPenalty,
+          [team]: bonusPenalty
+        }
+      }));
+    });
+  }
+
+  getTotal(teams) {
+    teams.forEach(team => {
+      console.log('team', team);
+      let total = 0;
+
+      console.log('fromWins', this.state.amountFromWins[team]);
+
+      // total += this.state.amountFromWins[team];
+      // total += this.state.bonusPenalty[team];
+
+      this.setState(prevState => ({
+        totalPL: {
+          ...prevState.totalPL,
+          [team]: total
+        }
+      }));
     });
   }
 
@@ -79,21 +119,27 @@ class ResultsMoney extends Component {
   }
 
   render() {
-    const { teamNames, numberOfWins, amountFromWins, totalPoints } = this.state;
-    const { players } = this.props;
-    // console.log('players', players);
+    const {
+      teamNames,
+      numberOfWins,
+      amountFromWins,
+      totalPoints,
+      bonusPenalty,
+      totalPL
+    } = this.state;
     console.log('state: ', this.state);
 
     let teams;
-    if (teamNames) {
+    if (teamNames && bonusPenalty && Object.keys(totalPL).length > 0) {
+      console.log('amount', totalPL);
       teams = teamNames.map((team, index) => (
         <tr key={index} className="text-center">
           <td>{team}</td>
           <td>{numberOfWins[team]}</td>
           <td>{this.winningsFormat(amountFromWins[team])}</td>
           <td>{totalPoints[team]}</td>
-          <td>4</td>
-          <td>5</td>
+          <td>{bonusPenalty[team]}</td>
+          <td>{totalPL[team]}</td>
         </tr>
       ));
     }
