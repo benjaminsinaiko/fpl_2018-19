@@ -75,8 +75,8 @@ class ResultsWeekly extends Component {
         />
       );
       gwCard = this.state.weeklyWinners.map((week, index) => (
-        <div key={index} className="card">
-          <div className="card-header text-center">
+        <div key={index} className="card text-center">
+          <div className="card-header">
             GW {index + 1} |{' '}
             <small>High Score: {this.state.weeklyHighScores[index]}</small>
           </div>

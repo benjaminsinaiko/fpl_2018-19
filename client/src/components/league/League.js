@@ -40,7 +40,7 @@ class League extends Component {
           <div className="col-md-12">
             <div className="league-table">
               <table className="table table-responsive table-hover">
-                <caption>FPL League Standings</caption>
+                <caption>Live FPL Standings</caption>
                 <thead className="thead-dark">
                   <tr>
                     <th scope="col" />

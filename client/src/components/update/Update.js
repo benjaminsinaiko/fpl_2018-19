@@ -86,7 +86,7 @@ class Update extends Component {
     }
 
     return (
-      <div>
+      <div className="update">
         <div className="container">
           <div className="row">
             <div className="col-md-12">

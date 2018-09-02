@@ -75,9 +75,11 @@ class ResultsMoney extends Component {
       let index = teams.indexOf(team);
 
       if (index === 0) {
-        bonusPenalty = 960;
+        bonusPenalty = 900;
       } else if (index === 1) {
-        bonusPenalty = 600;
+        bonusPenalty = 562.5;
+      } else if (index === 2) {
+        bonusPenalty = 150;
       } else if (index === teams.length - 2) {
         bonusPenalty = -50;
       } else if (index === teams.length - 1) {

@@ -24,6 +24,38 @@ img {
   margin-bottom: -50px;
 }
 
+.league,
+.results {
+  position: relative;
+  background: url('./img/pl_green-bkground.jpg');
+  background-repeat: repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 90vh;
+  margin-top: -24px;
+  margin-bottom: -50px;
+}
+
+.update {
+  position: relative;
+  background: url('./img/pl_red-bkgrround.jpg');
+  background-repeat: repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 90vh;
+  margin-top: -24px;
+  margin-bottom: -50px;
+}
+
+@media (max-width: 767px) {
+  .landing,
+  .league,
+  .results {
+    background-image: none;
+  }
+}
 .page-header {
   border-radius: 90px;
   color: black;
@@ -36,19 +68,6 @@ img {
   -webkit-box-shadow: 0 10px 6px -6px black;
   -moz-box-shadow: 0 10px 6px -6px black;
   box-shadow: 0 10px 7px 4px rgb(66, 66, 66);
-}
-
-.league,
-.results {
-  position: relative;
-  background: url('./img/pl_green-bkground.jpg');
-  background-repeat: repeat;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  min-height: 90vh;
-  margin-top: -24px;
-  margin-bottom: -50px;
 }
 
 .table-wrapper {
@@ -118,10 +137,6 @@ img {
   padding: 10px;
   vertical-align: middle;
   width: 32%;
-}
-
-p {
-  outline: 1px solid black;
 }
 
 .red {

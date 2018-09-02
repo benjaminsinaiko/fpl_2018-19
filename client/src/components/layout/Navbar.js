@@ -36,13 +36,14 @@ class Navbar extends Component {
 
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                <a className="nav-link" href="register.html">
-                  Sign Up
-                </a>
+                <Link className="nav-link" to="/">
+                  {' '}
+                  Gameweek Status
+                </Link>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="login.html">
-                  Login
+                  More Soon...
                 </a>
               </li>
             </ul>
