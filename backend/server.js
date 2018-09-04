@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 5000;
 const mongoose = require('mongoose');
@@ -10,6 +11,10 @@ const players = require('./routes/api/players');
 const teams = require('./routes/api/teams');
 const leagues = require('./routes/api/leagues');
 const results = require('./routes/api/results');
+
+// Add cors
+app.use(cors());
+app.options('*', cors()); // enable pre-flight
 
 // Body parser middleware
 app.use(

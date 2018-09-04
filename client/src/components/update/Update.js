@@ -26,6 +26,7 @@ class Update extends Component {
     e.preventDefault();
 
     let playerId = this.state.selectedPlayer;
+    console.log(playerId);
     axios
       .get(
         `https://cors-anywhere.herokuapp.com/https://fantasy.premierleague.com/drf/entry/${playerId}/history`
