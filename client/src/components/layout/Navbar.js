@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 class Navbar extends Component {
   render() {
     return (
       <nav className="navbar navbar-expand-sm navbar-dark mb-4">
         <div className="container">
-          <Link className="navbar-brand" to="/">
+          <NavLink exact className="navbar-brand" to="/">
             FPL 2018/19
-          </Link>
+          </NavLink>
           <button
             className="navbar-toggler"
             type="button"
@@ -21,28 +21,28 @@ class Navbar extends Component {
           <div className="collapse navbar-collapse" id="mobile-nav">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
-                <Link className="nav-link" to="/league">
+                <NavLink exact className="nav-link" to="/league">
                   {' '}
                   League Standings
-                </Link>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/results">
+                <NavLink exact className="nav-link" to="/results">
                   {' '}
                   F&C Results
-                </Link>
+                </NavLink>
               </li>
             </ul>
 
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                <Link className="nav-link" to="/">
+                <NavLink exact className="nav-link" to="/">
                   {' '}
                   Gameweek Status
-                </Link>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="login.html">
+                <a className="nav-link" to="#">
                   More Soon...
                 </a>
               </li>
