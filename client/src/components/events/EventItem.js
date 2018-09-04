@@ -131,7 +131,11 @@ class EventItem extends Component {
           </div>
           <Link to="/update">
             {currentAndChecked ? (
-              <button type="button" className="btn btn-outline-primary btn-sm">
+              <button
+                type="button"
+                className="btn btn-outline-primary btn-sm"
+                disabled
+              >
                 Update
               </button>
             ) : null}
