@@ -15,12 +15,13 @@ router.get('/test', (req, res) => res.json({ msg: 'Players works' }));
 router.get('/test', (req, res) => res.json({ msg: 'Players works' }));
 
 // @route GET api/players/all
-// @desc Get all League Players
+// @desc Get all League Players (sorted by score)
 // @access Public
 router.get('/all', (req, res) => {
   const errors = {};
 
   Player.find()
+    .sort('-history.total_points')
     .then(players => {
       if (!players) {
         errors.noplayers = 'There are no current players';

@@ -13,7 +13,6 @@ class EventFeed extends Component {
         event.is_next === true
       );
     });
-    console.log('currentEvents: ', currentEvents);
 
     return currentEvents.map(event => (
       <EventItem key={event.id} event={event} />
