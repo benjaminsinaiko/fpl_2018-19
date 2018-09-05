@@ -76,13 +76,15 @@ router.post('/history/:id', (req, res) => {
     .catch(err => res.status(404).json({ noplayer: 'No player found' }));
 });
 
-// @route GET api/players/gameweek/:id
+// @route GET api/players/gameweeks
 // @desc Get Gameweek scores
 // @access Public
-router.get('/gameweek/', (req, res) => {
+router.get('/gameweeks', (req, res) => {
   Player.find()
-    .select('handle history.event history.points history.event_transfers_cost')
-    .then(name => res.json(name));
+    .select(
+      'handle history.rank history.overall_rank history.event history.points history.event_transfers_cost'
+    )
+    .then(playersGWS => res.json(playersGWS));
 });
 
 module.exports = router;
