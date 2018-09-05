@@ -140,7 +140,7 @@ class ResultsMoney extends Component {
 
     return (
       <div>
-        <div className="container">
+        <div className="container-fluid table-wrapper">
           <div className="row">
             <div className="col-md-12">
               <div className="league-table">
