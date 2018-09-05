@@ -19,7 +19,6 @@ axios
     players.map(player => {
       playersId.push({ player: player._id, entry: player.id });
     });
-    console.log(playersId);
 
     // Get Weekly data by player
     playersId.map(playerId => {

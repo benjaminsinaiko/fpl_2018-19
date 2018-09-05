@@ -56,8 +56,6 @@ class ResultsWeekly extends Component {
     const { players } = this.props;
     const { teamNames, weeklyWinners, gameweeksComplete } = this.state;
 
-    console.log('state', this.state);
-
     let winningsTable;
     let gwCard;
     if (this.state.weeklyWinners.length > 0) {
