@@ -10,35 +10,41 @@ class ResultsWeekly extends Component {
       weeklyWinners: [],
       weeklyHighScores: []
     };
+  }
 
-    this.sortedTeamNames = this.sortedTeamNames.bind(this);
+  componentWillMount() {
+    let handles = this.props.players.map(player => {
+      return player.handle;
+    });
+    this.setState({ teamNames: handles });
+
+    this.setState({
+      gameweeksComplete: this.props.players[0].history.length
+    });
   }
 
   componentDidMount() {
     if (this.props) {
-      this.setState({
-        gameweeksComplete: this.props.players[0].history.length
-      });
+      for (let i = 0; i < this.state.gameweeksComplete; i++) {
+        let winners = this.gameweekWinner(this.props.players, i);
+        let handles = winners.map(winner => winner.handle);
+        this.setState(prevState => ({
+          weeklyWinners: [...prevState.weeklyWinners, handles]
+        }));
+      }
     }
   }
 
-  sortedTeamNames(teams, gw) {
-    let sortedTeams = teams.sort(
-      (a, b) => b.history[gw].total_points - a.history[gw].total_points
-    );
-    sortedTeams.forEach(team => {
-      this.state.teamNames.push(team.handle);
-    });
-  }
-
-  gameweekWinner(arr, gw) {
-    const gwScores = arr.map(
+  gameweekWinner(players, gw) {
+    const gwScores = players.map(
       scores =>
         scores.history[gw].points - scores.history[gw].event_transfers_cost
     );
     const highScore = Math.max(...gwScores);
-    this.state.weeklyHighScores.push(highScore);
-    const gwWinner = arr.filter(
+    this.setState(prevState => ({
+      weeklyHighScores: [...prevState.weeklyHighScores, highScore]
+    }));
+    const gwWinner = players.filter(
       player =>
         player.history[gw].points - player.history[gw].event_transfers_cost ===
         highScore
@@ -50,18 +56,7 @@ class ResultsWeekly extends Component {
     const { players } = this.props;
     const { teamNames, weeklyWinners, gameweeksComplete } = this.state;
 
-    if (gameweeksComplete > 0) {
-      this.sortedTeamNames(players, gameweeksComplete - 1);
-    }
-
-    // Find weekly Winners
-    if (players) {
-      for (let i = 0; i < this.state.gameweeksComplete; i++) {
-        let winners = this.gameweekWinner(players, i);
-        let handles = winners.map(winner => winner.handle);
-        this.state.weeklyWinners.push(handles);
-      }
-    }
+    console.log('state', this.state);
 
     let winningsTable;
     let gwCard;
@@ -75,13 +70,17 @@ class ResultsWeekly extends Component {
         />
       );
       gwCard = this.state.weeklyWinners.map((week, index) => (
-        <div key={index} className="card text-center">
-          <div className="card-header">
-            GW {index + 1} |{' '}
-            <small>High Score: {this.state.weeklyHighScores[index]}</small>
-          </div>
-          <div className="card-body">
-            <p className="card-text">{week}</p>
+        <div key={index} className="col-sm-3 mb-4">
+          <div className="card">
+            <div className="card text-center">
+              <div className="card-header">
+                GW {index + 1} |{' '}
+                <small>High Score: {this.state.weeklyHighScores[index]}</small>
+              </div>
+              <div className="card-body">
+                <p className="card-text">{week}</p>
+              </div>
+            </div>
           </div>
         </div>
       ));
@@ -90,11 +89,8 @@ class ResultsWeekly extends Component {
     return (
       <div className="container">
         {winningsTable}
-        <div className="row">
-          <div className="col-md-12">
-            <div className="card-columns">{gwCard}</div>
-          </div>
-        </div>
+        <h3 className="text-center mb-4 text-white">Weekly Winners</h3>
+        <div className="row">{gwCard}</div>
       </div>
     );
   }

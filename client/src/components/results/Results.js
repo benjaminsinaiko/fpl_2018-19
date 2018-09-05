@@ -8,8 +8,12 @@ import ResultsWeekly from './ResultsWeekly';
 import { getPlayers } from '../../actions/playersActions';
 
 class Results extends Component {
-  componentDidMount() {
+  componentWillMount() {
     this.props.getPlayers();
+  }
+
+  componentDidMount() {
+    // let gws = this.props.players[0].history.length;
   }
 
   render() {
@@ -18,16 +22,18 @@ class Results extends Component {
     let weeklyWinners;
     let playerItems;
     let loadSpinner;
+    let complete;
     if (players === null || loading) {
       playerItems = null;
       loadSpinner = <Spinner />;
     } else {
       weeklyWinners = <ResultsWeekly players={players} />;
       playerItems = <ResultsTable players={players} />;
+      complete = players[0].history.length;
       loadSpinner = null;
     }
 
-    let weeks = Array.from(Array(38).keys()).map(num => num + 1);
+    let weeks = Array.from(Array(complete).keys()).map(num => num + 1);
     let gameweeks = weeks.map((week, index) => (
       <th key={index} scope="col">
         GW {week}
