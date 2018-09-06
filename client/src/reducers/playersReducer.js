@@ -16,6 +16,7 @@ export default function(state = initialState, action) {
     return {
       ...state,
       players: action.payload,
+      gws: action.payload[0].history.length,
       loading: false
     };
   default:

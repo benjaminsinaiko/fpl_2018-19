@@ -3,9 +3,9 @@ import { Line } from 'react-chartjs-2';
 
 class ChartsWeeklyRank extends Component {
   dynamicColors() {
-    let r = Math.floor(Math.random() * 155) + 100;
-    let g = Math.floor(Math.random() * 155) + 100;
-    let b = Math.floor(Math.random() * 155) + 100;
+    let r = Math.floor(Math.random() * 256);
+    let g = Math.floor(Math.random() * 200);
+    let b = Math.floor(Math.random() * 100) + 100;
     return `rgb(${r}, ${g}, ${b})`;
   }
 
@@ -19,14 +19,11 @@ class ChartsWeeklyRank extends Component {
       playerData.borderColor = this.dynamicColors();
       dataset.push(playerData);
     });
-    // console.log('dataset', dataset);
     return dataset;
   }
 
   render() {
     const { players, gws } = this.props;
-    console.log(this.props.chart);
-    // console.log(players);
 
     let weeklyChart;
 

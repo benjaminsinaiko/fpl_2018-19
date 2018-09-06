@@ -3,6 +3,10 @@
   src: url('../src/font/PremierSans-Bold.ttf') format('truetype');
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   min-height: 100%;
   font-family: PremierSans-Regular, Geneva, Tahoma, sans-serif;
@@ -37,7 +41,8 @@ img {
   margin-bottom: -50px;
 }
 
-.update {
+.update,
+.charts {
   position: relative;
   background: url('./img/pl_red-bkgrround.jpg');
   background-repeat: repeat;
@@ -47,6 +52,10 @@ img {
   min-height: 90vh;
   margin-top: -24px;
   margin-bottom: -50px;
+}
+
+.chartjs-render-monitor {
+  background: ghostwhite;
 }
 
 @media (max-width: 767px) {

@@ -42,9 +42,10 @@ class Navbar extends Component {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" to="#">
-                  More Soon...
-                </a>
+                <NavLink exact className="nav-link" to="/charts">
+                  {' '}
+                  Charts
+                </NavLink>
               </li>
             </ul>
           </div>

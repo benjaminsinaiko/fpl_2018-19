@@ -3,31 +3,27 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Header from '../common/Header';
 import Spinner from '../common/Spinner';
-import { getPlayersGWS } from '../../actions/chartsActions';
+import { getPlayers } from '../../actions/playersActions';
 import ChartsOverallRank from './ChartsOverallRank';
 import ChartsWeeklyRank from './ChartsWeeklyRank';
 
 class Charts extends Component {
   componentWillMount() {
-    this.props.getPlayersGWS();
+    this.props.getPlayers();
   }
 
   render() {
-    const { playersGWS, loading, gws } = this.props.charts;
+    const { players, loading, gws } = this.props.players;
 
     let overallRankChart;
     let weeklyRankChart;
 
-    if (playersGWS === null || gws === null || loading) {
+    if (players === null || gws === null || loading) {
       overallRankChart = <Spinner />;
     } else {
-      overallRankChart = <ChartsOverallRank players={playersGWS} gws={gws} />;
+      overallRankChart = <ChartsOverallRank players={players} gws={gws} />;
       weeklyRankChart = (
-        <ChartsWeeklyRank
-          players={playersGWS}
-          gws={gws}
-          chart={'overall_rank'}
-        />
+        <ChartsWeeklyRank players={players} gws={gws} chart={'overall_rank'} />
       );
     }
 
@@ -58,15 +54,15 @@ class Charts extends Component {
 }
 
 Charts.propTypes = {
-  getPlayersGWS: PropTypes.func.isRequired,
-  charts: PropTypes.object.isRequired
+  getPlayers: PropTypes.func.isRequired,
+  players: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  charts: state.charts
+  players: state.players
 });
 
 export default connect(
   mapStateToProps,
-  { getPlayersGWS }
+  { getPlayers }
 )(Charts);

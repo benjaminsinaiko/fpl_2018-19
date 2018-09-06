@@ -3,9 +3,9 @@ import { Line } from 'react-chartjs-2';
 
 class ChartsOverallRank extends Component {
   dynamicColors() {
-    let r = Math.floor(Math.random() * 155) + 100;
-    let g = Math.floor(Math.random() * 155) + 100;
-    let b = Math.floor(Math.random() * 155) + 100;
+    let r = Math.floor(Math.random() * 256);
+    let g = Math.floor(Math.random() * 200);
+    let b = Math.floor(Math.random() * 100) + 100;
     return `rgb(${r}, ${g}, ${b})`;
   }
 
@@ -19,7 +19,7 @@ class ChartsOverallRank extends Component {
       playerData.borderColor = this.dynamicColors();
       dataset.push(playerData);
     });
-    // console.log('dataset', dataset);
+
     return dataset;
   }
 
@@ -33,14 +33,12 @@ class ChartsOverallRank extends Component {
       let gw = Array.from(Array(gws).keys()).map(num => `GW ${num + 1}`);
 
       let dataset = this.createDatasets(players);
-      console.log('dataset', dataset[0]);
 
       let data = {
         labels: gw,
         datasets: [...dataset]
       };
 
-      console.log('data', data);
       let options = {
         responsive: true,
         title: {
