@@ -6,18 +6,66 @@ import { getPlayersGWS } from '../../actions/chartsActions';
 import { Line } from 'react-chartjs-2';
 
 class Charts extends Component {
-  componentDidMount() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      gws: 4,
+      labels: [],
+      datasets: []
+    };
+
+    this.getPlayerData = this.getPlayerData.bind(this);
+  }
+
+  componentWillMount() {
     this.props.getPlayersGWS();
   }
 
-  render() {
-    const { playersGWS, loading } = this.props;
+  componentDidMount() {}
 
+  setGameweeks() {
+    this.setState({ gws: this.props.charts.gws });
+  }
+
+  getPlayerData(player) {
+    // console.log(player);
+
+    let data = {};
+    data.label = player.handle;
+    data.data = player.history.map(week => week.overall_rank);
+
+    // console.log('Playerdata', data);
+    return data;
+  }
+
+  render() {
+    const { playersGWS, loading, gws } = this.props.charts;
     let chartItems;
+
     if (playersGWS === null || loading) {
       chartItems = <Spinner />;
     } else {
-      chartItems = <h3>Chart data available</h3>;
+      let playerData = this.getPlayerData(playersGWS[2]);
+      // console.log(playerData);
+      let gw = Array.from(Array(this.state.gws).keys()).map(num => num + 1);
+      let data = {
+        labels: gw,
+        datasets: [
+          {
+            ...playerData
+          }
+        ]
+      };
+      console.log(data);
+
+      let options = {
+        title: {
+          display: true,
+          text: 'Overall Rank'
+        }
+      };
+
+      chartItems = <Line data={data} options={options} />;
     }
 
     return (
@@ -34,11 +82,11 @@ class Charts extends Component {
 
 Charts.propTypes = {
   getPlayersGWS: PropTypes.func.isRequired,
-  playersGWS: PropTypes.object.isRequired
+  charts: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  playersGWS: state.charts
+  charts: state.charts
 });
 
 export default connect(

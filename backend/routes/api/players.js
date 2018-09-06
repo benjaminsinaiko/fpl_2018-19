@@ -82,6 +82,7 @@ router.post('/history/:id', (req, res) => {
 // @access Public
 router.get('/gameweeks', (req, res) => {
   Player.find()
+    .sort('-history.total_points')
     .select(
       'handle history.rank history.overall_rank history.event history.points history.event_transfers_cost'
     )
