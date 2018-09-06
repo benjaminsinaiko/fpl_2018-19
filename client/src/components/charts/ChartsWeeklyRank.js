@@ -3,9 +3,9 @@ import { Line } from 'react-chartjs-2';
 
 class ChartsWeeklyRank extends Component {
   dynamicColors() {
-    let r = Math.floor(Math.random() * 256);
-    let g = Math.floor(Math.random() * 200);
-    let b = Math.floor(Math.random() * 100) + 100;
+    let r = 0;
+    let g = Math.floor(Math.random() * 256);
+    let b = 0;
     return `rgb(${r}, ${g}, ${b})`;
   }
 

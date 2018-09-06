@@ -3,9 +3,9 @@ import { Line } from 'react-chartjs-2';
 
 class ChartsOverallRank extends Component {
   dynamicColors() {
-    let r = Math.floor(Math.random() * 256);
-    let g = Math.floor(Math.random() * 200);
-    let b = Math.floor(Math.random() * 100) + 100;
+    let r = 0;
+    let g = 0;
+    let b = Math.floor(Math.random() * 256);
     return `rgb(${r}, ${g}, ${b})`;
   }
 
