@@ -88,7 +88,17 @@ class ChartsOverallRank extends Component {
               },
               position: 'left',
               gridLines: { display: false },
-              ticks: { suggestedMax: 100 },
+              ticks: {
+                callback: function(value, index, values) {
+                  if (parseInt(value) >= 1000) {
+                    return value
+                      .toString()
+                      .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                  } else {
+                    return value;
+                  }
+                }
+              },
               labels: { show: true }
             }
           ]
