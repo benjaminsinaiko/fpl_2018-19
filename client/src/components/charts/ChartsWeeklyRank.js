@@ -58,22 +58,21 @@ class ChartsWeeklyRank extends Component {
         title: {
           display: true,
           text: 'Weekly Rank',
-          fontSize: '24',
-          fontFamily: 'PremierSans-Regular'
+          fontSize: '24'
         },
-        tooltips: {
-          mode: 'label'
-        },
-        hover: {
-          mode: 'dataset'
-        },
+        tooltips: { mode: 'label' },
+        hover: { mode: 'dataset' },
         scales: {
-          xAxes: [
+          xAxes: [{ display: true, scaleLabel: { show: true } }],
+          yAxes: [
             {
+              type: 'linear',
               display: true,
-              scaleLabel: {
-                show: true
-              }
+              scaleLabel: { display: true, labelString: 'Gameweek FPL Rank' },
+              position: 'left',
+              gridLines: { display: false },
+              ticks: { suggestedMax: 100 },
+              labels: { show: true }
             }
           ]
         }

@@ -148,6 +148,11 @@ img {
   width: 32%;
 }
 
+.bench-chart {
+  text-align: center;
+  background-color: ghostwhite;
+}
+
 .red {
   color: red;
   font-weight: 700;

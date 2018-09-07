@@ -6,6 +6,7 @@ import Spinner from '../common/Spinner';
 import { getPlayers } from '../../actions/playersActions';
 import ChartsOverallRank from './ChartsOverallRank';
 import ChartsWeeklyRank from './ChartsWeeklyRank';
+import ChartsWeeklyBench from './ChartsWeeklyBench';
 
 class Charts extends Component {
   componentWillMount() {
@@ -17,6 +18,7 @@ class Charts extends Component {
 
     let overallRankChart;
     let weeklyRankChart;
+    let weeklyBench;
 
     if (players === null || gws === null || loading) {
       overallRankChart = <Spinner />;
@@ -25,6 +27,7 @@ class Charts extends Component {
       weeklyRankChart = (
         <ChartsWeeklyRank players={players} gws={gws} chart={'overall_rank'} />
       );
+      weeklyBench = <ChartsWeeklyBench players={players} gws={gws} />;
     }
 
     return (
@@ -37,14 +40,25 @@ class Charts extends Component {
               </div>
             </div>
           </div>
-          <div className="container">
-            <div className="row">
-              <div className="col-md-12 mb-4">{weeklyRankChart}</div>
+          <div className="container ">
+            <div className="row ">
+              <div className="col-md-12 p-4 mb-4 bench-chart">
+                {weeklyBench}
+              </div>
             </div>
           </div>
           <div className="container">
             <div className="row">
-              <div className="col-md-12 mb-4">{overallRankChart}</div>
+              <div className="col-md-12 p-4 mb-4 bench-chart">
+                {weeklyRankChart}
+              </div>
+            </div>
+          </div>
+          <div className="container">
+            <div className="row">
+              <div className="col-md-12 p-4 mb-4 bench-chart">
+                {overallRankChart}
+              </div>
             </div>
           </div>
         </div>

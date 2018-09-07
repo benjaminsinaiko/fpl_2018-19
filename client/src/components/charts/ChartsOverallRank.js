@@ -60,8 +60,7 @@ class ChartsOverallRank extends Component {
         title: {
           display: true,
           text: 'Overall Rank',
-          fontSize: '24',
-          fontFamily: 'PremierSans-Regular'
+          fontSize: '24'
         },
         tooltips: {
           mode: 'label'
@@ -74,8 +73,23 @@ class ChartsOverallRank extends Component {
             {
               display: true,
               scaleLabel: {
-                show: true
+                display: true,
+                labelString: 'Overall Total Rank'
               }
+            }
+          ],
+          yAxes: [
+            {
+              type: 'linear',
+              display: true,
+              scaleLabel: {
+                display: true,
+                labelString: 'Overall FPL Rank'
+              },
+              position: 'left',
+              gridLines: { display: false },
+              ticks: { suggestedMax: 100 },
+              labels: { show: true }
             }
           ]
         }
