@@ -2,11 +2,26 @@ import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
 
 class ChartsWeeklyRank extends Component {
-  dynamicColors() {
-    let r = 0;
-    let g = Math.floor(Math.random() * 256);
-    let b = 0;
-    return `rgb(${r}, ${g}, ${b})`;
+  colorPicker() {
+    let colors = [
+      '#e57373',
+      '#f06292',
+      '#ba68c8',
+      '#9575cd',
+      '#7986cb',
+      '#64b5f6',
+      '#4fc2f7',
+      '#4dd0e1',
+      '#4db6ac',
+      '#81c784',
+      '#aed581',
+      '#dce775',
+      '#fff176',
+      '#ffd54f',
+      '#ffb74d',
+      '#ff8a65'
+    ];
+    return colors[Math.floor(Math.random() * colors.length)];
   }
 
   createDatasets(players) {
@@ -16,7 +31,8 @@ class ChartsWeeklyRank extends Component {
       playerData.label = player.handle;
       playerData.data = player.history.map(week => week[this.props.chart]);
       playerData.fill = false;
-      playerData.borderColor = this.dynamicColors();
+      playerData.backgroundColor = this.colorPicker();
+      playerData.borderColor = playerData.backgroundColor;
       dataset.push(playerData);
     });
     return dataset;
@@ -41,7 +57,9 @@ class ChartsWeeklyRank extends Component {
         responsive: true,
         title: {
           display: true,
-          text: 'Weekly Rank'
+          text: 'Weekly Rank',
+          fontSize: '24',
+          fontFamily: 'PremierSans-Regular'
         },
         tooltips: {
           mode: 'label'

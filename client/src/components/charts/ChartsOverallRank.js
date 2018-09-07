@@ -2,11 +2,26 @@ import React, { Component } from 'react';
 import { Line } from 'react-chartjs-2';
 
 class ChartsOverallRank extends Component {
-  dynamicColors() {
-    let r = 0;
-    let g = 0;
-    let b = Math.floor(Math.random() * 256);
-    return `rgb(${r}, ${g}, ${b})`;
+  colorPicker() {
+    let colors = [
+      '#e57373',
+      '#f06292',
+      '#ba68c8',
+      '#9575cd',
+      '#7986cb',
+      '#64b5f6',
+      '#4fc2f7',
+      '#4dd0e1',
+      '#4db6ac',
+      '#81c784',
+      '#aed581',
+      '#dce775',
+      '#fff176',
+      '#ffd54f',
+      '#ffb74d',
+      '#ff8a65'
+    ];
+    return colors[Math.floor(Math.random() * colors.length)];
   }
 
   createDatasets(players) {
@@ -16,7 +31,8 @@ class ChartsOverallRank extends Component {
       playerData.label = player.handle;
       playerData.data = player.history.map(week => week.overall_rank);
       playerData.fill = false;
-      playerData.borderColor = this.dynamicColors();
+      playerData.backgroundColor = this.colorPicker();
+      playerData.borderColor = playerData.backgroundColor;
       dataset.push(playerData);
     });
 
@@ -43,7 +59,9 @@ class ChartsOverallRank extends Component {
         responsive: true,
         title: {
           display: true,
-          text: 'Overall Rank'
+          text: 'Overall Rank',
+          fontSize: '24',
+          fontFamily: 'PremierSans-Regular'
         },
         tooltips: {
           mode: 'label'
