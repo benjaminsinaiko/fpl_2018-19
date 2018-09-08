@@ -55,12 +55,24 @@ class ChartsWeeklyRank extends Component {
 
       let options = {
         responsive: true,
-        title: {
-          display: true,
-          text: 'Weekly Rank',
-          fontSize: '24'
+        title: { display: true, text: 'Weekly Rank', fontSize: '24' },
+        tooltips: {
+          intersect: true,
+          callbacks: {
+            label: function(tooltipItem, data, index) {
+              // let value = data.datasets[tooltipItem.datasetIndex].data[0];
+              let value =
+                data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+              if (parseInt(value) >= 1000) {
+                return `${
+                  data.datasets[tooltipItem.datasetIndex].label
+                }: ${value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
+              } else {
+                return value;
+              }
+            }
+          }
         },
-        tooltips: { mode: 'label' },
         hover: { mode: 'dataset' },
         scales: {
           xAxes: [{ display: true, scaleLabel: { show: true } }],
@@ -72,6 +84,7 @@ class ChartsWeeklyRank extends Component {
               position: 'left',
               gridLines: { display: false },
               ticks: {
+                reverse: true,
                 callback: function(value, index, values) {
                   if (parseInt(value) >= 1000) {
                     return value

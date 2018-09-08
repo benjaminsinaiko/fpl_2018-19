@@ -57,38 +57,36 @@ class ChartsOverallRank extends Component {
 
       let options = {
         responsive: true,
-        title: {
-          display: true,
-          text: 'Overall Rank',
-          fontSize: '24'
-        },
+        title: { display: true, text: 'Overall Rank', fontSize: '24' },
         tooltips: {
-          mode: 'label'
-        },
-        hover: {
-          mode: 'dataset'
-        },
-        scales: {
-          xAxes: [
-            {
-              display: true,
-              scaleLabel: {
-                display: true,
-                labelString: 'Overall Total Rank'
+          intersect: true,
+          callbacks: {
+            label: function(tooltipItem, data, index) {
+              // let value = data.datasets[tooltipItem.datasetIndex].data[0];
+              let value =
+                data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+              if (parseInt(value) >= 1000) {
+                return `${
+                  data.datasets[tooltipItem.datasetIndex].label
+                }: ${value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
+              } else {
+                return value;
               }
             }
-          ],
+          }
+        },
+        hover: { mode: 'dataset' },
+        scales: {
+          xAxes: [{ display: true, scaleLabel: { show: true } }],
           yAxes: [
             {
               type: 'linear',
               display: true,
-              scaleLabel: {
-                display: true,
-                labelString: 'Overall FPL Rank'
-              },
+              scaleLabel: { display: true, labelString: 'Overall FPL Rank' },
               position: 'left',
               gridLines: { display: false },
               ticks: {
+                reverse: true,
                 callback: function(value, index, values) {
                   if (parseInt(value) >= 1000) {
                     return value

@@ -41,11 +41,9 @@ class ChartsWeeklyBench extends Component {
       playerBar.data = player.history.map(
         week => week.points - week.event_transfers_cost
       );
-      playerBar.yAxisID = 'y-axis-1';
 
       playerLine.label = 'Points On Bench';
-      playerLine.yAxisID = 'y-axis-2';
-      playerLine.type = 'line';
+      playerLine.type = 'bar';
       playerLine.borderColor = '#ef9a9a';
       playerLine.backgroundColor = '#ef9a9a';
       playerLine.data = player.history.map(week => week.points_on_bench);
@@ -77,31 +75,44 @@ class ChartsWeeklyBench extends Component {
         text: 'Played v. Bench Points',
         fontSize: '28'
       },
-      tooltips: { mode: 'label' },
+      tooltips: {
+        mode: 'label',
+        titleMarginBottom: 15,
+        callbacks: {
+          title: function(tooltipItem, data) {
+            return data['labels'][tooltipItem[0]['index']];
+          },
+          footer: function([tooltipItem], data) {
+            var dataset1 = data['datasets'][0];
+            var dataset2 = data['datasets'][1];
+            var percent = Math.round(
+              (dataset1['data'][tooltipItem['index']] /
+                dataset2['data'][tooltipItem['index']]) *
+                100
+            );
+            // return '(' + percent + '%)';
+            return `Percent of Total (${percent}%)`;
+          }
+        }
+      },
       elements: { line: { fill: false } },
       scales: {
-        xAxes: [{ display: true, gridLines: { display: false } }],
+        xAxes: [
+          { display: true, stacked: true, gridLines: { display: false } }
+        ],
         yAxes: [
           {
             type: 'linear',
             display: true,
+            stacked: true,
             scaleLabel: {
               display: true,
               labelString: 'Gameweek Points'
             },
             position: 'left',
-            id: 'y-axis-1',
+
             gridLines: { display: false },
             ticks: { suggestedMax: 100, min: 0 },
-            labels: { show: true }
-          },
-          {
-            type: 'linear',
-            display: false,
-            position: 'right',
-            id: 'y-axis-2',
-            gridLines: { display: false },
-            ticks: { suggestedMax: 100 },
             labels: { show: true }
           }
         ]
