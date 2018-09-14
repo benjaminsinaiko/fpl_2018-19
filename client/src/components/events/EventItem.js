@@ -116,7 +116,7 @@ class EventItem extends Component {
           {activeContent}
 
           <div className="row">
-            <div className="col">Avgerage Score</div>
+            <div className="col">Average Score</div>
             <div className="col">Highest Score</div>
           </div>
           <div className="row">
