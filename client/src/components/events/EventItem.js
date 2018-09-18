@@ -95,7 +95,7 @@ class EventItem extends Component {
       activeContent = (
         <span>
           <button type="button" className="btn btn-warning active-btn" disabled>
-            <i>Comming Soon...</i>
+            <i>Coming Soon...</i>
           </button>
           <hr />
         </span>
