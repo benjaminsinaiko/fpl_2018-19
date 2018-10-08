@@ -1,0 +1,13 @@
+.Header {
+  border-radius: 90px;
+  color: black;
+  padding: 2rem;
+  margin-top: 20px;
+  background-color: springgreen;
+  background-size: cover;
+  font-family: PremierSans-Bold, Geneva, Tahoma, sans-serif;
+  font-size: larger;
+  -webkit-box-shadow: 0 10px 6px -6px black;
+  -moz-box-shadow: 0 10px 6px -6px black;
+  box-shadow: 0 10px 7px 4px rgb(66, 66, 66);
+}

@@ -1,12 +1,13 @@
 require('dotenv').config();
 const express = require('express');
-const cors = require('cors');
 const app = express();
+const cors = require('cors');
 const port = process.env.PORT || 5000;
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path');
 
+const status = require('./routes/api/status');
 const players = require('./routes/api/players');
 const teams = require('./routes/api/teams');
 const leagues = require('./routes/api/leagues');
@@ -42,6 +43,7 @@ mongoose
   .catch(err => console.log(err));
 
 // Use Routes
+app.use('/api/status', status);
 app.use('/api/players', players);
 app.use('/api/teams', teams);
 app.use('/api/leagues', leagues);
