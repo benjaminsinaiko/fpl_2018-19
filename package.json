@@ -5,9 +5,13 @@
   "main": "./backend/server.js",
   "scripts": {
     "client-install": "npm install --prefix client",
+    "client-old-install": "npm install --prefix client",
     "start": "node ./backend/server.js",
-    "server": "nodemon ./backend/server.js --ignore client",
-    "client": "npm start --prefix client",
+    "server-old": "nodemon ./backend/server.js --ignore client",
+    "server": "nodemon ./backend/server.js --ignore new-client",
+    "client-old": "npm start --prefix client",
+    "client": "npm start --prefix new-client",
+    "dev-old": "concurrently \"npm run server\" \"npm run client-old\"",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
