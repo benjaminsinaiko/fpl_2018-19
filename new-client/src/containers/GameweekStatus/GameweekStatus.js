@@ -19,7 +19,7 @@ class GameweekStatus extends Component {
 
     return (
       <div className={styles.GameweekStatus}>
-        <div className={'container '}>
+        <div className="container">
           <Header page="Gameweek Status" />
           <div>Gameweek Status Page</div>
           {status}

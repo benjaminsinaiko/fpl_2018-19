@@ -30,7 +30,7 @@ export const fetchStatus = () => {
   return dispatch => {
     dispatch(fetchStatusStart());
     axios
-      .get('https://fantasy.premierleague.com/drf/events/')
+      .get('/api/status')
       .then(response => {
         dispatch(fetchStatusSuccess(response.data));
       })
