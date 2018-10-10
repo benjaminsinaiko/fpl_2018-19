@@ -1,9 +1,8 @@
 .Header {
   border-radius: 90px;
-  color: black;
   padding: 2rem;
   margin-top: 20px;
-  background-color: springgreen;
+  background-color: #00ff87;
   background-size: cover;
   font-family: PremierSans-Bold, Geneva, Tahoma, sans-serif;
   font-size: larger;
