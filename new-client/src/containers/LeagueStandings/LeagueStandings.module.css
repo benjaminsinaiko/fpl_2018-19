@@ -1,0 +1,11 @@
+.LeagueStandings {
+  position: relative;
+  background: url('../../assets/backgrounds/pl_green-bkground.jpg');
+  background-repeat: round;
+  background-size: 100% auto;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 90vh;
+  margin-top: -24px;
+  margin-bottom: -50px;
+}

@@ -1,5 +1,6 @@
 const express = require('express');
 const router = new express.Router();
+const request = require('request');
 
 // Load Player Model
 const Player = require('../../models/Player');
@@ -11,8 +12,29 @@ const League = require('../../models/League');
 // @access Public
 router.post('/test', (req, res) => res.json({ msg: 'Leagues works' }));
 
+// @route GET api/leagues/
+// @desc Get League Data
+// @access Public
+router.get('/', (req, res) => {
+  request(
+    {
+      url:
+        'https://fantasy.premierleague.com/drf/leagues-classic-standings/765405',
+      method: 'GET'
+    },
+    (error, response) => {
+      if (error) {
+        res.json(error);
+      } else {
+        const body = JSON.parse(response.body);
+        res.json(body);
+      }
+    }
+  );
+});
+
 // @route POST api/leagues
-// @desc Add/Update leage results
+// @desc Add/Update league results
 // @access Public
 router.get('/', (req, res) => {
   const teamResults = {};

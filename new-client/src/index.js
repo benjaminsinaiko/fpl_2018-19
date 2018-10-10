@@ -9,13 +9,15 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import statusReducer from './store/reducers/status';
+import leagueReducer from './store/reducers/league';
 
 // Set up Redux store and middleware
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootRedcucer = combineReducers({
   // Add reducers
-  status: statusReducer
+  status: statusReducer,
+  league: leagueReducer
 });
 
 const store = createStore(
