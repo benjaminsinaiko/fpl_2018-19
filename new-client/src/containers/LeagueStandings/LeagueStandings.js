@@ -5,6 +5,7 @@ import styles from './LeagueStandings.module.css';
 import Header from '../../components/UI/Header/Header';
 import * as actions from '../../store/actions';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import LeagueStandingsData from '../../components/LeagueStandingsData/LeagueStandingsData';
 
 class LeagueStandings extends Component {
   componentDidMount() {
@@ -12,10 +13,22 @@ class LeagueStandings extends Component {
   }
 
   render() {
+    // League Standings table
+    let tableData = <Spinner />;
+
+    if (this.props.standings) {
+      tableData = <LeagueStandingsData standings={this.props.standings} />;
+    }
+
     return (
       <div className={styles.LeagueStandings}>
         <div className="container">
           <Header page="League Standings" />
+        </div>
+        <div className="row">
+          <div className="col-md-12">
+            <div className={styles.LeagueTable}>{tableData}</div>
+          </div>
         </div>
       </div>
     );
@@ -36,6 +49,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(LeagueStandings);
