@@ -1,6 +1,7 @@
 const express = require('express');
 const router = new express.Router();
 const request = require('request');
+const axios = require('axios');
 
 // Load Player Model
 const Player = require('../../models/Player');
@@ -31,6 +32,29 @@ router.get('/', (req, res) => {
       }
     }
   );
+});
+
+// @route GET api/leagues/all
+// @desc Get League Data
+// @access Public
+router.get('/all', (req, res) => {
+  const globalLeaguesIds = [313, 249];
+  let league = [];
+
+  const getGlobalLeagues = id => {
+    axios.get(
+      `https://fantasy.premierleague.com/drf/leagues-classic-standings/${id}`
+    );
+  };
+
+  let leagueData = axios
+    .get(
+      'https://fantasy.premierleague.com/drf/leagues-classic-standings/765405'
+    )
+    .then(res => league.push(res.data))
+    .then(getGlobalLeagues(313))
+    .then(res => league.push(res.data))
+    .then(response => res.json(league));
 });
 
 // @route GET api/leagues/:id
