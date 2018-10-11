@@ -33,25 +33,26 @@ router.get('/', (req, res) => {
   );
 });
 
-// @route POST api/leagues
-// @desc Add/Update league results
+// @route GET api/leagues/:id
+// @desc Get League Data
 // @access Public
-router.get('/', (req, res) => {
-  const teamResults = {};
-
-  if (req.body.league_id) teamResults.league_id = req.body.id;
-  if (req.body.entry_name) teamResults.entry_name = req.body.entry_name;
-  if (req.body.event_total) teamResults.event_total = req.body.event_total;
-  if (req.body.player_name) teamResults.player_name = req.body.player_name;
-  if (req.body.movement) teamResults.movement = req.body.movement;
-  if (req.body.rank) teamResults.rank = req.body.rank;
-  if (req.body.last_rank) teamResults.last_rank = req.body.last_rank;
-  if (req.body.rank_sort) teamResults.rank_sort = req.body.rank_sort;
-  if (req.body.total) teamResults.total = req.body.total;
-
-  // League.findOne({ league_id: req.body.id })
-  //   .populate('player')
-  //   .then(players => {});
+router.get('/:id', (req, res) => {
+  request(
+    {
+      url: `https://fantasy.premierleague.com/drf/leagues-classic-standings/${
+        req.params.id
+      }`,
+      method: 'GET'
+    },
+    (error, response) => {
+      if (error) {
+        res.json(error);
+      } else {
+        const body = JSON.parse(response.body);
+        res.json(body);
+      }
+    }
+  );
 });
 
 module.exports = router;

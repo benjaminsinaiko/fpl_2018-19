@@ -5,7 +5,7 @@ import styles from './GameweekStatus.module.css';
 import Header from '../../components/UI/Header/Header';
 import * as actions from '../../store/actions';
 import Spinner from '../../components/UI/Spinner/Spinner';
-import StatusCard from '../../components/StatusCard/StatusCard';
+import StatusCard from '../../components/Cards/StatusCard/StatusCard';
 import GameweekStatusData from '../../components/GameweekStatusData/GameweekStatusData';
 
 class GameweekStatus extends Component {
