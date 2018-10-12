@@ -2,14 +2,15 @@ import axios from 'axios';
 
 import * as actionTypes from './actionTypes';
 
-// Set loading
+// League
+// Set League Loading
 export const fetchLeagueStart = () => {
   return {
     type: actionTypes.FETCH_LEAGUE_START
   };
 };
 
-// Fetch league success
+// Fetch League Success
 export const fetchLeagueSuccess = leagueData => {
   return {
     type: actionTypes.FETCH_LEAGUE_SUCCESS,
@@ -17,23 +18,7 @@ export const fetchLeagueSuccess = leagueData => {
   };
 };
 
-// Fetch overall success
-export const fetchOverallSuccess = leagueData => {
-  return {
-    type: actionTypes.FETCH_OVERALL_SUCCESS,
-    payload: leagueData.standings.results
-  };
-};
-
-// Fetch league success
-export const fetchUSASuccess = leagueData => {
-  return {
-    type: actionTypes.FETCH_USA_SUCCESS,
-    payload: leagueData.standings.results
-  };
-};
-
-// Fetch league fail
+// Fetch League Fail
 export const fetchLeagueFail = error => {
   return {
     type: actionTypes.FETCH_LEAGUE_FAIL,
@@ -41,7 +26,7 @@ export const fetchLeagueFail = error => {
   };
 };
 
-// Get league data
+// Fetch League Data
 export const fetchLeague = leagueId => {
   return dispatch => {
     dispatch(fetchLeagueStart());
@@ -56,32 +41,41 @@ export const fetchLeague = leagueId => {
   };
 };
 
-// Get Overall data
-export const fetchOverall = () => {
-  return dispatch => {
-    dispatch(fetchLeagueStart());
-    axios
-      .get('/api/leagues/313')
-      .then(response => {
-        dispatch(fetchOverallSuccess(response.data));
-      })
-      .catch(error => {
-        dispatch(fetchLeagueFail(error));
-      });
+// Global
+// Set Global Loading
+export const fetchGlobalStart = () => {
+  return {
+    type: actionTypes.FETCH_GLOBAL_START
   };
 };
 
-// Get USA data
-export const fetchUSA = () => {
+// Fetch GLobal Success
+export const fetchGlobalSuccess = globalData => {
+  return {
+    type: actionTypes.FETCH_GLOBAL_SUCCESS,
+    payload: globalData
+  };
+};
+export const fetchGlobalFail = error => {
+  return {
+    type: actionTypes.FETCH_GLOBAL_FAIL,
+    error: error
+  };
+};
+
+// Fetch Global Data
+export const fetchGlobal = () => {
   return dispatch => {
-    dispatch(fetchLeagueStart());
+    dispatch(fetchGlobalStart());
     axios
-      .get('/api/leagues/249')
+      .get('/api/leagues/global')
       .then(response => {
-        dispatch(fetchUSASuccess(response.data));
+        dispatch(fetchGlobalSuccess(response.data));
       })
       .catch(error => {
-        dispatch(fetchLeagueFail(error));
+        console.log(error);
+
+        dispatch(fetchGlobalFail(error));
       });
   };
 };

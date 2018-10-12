@@ -3,11 +3,6 @@ const router = new express.Router();
 const request = require('request');
 const axios = require('axios');
 
-// Load Player Model
-const Player = require('../../models/Player');
-// Load League Model
-const League = require('../../models/League');
-
 // @route GET api/leagues/test
 // @desc Tests leagues route
 // @access Public
@@ -34,31 +29,36 @@ router.get('/', (req, res) => {
   );
 });
 
-// @route GET api/leagues/all
-// @desc Get League Data
+// @route GET api/leagues/global
+// @desc Get Global Leagues Data
 // @access Public
-router.get('/all', (req, res) => {
-  const globalLeaguesIds = [313, 249];
-  let league = [];
+router.get('/global', (req, res) => {
+  const leagueIds = [313, 249];
 
-  const getGlobalLeagues = id => {
-    axios.get(
-      `https://fantasy.premierleague.com/drf/leagues-classic-standings/${id}`
+  const leaguePromises = leagueIds.map(leagueId => {
+    return Promise.resolve(
+      axios
+        .get(
+          `https://fantasy.premierleague.com/drf/leagues-classic-standings/${leagueId}`
+        )
+        .then(response => {
+          return {
+            league: response.data.league.name,
+            standings: response.data.standings.results.slice(0, 5)
+          };
+        })
     );
-  };
+  });
 
-  let leagueData = axios
-    .get(
-      'https://fantasy.premierleague.com/drf/leagues-classic-standings/765405'
-    )
-    .then(res => league.push(res.data))
-    .then(getGlobalLeagues(313))
-    .then(res => league.push(res.data))
-    .then(response => res.json(league));
+  Promise.all(leaguePromises)
+    .then(response => {
+      res.json(response);
+    })
+    .catch(error => res.json(error));
 });
 
 // @route GET api/leagues/:id
-// @desc Get League Data
+// @desc Get League Data By ID
 // @access Public
 router.get('/:id', (req, res) => {
   request(

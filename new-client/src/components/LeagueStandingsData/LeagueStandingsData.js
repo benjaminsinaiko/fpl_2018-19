@@ -63,8 +63,6 @@ const leagueStandingsData = props => {
       player_name: player.player_name
     };
   });
-  console.log(leaguePlayersData);
-
   return <Table columns={columns} data={leaguePlayersData} />;
 };
 

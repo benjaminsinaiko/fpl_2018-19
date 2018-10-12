@@ -10,9 +10,8 @@ import GlobalLeagueCard from '../../components/Cards/GlobalLeagueCard/GlobalLeag
 
 class LeagueStandings extends Component {
   componentDidMount() {
+    this.props.onFetchGlobal();
     this.props.onFetchLeague();
-    this.props.onFetchOverall();
-    this.props.onFetchUSA();
   }
 
   render() {
@@ -20,11 +19,15 @@ class LeagueStandings extends Component {
     let tableData = <Spinner />;
     let globalLeague = null;
 
-    if (this.props.standings && this.props.overall && this.props.usa) {
-      tableData = <LeagueStandingsData standings={this.props.standings} />;
-      globalLeague = (
-        <GlobalLeagueCard overall={this.props.overall} usa={this.props.usa} />
-      );
+    if (this.props.fishLeague && this.props.globalLeagues) {
+      console.log('[fish]', this.props.fishLeague);
+      console.log('[global]', this.props.globalLeagues);
+      tableData = <LeagueStandingsData standings={this.props.fishLeague} />;
+
+      const overall = this.props.globalLeagues[0].standings[0];
+      const usa = this.props.globalLeagues[1].standings[0];
+      console.log(usa);
+      globalLeague = <GlobalLeagueCard overall={overall} usa={usa} />;
     }
 
     return (
@@ -49,9 +52,8 @@ class LeagueStandings extends Component {
 
 const mapStateToProps = state => {
   return {
-    standings: state.league.standings,
-    overall: state.league.overall,
-    usa: state.league.usa,
+    fishLeague: state.league.fishLeague,
+    globalLeagues: state.league.globalLeagues,
     loading: state.league.loading
   };
 };
@@ -59,8 +61,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onFetchLeague: () => dispatch(actions.fetchLeague(765405)),
-    onFetchOverall: () => dispatch(actions.fetchOverall()),
-    onFetchUSA: () => dispatch(actions.fetchUSA())
+    onFetchGlobal: () => dispatch(actions.fetchGlobal())
   };
 };
 

@@ -1,15 +1,3 @@
-export {
-  fetchStatusStart,
-  fetchStatus,
-  fetchStatusSuccess,
-  fetchStatusFail
-} from './status';
+export { fetchStatus } from './status';
 
-export {
-  fetchLeagueStart,
-  fetchLeague,
-  fetchOverall,
-  fetchUSA,
-  fetchLeagueSuccess,
-  fetchLeagueFail
-} from './league';
+export { fetchLeague, fetchGlobal } from './league';
