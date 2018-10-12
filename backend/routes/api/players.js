@@ -1,5 +1,6 @@
 const express = require('express');
 const router = new express.Router();
+const axios = require('axios');
 
 // Load Player Model
 const Player = require('../../models/Player');
@@ -9,10 +10,36 @@ const Player = require('../../models/Player');
 // @access Public
 router.get('/test', (req, res) => res.json({ msg: 'Players works' }));
 
-// @route POST api/players/
-// @desc Tests players route
+// @route GET api/players/all
+// @desc Get All League Players (API)
 // @access Public
-router.get('/test', (req, res) => res.json({ msg: 'Players works' }));
+router.get('/', (req, res) => {
+  const playerIds = [
+    446958,
+    954954,
+    963600,
+    1643394,
+    1790869,
+    3863048,
+    3587639,
+    3357969,
+    3015585
+  ];
+
+  const playerPromises = playerIds.map(playerId => {
+    return Promise.resolve(
+      axios
+        .get(`https://fantasy.premierleague.com/drf/entry/${playerId}/history`)
+        .then(response => response.data)
+    );
+  });
+
+  Promise.all(playerPromises)
+    .then(response => {
+      res.json(response);
+    })
+    .catch(error => res.json(error));
+});
 
 // @route GET api/players/all
 // @desc Get all League Players (sorted by score)

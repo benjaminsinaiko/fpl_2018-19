@@ -11,7 +11,6 @@ const status = require('./routes/api/status');
 const players = require('./routes/api/players');
 const teams = require('./routes/api/teams');
 const leagues = require('./routes/api/leagues');
-const results = require('./routes/api/results');
 
 // Add cors
 app.use(cors());
@@ -47,7 +46,6 @@ app.use('/api/status', status);
 app.use('/api/players', players);
 app.use('/api/teams', teams);
 app.use('/api/leagues', leagues);
-app.use('/api/results', results);
 
 // Server static assets if in production
 if (process.env.NODE_ENV === 'production') {
