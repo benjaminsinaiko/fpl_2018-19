@@ -10,3 +10,9 @@
   -moz-box-shadow: 0 10px 6px -6px black;
   box-shadow: 0 10px 7px 4px rgb(66, 66, 66);
 }
+
+@media screen and (max-width: 600px) {
+  .Header h1 {
+    font-size: 150%;
+  }
+}

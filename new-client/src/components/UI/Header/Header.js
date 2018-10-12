@@ -11,7 +11,7 @@ const header = props => {
         >
           <div className="container">
             <small className="lead">2018/19 Season</small>
-            <h1 className="display-4 ">Fish & Crumple-Ones</h1>
+            <h1 className="display-4">Fish & Crumple-Ones</h1>
             <hr />
             <small>{props.page}</small>
           </div>

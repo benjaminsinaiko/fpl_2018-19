@@ -14,3 +14,10 @@
   background-color: ghostwhite;
   margin: 10px 50px;
 }
+
+@media screen and (max-width: 600px) {
+  .LeagueTable {
+    margin: 10px 2px;
+    overflow-x: auto;
+  }
+}

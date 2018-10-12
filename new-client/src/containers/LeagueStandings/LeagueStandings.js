@@ -20,14 +20,11 @@ class LeagueStandings extends Component {
     let globalLeague = null;
 
     if (this.props.fishLeague && this.props.globalLeagues) {
-      console.log('[fish]', this.props.fishLeague);
-      console.log('[global]', this.props.globalLeagues);
-      tableData = <LeagueStandingsData standings={this.props.fishLeague} />;
-
       const overall = this.props.globalLeagues[0].standings[0];
       const usa = this.props.globalLeagues[1].standings[0];
-      console.log(usa);
       globalLeague = <GlobalLeagueCard overall={overall} usa={usa} />;
+
+      tableData = <LeagueStandingsData standings={this.props.fishLeague} />;
     }
 
     return (
