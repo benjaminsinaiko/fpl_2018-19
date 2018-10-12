@@ -10,6 +10,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import statusReducer from './store/reducers/status';
 import leagueReducer from './store/reducers/league';
+import playersReducer from './store/reducers/players';
 
 // Set up Redux store and middleware
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -17,7 +18,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const rootRedcucer = combineReducers({
   // Add reducers
   status: statusReducer,
-  league: leagueReducer
+  league: leagueReducer,
+  players: playersReducer
 });
 
 const store = createStore(

@@ -49,13 +49,15 @@ export const fetchGlobalStart = () => {
   };
 };
 
-// Fetch GLobal Success
+// Fetch Global Success
 export const fetchGlobalSuccess = globalData => {
   return {
     type: actionTypes.FETCH_GLOBAL_SUCCESS,
     payload: globalData
   };
 };
+
+// Fetch Global Fail
 export const fetchGlobalFail = error => {
   return {
     type: actionTypes.FETCH_GLOBAL_FAIL,
@@ -73,8 +75,6 @@ export const fetchGlobal = () => {
         dispatch(fetchGlobalSuccess(response.data));
       })
       .catch(error => {
-        console.log(error);
-
         dispatch(fetchGlobalFail(error));
       });
   };
