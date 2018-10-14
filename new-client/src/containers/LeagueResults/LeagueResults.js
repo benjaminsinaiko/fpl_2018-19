@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 import styles from './LeagueResults.module.css';
 import Header from '../../components/UI/Header/Header';
 import * as actions from '../../store/actions';
-import Spinner from '../../components/UI/Spinner/Spinner';
+// import Spinner from '../../components/UI/Spinner/Spinner';
 
 class LeagueResults extends Component {
   state = {
-    gameweeks: null,
-    weeklyWinners: null
+    gameweekScores: null,
+    weeklyWinners: []
   };
 
   componentWillMount() {
@@ -18,12 +18,22 @@ class LeagueResults extends Component {
 
   componentWillReceiveProps(newProps) {
     if (newProps.players !== this.props.players) {
-      this.setState({ gameweeks: this.setGameweekScores(newProps.players) });
+      this.setState({
+        gameweekScores: this.setGameweekScores(newProps.players)
+      });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (!prevState.weeklyWinners.length) {
+      this.setState({
+        weeklyWinners: this.setWeeklyWinners(this.state.gameweekScores)
+      });
     }
   }
 
   setGameweekScores(playersData) {
-    let gameweeks = [];
+    let gameweekScores = [];
     playersData.map(player => {
       let name = player.entry.name;
       return player.history.map(gw => {
@@ -32,25 +42,30 @@ class LeagueResults extends Component {
           name: name,
           score: gw.points - gw.event_transfers_cost
         };
-
-        if (!gameweeks[`Gameweek ${gameweek}`])
-          gameweeks[`Gameweek ${gameweek}`] = [];
-        return gameweeks[`Gameweek ${gameweek}`].push(gwScore);
+        if (!gameweekScores[`gameweek_${gameweek}`])
+          gameweekScores[`gameweek_${gameweek}`] = [];
+        return gameweekScores[`gameweek_${gameweek}`].push(gwScore);
       });
     });
-    return gameweeks;
+    return gameweekScores;
   }
 
-  getWinners(gameweeks) {
-    let weeklyWinners = gameweeks.forEach(gameweek => {
-      return gameweek.map(week => week.score);
-    });
+  setWeeklyWinners(gameweeks) {
+    let weeklyWinners = [];
+    for (let gameweek in gameweeks) {
+      const gwScores = gameweeks[gameweek].map(week => week.score);
+      const highScore = Math.max(...gwScores);
+      let winners = gameweeks[gameweek].filter(
+        player => player.score === highScore
+      );
+      weeklyWinners.push(winners);
+    }
     return weeklyWinners;
   }
 
   render() {
-    if (this.state.gameweeks) {
-      console.log(this.state.gameweeks);
+    if (this.state.weeklyWinners.length) {
+      console.log('weekly winners', this.state.weeklyWinners);
     }
 
     return (
