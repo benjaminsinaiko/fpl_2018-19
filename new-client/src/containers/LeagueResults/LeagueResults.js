@@ -35,10 +35,14 @@ class LeagueResults extends Component {
   setGameweekScores(playersData) {
     let gameweekScores = [];
     playersData.map(player => {
-      let name = player.entry.name;
+      let team = player.entry.name;
+      let name = `${player.entry.player_first_name} ${
+        player.entry.player_last_name
+      }`;
       return player.history.map(gw => {
         let gameweek = gw.event;
         let gwScore = {
+          team: team,
           name: name,
           score: gw.points - gw.event_transfers_cost
         };
