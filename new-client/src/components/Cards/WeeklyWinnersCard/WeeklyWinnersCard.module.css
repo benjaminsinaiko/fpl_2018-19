@@ -1,0 +1,16 @@
+.CardHeader {
+  color: white;
+  background-color: #e90052;
+  border-bottom: 1px solid #f7f4f4;
+  font-size: 130%;
+}
+
+.CardBody {
+  color: #46004b;
+  background-color: #e90052;
+}
+
+.Score {
+  color: #242424;
+  font-size: 90%;
+}

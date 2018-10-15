@@ -10,6 +10,13 @@
   margin-bottom: -50px;
 }
 
+.GroupHeader {
+  background-color: transparent;
+  color: #00ff87;
+  text-align: left;
+  margin: 0px 50px;
+}
+
 .GameweeksTable {
   background-color: ghostwhite;
   margin: 10px 50px;
@@ -17,6 +24,9 @@
 }
 
 @media screen and (max-width: 600px) {
+  .GroupHeader {
+    margin: 0px 2px;
+  }
   .GameweeksTable {
     margin: 10px 2px;
   }

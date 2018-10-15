@@ -6,6 +6,7 @@ import Header from '../../components/UI/Header/Header';
 import * as actions from '../../store/actions';
 // import Spinner from '../../components/UI/Spinner/Spinner';
 import LeagueResultsGameweekData from '../../components/LeagueResultsGameweekData/LeagueResultsGameweekData';
+import WeeklyWinnersCard from '../../components/Cards/WeeklyWinnersCard/WeeklyWinnersCard';
 
 class LeagueResults extends Component {
   state = {
@@ -75,8 +76,9 @@ class LeagueResults extends Component {
       );
     }
 
+    let weeklyWinners = null;
     if (this.state.weeklyWinners.length) {
-      // console.log('weekly winners', this.state.weeklyWinners);
+      weeklyWinners = <WeeklyWinnersCard winners={this.state.weeklyWinners} />;
     }
 
     return (
@@ -86,6 +88,13 @@ class LeagueResults extends Component {
         </div>
         <div className="row">
           <div className="col-md-12">
+            <h4 className={styles.GroupHeader}>Weekly Winners</h4>
+            <div>{weeklyWinners}</div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-12">
+            <h4 className={styles.GroupHeader}>Weekly Points</h4>
             <div className={styles.GameweeksTable}>{gameweeksTable}</div>
           </div>
         </div>
