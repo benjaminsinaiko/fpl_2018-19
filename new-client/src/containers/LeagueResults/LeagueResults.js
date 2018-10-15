@@ -5,6 +5,7 @@ import styles from './LeagueResults.module.css';
 import Header from '../../components/UI/Header/Header';
 import * as actions from '../../store/actions';
 // import Spinner from '../../components/UI/Spinner/Spinner';
+import LeagueResultsGameweekData from '../../components/LeagueResultsGameweekData/LeagueResultsGameweekData';
 
 class LeagueResults extends Component {
   state = {
@@ -46,9 +47,8 @@ class LeagueResults extends Component {
           name: name,
           score: gw.points - gw.event_transfers_cost
         };
-        if (!gameweekScores[`gameweek_${gameweek}`])
-          gameweekScores[`gameweek_${gameweek}`] = [];
-        return gameweekScores[`gameweek_${gameweek}`].push(gwScore);
+        if (!gameweekScores[`${gameweek}`]) gameweekScores[`${gameweek}`] = [];
+        return gameweekScores[`${gameweek}`].push(gwScore);
       });
     });
     return gameweekScores;
@@ -68,14 +68,26 @@ class LeagueResults extends Component {
   }
 
   render() {
+    let gameweeksTable = null;
+    if (this.state.gameweekScores) {
+      gameweeksTable = (
+        <LeagueResultsGameweekData gameweekScores={this.state.gameweekScores} />
+      );
+    }
+
     if (this.state.weeklyWinners.length) {
-      console.log('weekly winners', this.state.weeklyWinners);
+      // console.log('weekly winners', this.state.weeklyWinners);
     }
 
     return (
       <div className={`container-fluid ${styles.LeagueResults}`}>
         <div className="container">
           <Header page="League Results" />
+        </div>
+        <div className="row">
+          <div className="col-md-12">
+            <div className={styles.GameweeksTable}>{gameweeksTable}</div>
+          </div>
         </div>
       </div>
     );

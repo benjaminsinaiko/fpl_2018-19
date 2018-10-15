@@ -10,7 +10,14 @@
   margin-bottom: -50px;
 }
 
-.LeagueTable {
+.GameweeksTable {
   background-color: ghostwhite;
   margin: 10px 50px;
+  overflow-x: auto;
+}
+
+@media screen and (max-width: 600px) {
+  .GameweeksTable {
+    margin: 10px 2px;
+  }
 }

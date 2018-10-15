@@ -63,7 +63,7 @@ const leagueStandingsData = props => {
       player_name: player.player_name
     };
   });
-  return <Table columns={columns} data={leaguePlayersData} />;
+  return <Table columns={columns} data={leaguePlayersData} keyId="id" />;
 };
 
 export default leagueStandingsData;
