@@ -8,7 +8,7 @@ const gameweekStatusData = props => {
 
   const datasets = [
     { label: 'Average Score', data: avgScore, backgroundColor: '#eaff04' },
-    { label: 'Highest Score', data: highScore, backgroundColor: '#00FF87' }
+    { label: 'High Score', data: highScore, backgroundColor: '#00FF87' }
   ];
 
   const data = {

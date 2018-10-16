@@ -1,4 +1,4 @@
-.LeagueResults {
+.LeagueResultsPage {
   position: relative;
   background: url('../../assets/backgrounds/pl_red-bkgrround.jpg');
   background-repeat: round;
@@ -8,6 +8,10 @@
   min-height: 90vh;
   margin-top: -24px;
   margin-bottom: -50px;
+}
+
+.RowSection {
+  margin: 30px 0px;
 }
 
 .GroupHeader {

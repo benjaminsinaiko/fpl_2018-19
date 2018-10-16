@@ -9,7 +9,7 @@ const winningsResultsData = props => {
       player.entry.player_last_name
     }`;
     let wins = 0;
-    props.winners.map(week => {
+    props.winners.forEach(week => {
       let numOfWinners = week.length;
       if (week[0].name.includes(fullName)) {
         wins += 1 / numOfWinners;

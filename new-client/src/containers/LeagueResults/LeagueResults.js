@@ -94,23 +94,23 @@ class LeagueResults extends Component {
     }
 
     return (
-      <div className={`container-fluid ${styles.LeagueResults}`}>
+      <div className={`container-fluid ${styles.LeagueResultsPage}`}>
         <div className="container">
           <Header page="League Results" />
         </div>
-        <div className="row">
+        <div className={`row ${styles.RowSection}`}>
           <div className="col-md-12">
             <h4 className={styles.GroupHeader}>Overall Results</h4>
             <div className={styles.GameweeksTable}>{resultsTable}</div>
           </div>
         </div>
-        <div className="row">
+        <div className={`row ${styles.RowSection}`}>
           <div className="col-md-12">
             <h4 className={styles.GroupHeader}>Weekly Winners</h4>
             <div className={styles.WeeklyWinners}>{weeklyWinners}</div>
           </div>
         </div>
-        <div className="row">
+        <div className={`row ${styles.RowSection}`}>
           <div className="col-md-12">
             <h4 className={styles.GroupHeader}>Weekly Points</h4>
             <div className={styles.GameweeksTable}>{gameweeksTable}</div>
