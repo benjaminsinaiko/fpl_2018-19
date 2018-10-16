@@ -8,7 +8,7 @@ const weeklyWinnersCard = props => {
   let weeklyWinner = props.winners.map((player, index) => {
     return (
       <div key={index} className="col-sm-3 mb-4">
-        <div className="card">
+        <div className="card h-100">
           <div className="card text-center">
             <div className={`card-header ${styles.CardHeader}`}>
               GW {index + 1} |{' '}

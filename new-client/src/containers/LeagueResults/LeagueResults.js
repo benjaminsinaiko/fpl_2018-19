@@ -28,6 +28,7 @@ class LeagueResults extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (!prevState.weeklyWinners.length) {
+      console.log('[componentDidUpdate]');
       this.setState({
         weeklyWinners: this.setWeeklyWinners(this.state.gameweekScores)
       });
@@ -69,16 +70,16 @@ class LeagueResults extends Component {
   }
 
   render() {
+    let weeklyWinners = null;
+    if (this.state.weeklyWinners.length) {
+      weeklyWinners = <WeeklyWinnersCard winners={this.state.weeklyWinners} />;
+    }
+
     let gameweeksTable = null;
     if (this.state.gameweekScores) {
       gameweeksTable = (
         <LeagueResultsGameweekData gameweekScores={this.state.gameweekScores} />
       );
-    }
-
-    let weeklyWinners = null;
-    if (this.state.weeklyWinners.length) {
-      weeklyWinners = <WeeklyWinnersCard winners={this.state.weeklyWinners} />;
     }
 
     return (
@@ -89,7 +90,7 @@ class LeagueResults extends Component {
         <div className="row">
           <div className="col-md-12">
             <h4 className={styles.GroupHeader}>Weekly Winners</h4>
-            <div>{weeklyWinners}</div>
+            <div className={styles.WeeklyWinners}>{weeklyWinners}</div>
           </div>
         </div>
         <div className="row">
