@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './WeeklyWinnersCard.module.css';
 
 const weeklyWinnersCard = props => {
-  console.log('props', props.winners);
+  // console.log('props', props.winners);
 
   let weeklyWinner = props.winners.map((player, index) => {
     return (

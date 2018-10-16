@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import styles from './LeagueResults.module.css';
 import Header from '../../components/UI/Header/Header';
 import * as actions from '../../store/actions';
-// import Spinner from '../../components/UI/Spinner/Spinner';
-import LeagueResultsGameweekData from '../../components/LeagueResultsGameweekData/LeagueResultsGameweekData';
+import Spinner from '../../components/UI/Spinner/Spinner';
+import WinningsResultsData from '../../components/WinningsResultsData/WinningsResultsData';
 import WeeklyWinnersCard from '../../components/Cards/WeeklyWinnersCard/WeeklyWinnersCard';
+import LeagueResultsGameweekData from '../../components/LeagueResultsGameweekData/LeagueResultsGameweekData';
 
 class LeagueResults extends Component {
   state = {
@@ -28,7 +29,7 @@ class LeagueResults extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (!prevState.weeklyWinners.length) {
-      console.log('[componentDidUpdate]');
+      // console.log('[componentDidUpdate]');
       this.setState({
         weeklyWinners: this.setWeeklyWinners(this.state.gameweekScores)
       });
@@ -70,6 +71,16 @@ class LeagueResults extends Component {
   }
 
   render() {
+    let resultsTable = <Spinner />;
+    if (this.state.weeklyWinners && this.props.players) {
+      resultsTable = (
+        <WinningsResultsData
+          players={this.props.players}
+          winners={this.state.weeklyWinners}
+        />
+      );
+    }
+
     let weeklyWinners = null;
     if (this.state.weeklyWinners.length) {
       weeklyWinners = <WeeklyWinnersCard winners={this.state.weeklyWinners} />;
@@ -86,6 +97,12 @@ class LeagueResults extends Component {
       <div className={`container-fluid ${styles.LeagueResults}`}>
         <div className="container">
           <Header page="League Results" />
+        </div>
+        <div className="row">
+          <div className="col-md-12">
+            <h4 className={styles.GroupHeader}>Overall Results</h4>
+            <div className={styles.GameweeksTable}>{resultsTable}</div>
+          </div>
         </div>
         <div className="row">
           <div className="col-md-12">
