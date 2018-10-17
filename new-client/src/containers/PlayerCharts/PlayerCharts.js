@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import styles from './PlayerCharts.module.css';
 import Header from '../../components/UI/Header/Header';
 import * as actions from '../../store/actions';
+import PlayerBenchData from '../../components/PlayerData/PlayerBenchData/PlayerBenchData';
 
 export class PlayerCharts extends Component {
   state = {
@@ -12,10 +13,14 @@ export class PlayerCharts extends Component {
 
   componentDidMount() {
     this.checkForPlayersData();
+
+    if (this.props.players) {
+      this.setSelectedPlayer(this.props.players[0]);
+    }
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.players !== this.props.players) {
+    if (newProps.players) {
       this.setSelectedPlayer(newProps.players[0]);
     }
   }
@@ -31,8 +36,9 @@ export class PlayerCharts extends Component {
   };
 
   render() {
+    let playerBench = null;
     if (this.state.selectedPlayer) {
-      console.log('state', this.state.selectedPlayer);
+      playerBench = <PlayerBenchData player={this.state.selectedPlayer} />;
     }
 
     return (
@@ -40,6 +46,7 @@ export class PlayerCharts extends Component {
         <div className="container">
           <Header page="Player Charts" />
         </div>
+        {playerBench}
       </div>
     );
   }
