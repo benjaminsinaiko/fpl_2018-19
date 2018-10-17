@@ -6,6 +6,7 @@ import Footer from './components/Layout/Footer/Footer';
 import GameweekStatus from './containers/GameweekStatus/GameweekStatus';
 import LeagueStandings from './containers/LeagueStandings/LeagueStandings';
 import LeagueResults from './containers/LeagueResults/LeagueResults';
+import PlayerCharts from './containers/PlayerCharts/PlayerCharts';
 
 import './App.css';
 
@@ -18,6 +19,7 @@ class App extends Component {
           <Route exact path="/" component={GameweekStatus} />
           <Route path="/league" component={LeagueStandings} />
           <Route path="/results" component={LeagueResults} />
+          <Route path="/charts" component={PlayerCharts} />
           <Footer />
         </div>
       </Router>

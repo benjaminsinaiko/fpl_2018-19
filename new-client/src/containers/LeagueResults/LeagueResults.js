@@ -15,8 +15,8 @@ class LeagueResults extends Component {
     weeklyWinners: []
   };
 
-  componentWillMount() {
-    this.props.onFetchPlayers();
+  componentDidMount() {
+    this.checkForPlayersData();
   }
 
   componentWillReceiveProps(newProps) {
@@ -29,14 +29,23 @@ class LeagueResults extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (!prevState.weeklyWinners.length) {
-      // console.log('[componentDidUpdate]');
       this.setState({
         weeklyWinners: this.setWeeklyWinners(this.state.gameweekScores)
       });
     }
   }
 
-  setGameweekScores(playersData) {
+  checkForPlayersData = () => {
+    if (!this.props.players) {
+      this.props.onFetchPlayers();
+    } else {
+      this.setState({
+        gameweekScores: this.setGameweekScores(this.props.players)
+      });
+    }
+  };
+
+  setGameweekScores = playersData => {
     let gameweekScores = [];
     playersData.map(player => {
       let team = player.entry.name;
@@ -55,9 +64,9 @@ class LeagueResults extends Component {
       });
     });
     return gameweekScores;
-  }
+  };
 
-  setWeeklyWinners(gameweeks) {
+  setWeeklyWinners = gameweeks => {
     let weeklyWinners = [];
     for (let gameweek in gameweeks) {
       const gwScores = gameweeks[gameweek].map(week => week.score);
@@ -68,7 +77,7 @@ class LeagueResults extends Component {
       weeklyWinners.push(winners);
     }
     return weeklyWinners;
-  }
+  };
 
   render() {
     let resultsTable = <Spinner />;
