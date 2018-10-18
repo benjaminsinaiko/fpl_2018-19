@@ -3,31 +3,30 @@ import React from 'react';
 import styles from './PlayerSelector.module.css';
 
 const playerSelector = props => {
-  const playerNames = props.players.map(player => {
-    return [
-      `${player.entry.player_first_name} ${player.entry.player_last_name}`,
-      player.entry.id
-    ];
-  });
-  const selector = playerNames.map(player => {
+  const playerSelector = props.players.map((player, index) => {
+    let playerName = `${player.entry.player_first_name} ${
+      player.entry.player_last_name
+    }`;
+
     let btnStyle = 'light';
-    if (player[1] === props.selectedId) {
+    if (player.entry.id === props.selectedId) {
       btnStyle = 'dark';
     }
     return (
       <button
-        key={player[1]}
+        key={index}
         type="button"
         className={`btn btn-${btnStyle} ${styles.SelectorButton}`}
+        onClick={() => props.selectPlayer(player)}
       >
-        {player[0]}
+        {playerName}
       </button>
     );
   });
 
   return (
     <div className={`col-md-12 mb-4`} role="group" aria-label="Player Selector">
-      {selector}
+      {playerSelector}
     </div>
   );
 };

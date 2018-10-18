@@ -5,7 +5,7 @@ import styles from './PlayerCharts.module.css';
 import Header from '../../components/UI/Header/Header';
 import * as actions from '../../store/actions';
 import PlayerBenchData from '../../components/PlayerData/PlayerBenchData/PlayerBenchData';
-import PlayerSelector from './PlayerSelector/PlayerSelector';
+import PlayerSelector from '../../components/PlayerSelector/PlayerSelector';
 
 export class PlayerCharts extends Component {
   state = {
@@ -16,13 +16,13 @@ export class PlayerCharts extends Component {
     this.checkForPlayersData();
 
     if (this.props.players) {
-      this.setSelectedPlayer(this.props.players[0]);
+      this.defaultSelectedPlayer(this.props.players[0]);
     }
   }
 
   componentWillReceiveProps(newProps) {
     if (newProps.players) {
-      this.setSelectedPlayer(newProps.players[0]);
+      this.defaultSelectedPlayer(newProps.players[0]);
     }
   }
 
@@ -32,7 +32,11 @@ export class PlayerCharts extends Component {
     }
   };
 
-  setSelectedPlayer = player => {
+  defaultSelectedPlayer = player => {
+    this.setState({ selectedPlayer: player });
+  };
+
+  selectPlayerHandler = player => {
     this.setState({ selectedPlayer: player });
   };
 
@@ -41,14 +45,13 @@ export class PlayerCharts extends Component {
     let playerSelector = null;
 
     if (this.state.selectedPlayer) {
-      console.log(this.state.selectedPlayer);
-
       playerBench = <PlayerBenchData player={this.state.selectedPlayer} />;
 
       playerSelector = (
         <PlayerSelector
           players={this.props.players}
           selectedId={this.state.selectedPlayer.entry.id}
+          selectPlayer={player => this.selectPlayerHandler(player)}
         />
       );
     }
