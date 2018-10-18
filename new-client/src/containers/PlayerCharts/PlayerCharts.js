@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import styles from './PlayerCharts.module.css';
 import Header from '../../components/UI/Header/Header';
 import * as actions from '../../store/actions';
-import PlayerBenchData from '../../components/PlayerData/PlayerBenchData/PlayerBenchData';
-import PlayerSelector from '../../components/PlayerSelector/PlayerSelector';
+import PlayerBenchData from '../../components/PlayerChartsData/PlayerBenchData/PlayerBenchData';
+import PlayerSelector from '../../components/PlayerChartsData/PlayerSelector/PlayerSelector';
 
 export class PlayerCharts extends Component {
   state = {

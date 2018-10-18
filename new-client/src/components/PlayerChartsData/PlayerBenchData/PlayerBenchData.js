@@ -34,7 +34,7 @@ const playerBenchData = props => {
   // benchPoints.borderColor = '#e90052';
   benchPoints.backgroundColor = '#eaff04';
   benchPoints.data = props.player.history.map(
-    gameweek => gameweek.points_on_bench
+    gameweek => -gameweek.points_on_bench
   );
 
   dataSet.push([weekPoints, benchPoints]);
@@ -77,8 +77,8 @@ const playerBenchData = props => {
           stacked: true,
           scaleLabel: { display: true, labelString: 'Gameweek Points' },
           position: 'left',
-          gridLines: { display: false },
-          ticks: { suggestedMax: 100, min: 0 },
+          gridLines: { display: true },
+          ticks: { suggestedMax: 100, suggestedMin: -10 },
           labels: { show: true }
         }
       ]
