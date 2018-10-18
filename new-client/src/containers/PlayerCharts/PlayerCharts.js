@@ -4,8 +4,10 @@ import { connect } from 'react-redux';
 import styles from './PlayerCharts.module.css';
 import Header from '../../components/UI/Header/Header';
 import * as actions from '../../store/actions';
-import PlayerBenchData from '../../components/PlayerChartsData/PlayerBenchData/PlayerBenchData';
+import Spinner from '../../components/UI/Spinner/Spinner';
 import PlayerSelector from '../../components/PlayerChartsData/PlayerSelector/PlayerSelector';
+import PlayerBenchData from '../../components/PlayerChartsData/PlayerBenchData/PlayerBenchData';
+import PlayerHistoryData from '../../components/PlayerChartsData/PlayerHistoryData/PlayerHistoryData';
 
 export class PlayerCharts extends Component {
   state = {
@@ -41,8 +43,9 @@ export class PlayerCharts extends Component {
   };
 
   render() {
+    let playerSelector = <Spinner />;
     let playerBench = null;
-    let playerSelector = null;
+    let playerHistory = null;
 
     if (this.state.selectedPlayer) {
       playerBench = <PlayerBenchData player={this.state.selectedPlayer} />;
@@ -54,6 +57,8 @@ export class PlayerCharts extends Component {
           selectPlayer={player => this.selectPlayerHandler(player)}
         />
       );
+
+      playerHistory = <PlayerHistoryData player={this.state.selectedPlayer} />;
     }
 
     return (
@@ -62,7 +67,18 @@ export class PlayerCharts extends Component {
           <Header page="Player Charts" />
         </div>
         {playerSelector}
-        {playerBench}
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className={styles.PlayerChartsChart}>{playerBench}</div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-12">
+              <div className={styles.PlayerChartsChart}>{playerHistory}</div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

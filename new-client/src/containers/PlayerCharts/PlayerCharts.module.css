@@ -9,3 +9,10 @@
   margin-top: -24px;
   margin-bottom: -50px;
 }
+
+.PlayerChartsChart {
+  text-align: center;
+  background-color: ghostwhite;
+  padding: 10px;
+  margin: 20px 0;
+}

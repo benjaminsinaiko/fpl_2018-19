@@ -8,9 +8,6 @@ const playerBenchData = props => {
   // Set Labels
   let labels = props.player.history.map(gameweek => `GW ${gameweek.event}`);
 
-  // Set Both Datasets
-  let dataSet = [];
-
   // Set Weekly Points
   let weekPoints = {};
   weekPoints.label = 'GW Points';
@@ -36,8 +33,6 @@ const playerBenchData = props => {
   benchPoints.data = props.player.history.map(
     gameweek => -gameweek.points_on_bench
   );
-
-  dataSet.push([weekPoints, benchPoints]);
 
   const data = {
     labels: labels,
