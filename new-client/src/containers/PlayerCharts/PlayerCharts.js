@@ -5,6 +5,7 @@ import styles from './PlayerCharts.module.css';
 import Header from '../../components/UI/Header/Header';
 import * as actions from '../../store/actions';
 import PlayerBenchData from '../../components/PlayerData/PlayerBenchData/PlayerBenchData';
+import PlayerSelector from './PlayerSelector/PlayerSelector';
 
 export class PlayerCharts extends Component {
   state = {
@@ -37,8 +38,19 @@ export class PlayerCharts extends Component {
 
   render() {
     let playerBench = null;
+    let playerSelector = null;
+
     if (this.state.selectedPlayer) {
+      console.log(this.state.selectedPlayer);
+
       playerBench = <PlayerBenchData player={this.state.selectedPlayer} />;
+
+      playerSelector = (
+        <PlayerSelector
+          players={this.props.players}
+          selectedId={this.state.selectedPlayer.entry.id}
+        />
+      );
     }
 
     return (
@@ -46,6 +58,7 @@ export class PlayerCharts extends Component {
         <div className="container">
           <Header page="Player Charts" />
         </div>
+        {playerSelector}
         {playerBench}
       </div>
     );
