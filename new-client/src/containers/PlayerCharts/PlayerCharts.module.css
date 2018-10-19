@@ -10,6 +10,11 @@
   margin-bottom: -50px;
 }
 
+.PlayerSelector {
+  background-color: transparent;
+  border: none;
+}
+
 .PlayerChartsChart {
   text-align: center;
   background-color: ghostwhite;

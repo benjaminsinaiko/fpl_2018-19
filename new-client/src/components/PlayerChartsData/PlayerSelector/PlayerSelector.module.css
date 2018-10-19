@@ -1,4 +1,5 @@
 .SelectorButton {
   margin: 2px;
+  border: 1px solid #23272b;
   border-radius: 0;
 }

@@ -66,7 +66,9 @@ export class PlayerCharts extends Component {
         <div className="container">
           <Header page="Player Charts" />
         </div>
-        {playerSelector}
+        <div className={`card sticky-top ${styles.PlayerSelector}`}>
+          {playerSelector}
+        </div>
         <div className="container">
           <div className="row">
             <div className="col-md-12">
