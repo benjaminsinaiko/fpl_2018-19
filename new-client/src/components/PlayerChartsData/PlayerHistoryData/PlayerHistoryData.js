@@ -7,72 +7,101 @@ const PlayerHistoryData = props => {
   const labels = props.player.season.map(season => season.season_name);
 
   // Set History Points
-  let historyPoints = {};
-  historyPoints.label = 'Total Points';
-  historyPoints.type = 'bar';
-  // historyPoints.yAxisID = 'y-axis-points';
-  historyPoints.backgroundColor = '#E90052';
-  historyPoints.data = props.player.season.map(season => season.total_points);
+  const historyPoints = {
+    label: 'Total Points',
+    type: 'bar',
+    backgroundColor: '#e90052',
+    data: props.player.season.map(season => season.total_points),
+    yAxisID: 'y-axis-1'
+  };
 
   // Set History Rank
-  let historyRank = {};
-  historyRank.label = 'Overall Rank';
-  historyRank.type = 'line';
-  // historyRank.yAxisID = 'y-axis-rank';
-  historyRank.backgroundColor = '#04f5ff';
-  historyRank.showLine = false;
-  historyRank.pointStyle = 'triangle';
-  historyRank.radius = 6;
-  historyRank.data = props.player.season.map(season => season.rank);
+  const historyRank = {
+    label: 'Overall Rank',
+    type: 'line',
+    showLine: false,
+    pointStyle: 'triangle',
+    radius: 14,
+    backgroundColor: '#46004b',
+    data: props.player.season.map(season => season.rank),
+    yAxisID: 'y-axis-2'
+  };
 
   // Set Data
   const data = {
     labels: labels,
-    datasets: [historyRank]
+    datasets: [historyRank, historyPoints],
+    type: 'bar'
   };
 
   // Set Options
   const options = {
     responsive: true,
-    title: { display: true, text: 'Player History', fontSize: '28' },
+    title: { display: true, text: 'Points and Rank History', fontSize: '24' },
     tooltips: {
       mode: 'label',
-      titleMarginBottom: 15,
+      titleMargin: 15,
       callbacks: {
-        title: function(tooltipItem, data) {
-          return data['labels'][tooltipItem[0]['index']];
-        }
-      },
-      elements: { line: { fill: false } },
-      scales: {
-        xAxes: [
-          { display: true, stacked: false, gridLines: { display: false } }
-        ],
-        yAxes: [
-          {
-            type: 'linear',
-            display: true,
-            stacked: false,
-            scaleLabel: { display: true, labelString: 'Total Points' },
-            position: 'left',
-            // id: 'y-axis-points',
-            gridLines: { display: true },
-            ticks: { suggestedMax: 2400, min: 1100 },
-            labels: { show: true }
-          },
-          {
-            type: 'linear',
-            display: true,
-            stacked: false,
-            scaleLabel: { display: true, labelString: 'Overall Rank' },
-            position: 'right',
-            id: 'y-axis-rank',
-            gridLines: { display: true },
-            ticks: { suggestedMax: 2400, suggestedMin: 0 },
-            labels: { show: true }
+        label: function(tooltipItem, data, index) {
+          let value =
+            data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+          if (parseInt(value) >= 1000) {
+            return `${
+              data.datasets[tooltipItem.datasetIndex].label
+            }: ${value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}`;
+          } else {
+            return value;
           }
-        ]
+        }
       }
+    },
+    scales: {
+      yAxes: [
+        {
+          type: 'linear',
+          display: true,
+          scaleLabel: {
+            display: true,
+            labelString: 'Total Points'
+          },
+          position: 'left',
+          id: 'y-axis-1',
+          ticks: {
+            suggestedMax: 2300,
+            suggestedMin: 1100,
+            callback: function(value, index, values) {
+              if (parseInt(value) >= 1000) {
+                return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+              } else {
+                return value;
+              }
+            }
+          }
+        },
+        {
+          type: 'linear',
+          display: true,
+          gridLines: { display: false },
+          scaleLabel: {
+            display: true,
+            labelString: 'Overall Rank'
+          },
+          position: 'right',
+          id: 'y-axis-2',
+          ticks: {
+            reverse: true,
+            min: 0,
+
+            callback: function(value, index, values) {
+              if (parseInt(value) >= 1000) {
+                return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+              } else {
+                return value;
+              }
+            }
+          }
+        }
+      ]
     }
   };
 
