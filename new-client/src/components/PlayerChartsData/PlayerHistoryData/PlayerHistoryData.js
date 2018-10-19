@@ -11,6 +11,7 @@ const PlayerHistoryData = props => {
     label: 'Total Points',
     type: 'bar',
     backgroundColor: '#e90052',
+    borderColor: '#e90052',
     data: props.player.season.map(season => season.total_points),
     yAxisID: 'y-axis-1'
   };
@@ -20,9 +21,11 @@ const PlayerHistoryData = props => {
     label: 'Overall Rank',
     type: 'line',
     showLine: false,
-    pointStyle: 'triangle',
-    radius: 14,
+    pointStyle: 'line',
+    borderWidth: 4,
+    radius: 10,
     backgroundColor: '#46004b',
+    borderColor: '#46004b',
     data: props.player.season.map(season => season.rank),
     yAxisID: 'y-axis-2'
   };
@@ -37,7 +40,7 @@ const PlayerHistoryData = props => {
   // Set Options
   const options = {
     responsive: true,
-    title: { display: true, text: 'Points and Rank History', fontSize: '24' },
+    title: { display: true, text: 'Player League History', fontSize: '24' },
     tooltips: {
       mode: 'label',
       titleMargin: 15,
@@ -90,7 +93,8 @@ const PlayerHistoryData = props => {
           id: 'y-axis-2',
           ticks: {
             reverse: true,
-            min: 0,
+            suggestedMax: 2300000,
+            suggestedMin: 0,
 
             callback: function(value, index, values) {
               if (parseInt(value) >= 1000) {
