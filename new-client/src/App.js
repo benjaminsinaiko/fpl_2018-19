@@ -19,7 +19,7 @@ class App extends Component {
           <Route exact path="/" component={GameweekStatus} />
           <Route path="/league" component={LeagueStandings} />
           <Route path="/results" component={LeagueResults} />
-          <Route path="/charts" component={PlayerCharts} />
+          <Route path="/players" component={PlayerCharts} />
           <Footer />
         </div>
       </Router>

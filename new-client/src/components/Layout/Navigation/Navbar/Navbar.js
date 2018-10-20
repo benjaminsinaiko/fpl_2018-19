@@ -41,17 +41,17 @@ class Navbar extends Component {
 
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                <NavLink exact className="nav-link" to="/charts">
+                <NavLink exact className="nav-link" to="/players">
                   {' '}
-                  Charts
+                  Player Data
                 </NavLink>
               </li>
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <Link className="nav-link" to="/">
                   {' '}
                   Gameweek Status
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>

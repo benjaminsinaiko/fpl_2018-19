@@ -72,7 +72,7 @@ export class PlayerCharts extends Component {
     return (
       <div className={`container-fluid ${styles.PldayerChartsPage}`}>
         <div className="container">
-          <Header page="Player Charts" />
+          <Header page="Player Data" />
         </div>
         <div className={`card sticky-top ${styles.PlayerSelector}`}>
           {playerSelector}
