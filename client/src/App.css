@@ -1,159 +1,32 @@
-@font-face {
-  font-family: 'PremierSans-Bold';
-  src: url('../src/font/PremierSans-Bold.ttf') format('truetype');
+.App {
+  text-align: center;
 }
 
-::-webkit-scrollbar {
-  display: none;
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
 }
 
-body {
-  min-height: 100%;
-  font-family: PremierSans-Regular, Geneva, Tahoma, sans-serif;
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
 }
 
-img {
-  width: 100%;
+.App-link {
+  color: #61dafb;
 }
 
-.landing {
-  position: relative;
-  background: url('./img/pl_logos-bkground.jpg');
-  background-repeat: repeat;
-  background-size: 100% auto;
-  background-position: center;
-  background-attachment: fixed;
-  min-height: 90vh;
-  margin-top: -24px;
-  margin-bottom: -50px;
-}
-
-.league,
-.results {
-  position: relative;
-  background: url('./img/pl_green-bkground.jpg');
-  background-repeat: repeat;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  min-height: 90vh;
-  margin-top: -24px;
-  margin-bottom: -50px;
-}
-
-.update,
-.charts {
-  position: relative;
-  background: url('./img/pl_red-bkgrround.jpg');
-  background-repeat: repeat;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  min-height: 90vh;
-  margin-top: -24px;
-  margin-bottom: -50px;
-}
-
-.chartjs-render-monitor {
-  background: ghostwhite;
-}
-
-@media (max-width: 767px) {
-  .landing,
-  .league,
-  .results {
-    background-image: none;
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
   }
-}
-.page-header {
-  border-radius: 90px;
-  color: black;
-  padding: 2rem;
-  margin-top: 20px;
-  background-color: springgreen;
-  background-size: cover;
-  font-family: PremierSans-Bold, Geneva, Tahoma, sans-serif;
-  font-size: larger;
-  -webkit-box-shadow: 0 10px 6px -6px black;
-  -moz-box-shadow: 0 10px 6px -6px black;
-  box-shadow: 0 10px 7px 4px rgb(66, 66, 66);
-}
-
-.table-wrapper {
-  overflow-x: scroll;
-}
-
-.league-table {
-  background-color: ghostwhite;
-  margin: 30px auto 50px auto;
-  display: table;
-  padding: 5px;
-}
-
-.card-form {
-  opacity: 0.9;
-}
-
-.latest-profiles-img {
-  width: 40px;
-  height: 40px;
-}
-
-.form-control::placeholder {
-  color: #bbb !important;
-}
-
-.current-events {
-  padding-top: 100px;
-  color: black;
-}
-
-.active-btn {
-  width: 150px;
-}
-.active-btn:disabled {
-  opacity: 85%;
-}
-
-.navbar {
-  background-color: #38003c;
-}
-
-.footer {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 1rem;
-  color: #38003c;
-  text-align: center;
-}
-
-.moneyTable {
-  display: table;
-  margin: auto;
-  width: 60%;
-  table-layout: fixed;
-}
-
-.moneyRow {
-  display: table-row;
-}
-
-.moneyCell {
-  display: table-cell;
-  text-align: left;
-  padding: 10px;
-  vertical-align: middle;
-  width: 32%;
-}
-
-.bench-chart {
-  text-align: center;
-  background-color: ghostwhite;
-}
-
-.red {
-  color: red;
-  font-weight: 700;
+  to {
+    transform: rotate(360deg);
+  }
 }
