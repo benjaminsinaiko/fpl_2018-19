@@ -8,6 +8,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import PlayerSelector from '../../components/PlayerChartsData/PlayerSelector/PlayerSelector';
 import PlayerBenchData from '../../components/PlayerChartsData/PlayerBenchData/PlayerBenchData';
 import PlayerHistoryData from '../../components/PlayerChartsData/PlayerHistoryData/PlayerHistoryData';
+import PlayerRank from '../../components/PlayerChartsData/PlayerRank/PlayerRank';
 
 export class PlayerCharts extends Component {
   state = {
@@ -44,10 +45,13 @@ export class PlayerCharts extends Component {
 
   render() {
     let playerSelector = <Spinner />;
+    let playerRank = null;
     let playerBench = null;
     let playerHistory = null;
 
     if (this.state.selectedPlayer) {
+      playerRank = <PlayerRank player={this.state.selectedPlayer} />;
+
       playerBench = <PlayerBenchData player={this.state.selectedPlayer} />;
 
       playerSelector = (
@@ -68,6 +72,9 @@ export class PlayerCharts extends Component {
         </div>
         <div className={`card sticky-top ${styles.PlayerSelector}`}>
           {playerSelector}
+        </div>
+        <div className="container">
+          <div className="row">{playerRank}</div>
         </div>
         <div className="container">
           <div className="row">

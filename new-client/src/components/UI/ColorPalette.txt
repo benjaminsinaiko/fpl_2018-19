@@ -1,0 +1,9 @@
+Light Blue = #04f5ff
+Red = #e90052
+White = #ffffff
+Dark Green = #02894e
+Light Green = #00ff85
+Dark Purple = #38003c
+Light Purple = #46004b
+Yellow = #eaff04
+Light Gray = #e8e8e8
