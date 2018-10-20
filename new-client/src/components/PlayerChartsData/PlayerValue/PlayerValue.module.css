@@ -1,0 +1,13 @@
+.ValueHeader {
+  color: white;
+  background-color: #38003c;
+}
+
+.ValueBody {
+  color: #e90052;
+  background-color: #46004b;
+}
+
+.ValueBody h5 {
+  font-size: 1.6rem;
+}

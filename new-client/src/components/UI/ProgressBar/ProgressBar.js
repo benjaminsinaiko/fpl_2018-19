@@ -5,11 +5,15 @@ const ProgressBar = props => {
   const rankDisplay = props.rank.toLocaleString();
 
   return (
-    <div className="progress" style={{ height: '30px' }}>
+    <div className="progress" style={{ height: '45px' }}>
       <div
         className="progress-bar"
         role="progressbar"
-        style={{ width: `${rankBar}%`, backgroundColor: '#e90052' }}
+        style={{
+          width: `${rankBar}%`,
+          backgroundColor: '#e90052',
+          fontSize: '1.5rem'
+        }}
         aria-valuemax="100"
       >
         {rankDisplay}

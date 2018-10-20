@@ -6,9 +6,10 @@ import Header from '../../components/UI/Header/Header';
 import * as actions from '../../store/actions';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import PlayerSelector from '../../components/PlayerChartsData/PlayerSelector/PlayerSelector';
+import PlayerRank from '../../components/PlayerChartsData/PlayerRank/PlayerRank';
+import PlayerValue from '../../components/PlayerChartsData/PlayerValue/PlayerValue';
 import PlayerBenchData from '../../components/PlayerChartsData/PlayerBenchData/PlayerBenchData';
 import PlayerHistoryData from '../../components/PlayerChartsData/PlayerHistoryData/PlayerHistoryData';
-import PlayerRank from '../../components/PlayerChartsData/PlayerRank/PlayerRank';
 
 export class PlayerCharts extends Component {
   state = {
@@ -46,11 +47,14 @@ export class PlayerCharts extends Component {
   render() {
     let playerSelector = <Spinner />;
     let playerRank = null;
+    let playerValue = null;
     let playerBench = null;
     let playerHistory = null;
 
     if (this.state.selectedPlayer) {
       playerRank = <PlayerRank player={this.state.selectedPlayer} />;
+
+      playerValue = <PlayerValue player={this.state.selectedPlayer} />;
 
       playerBench = <PlayerBenchData player={this.state.selectedPlayer} />;
 
@@ -75,6 +79,9 @@ export class PlayerCharts extends Component {
         </div>
         <div className="container">
           <div className="row">{playerRank}</div>
+        </div>
+        <div className="container">
+          <div className="row">{playerValue}</div>
         </div>
         <div className="container">
           <div className="row">
