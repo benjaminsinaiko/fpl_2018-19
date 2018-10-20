@@ -13,7 +13,7 @@
     "client": "npm start --prefix new-client",
     "dev-old": "concurrently \"npm run server\" \"npm run client-old\"",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix new-client && npm run build --prefix new-client"
   },
   "author": "Benjamin Sinaiko",
   "license": "MIT",
