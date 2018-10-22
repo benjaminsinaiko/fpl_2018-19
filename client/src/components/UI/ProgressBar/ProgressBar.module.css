@@ -1,0 +1,22 @@
+.ProgressBar {
+  position: relative;
+  height: 45px;
+}
+
+.BarPositive {
+  background: #e90052;
+  left: 0;
+}
+.BarPositive span {
+  left: 0;
+  color: white;
+}
+
+.BarPositive {
+  background: #white;
+  right: 0;
+}
+.BarPositive span {
+  right: 0;
+  color: #e90052;
+}
