@@ -3,7 +3,6 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const port = process.env.PORT || 5000;
-const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path');
 
@@ -24,23 +23,6 @@ app.use(
 );
 app.use(bodyParser.json());
 
-// Set mongoose.Promise to any Promise implementation
-mongoose.Promise = Promise;
-
-// DB Config
-const db = `mongodb://${process.env.MONGO_USER}:${
-  process.env.MONGO_PASSWORD
-}@ds123562.mlab.com:23562/fpl_2018-19`;
-
-// Connect to MongoDB
-mongoose
-  .connect(
-    db,
-    { useNewUrlParser: true }
-  )
-  .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.log(err));
-
 // Use Routes
 app.use('/api/status', status);
 app.use('/api/players', players);
@@ -56,7 +38,5 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
 }
-
-app.get('/', (req, res) => res.send(process.env.MONGO_USER));
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
