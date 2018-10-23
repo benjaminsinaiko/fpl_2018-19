@@ -1,7 +1,5 @@
 import React from 'react';
 
-import styles from './ProgressBar.module.css';
-
 const ProgressBar = props => {
   const rankBar = ((1 - props.rank / 5764233) * 100).toFixed(0);
   const rankDisplay = props.rank.toLocaleString();
