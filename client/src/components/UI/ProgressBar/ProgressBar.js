@@ -13,7 +13,8 @@ const ProgressBar = props => {
           width: `${rankBar}%`,
           color: '#46004b',
           backgroundColor: '#e90052',
-          fontSize: '1.5rem'
+          fontSize: '1.5rem',
+          padding: '0 25px'
         }}
         aria-valuemax="100"
       >

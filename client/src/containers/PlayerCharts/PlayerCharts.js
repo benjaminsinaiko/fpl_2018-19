@@ -52,9 +52,9 @@ export class PlayerCharts extends Component {
     let playerHistory = null;
 
     if (this.state.selectedPlayer) {
-      playerRank = <PlayerRank player={this.state.selectedPlayer} />;
+      playerRank = <PlayerRank player={this.state.selectedPlayer.entry} />;
 
-      playerValue = <PlayerValue player={this.state.selectedPlayer} />;
+      playerValue = <PlayerValue player={this.state.selectedPlayer.entry} />;
 
       playerBench = <PlayerBenchData player={this.state.selectedPlayer} />;
 

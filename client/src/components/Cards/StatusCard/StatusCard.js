@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import 'moment-timezone';
 
-import styles from './Status.module.css';
+import styles from './StatusCard.module.css';
 
 const statusCard = props => {
   // console.log('[StatusCard Props]', props);
