@@ -1,0 +1,31 @@
+.ChipTitle {
+  color: #00ff87;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.ChipButtons {
+  display: flex;
+  margin-left: 5%;
+  width: 90%;
+}
+
+.ChipButton {
+  opacity: 1 !important;
+  flex: 1 1 auto !important;
+  border: 1px solid #38003c;
+  color: #38003c;
+  font-size: 1.2em;
+}
+
+@media only screen and (max-width: 767px) {
+  .ChipButtons {
+    display: block;
+  }
+
+  .ChipButton {
+    display: block;
+    float: none;
+    width: 100%;
+  }
+}
