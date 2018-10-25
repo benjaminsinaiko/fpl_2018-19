@@ -6,4 +6,5 @@ Light Green = #00ff85
 Dark Purple = #38003c
 Light Purple = #46004b
 Yellow = #eaff04
-Light Gray = #e8e8e8
+Gray = #e8e8e8
+Light Gray = #f7f4f4

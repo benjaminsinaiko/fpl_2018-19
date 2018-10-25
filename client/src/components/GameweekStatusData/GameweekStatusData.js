@@ -7,8 +7,18 @@ const gameweekStatusData = props => {
   const highScore = props.events.map(score => score.highest_score);
 
   const datasets = [
-    { label: 'Average Score', data: avgScore, backgroundColor: '#eaff04' },
-    { label: 'High Score', data: highScore, backgroundColor: '#00FF87' }
+    {
+      label: 'Average Score',
+      data: avgScore,
+      backgroundColor: '#eaff04',
+      lineTension: 0
+    },
+    {
+      label: 'High Score',
+      data: highScore,
+      backgroundColor: '#00FF87',
+      lineTension: 0
+    }
   ];
 
   const data = {
