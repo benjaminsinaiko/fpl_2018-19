@@ -10,9 +10,17 @@
   margin-bottom: -50px;
 }
 
-.GameweekStatusChart {
+.SectionTitle {
+  color: #00ff87;
+}
+
+.ChartContainer {
+  margin-top: 20px;
+}
+
+.Chart {
   text-align: center;
   background-color: ghostwhite;
   padding: 10px;
-  margin: 20px 0;
+  margin-bottom: 20px;
 }

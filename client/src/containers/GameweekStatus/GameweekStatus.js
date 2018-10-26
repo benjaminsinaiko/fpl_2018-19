@@ -45,12 +45,14 @@ class GameweekStatus extends Component {
           <Header page="Gameweek Status" />
           <div className="row">
             <div className="col-md-12">
+              <h5 className={styles.SectionTitle}>Gameweeks</h5>
               <div className="card-deck">{cardData}</div>
             </div>
           </div>
           <div className="row">
-            <div className="col-md-12">
-              <div className={styles.GameweekStatusChart}>{chartData}</div>
+            <div className={`col-md-12 ${styles.ChartContainer}`}>
+              <h5 className={styles.SectionTitle}>Weekly League Scores</h5>
+              <div className={styles.Chart}>{chartData}</div>
             </div>
           </div>
         </div>
