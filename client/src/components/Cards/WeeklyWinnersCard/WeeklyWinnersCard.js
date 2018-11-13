@@ -5,13 +5,13 @@ import styles from './WeeklyWinnersCard.module.css';
 const weeklyWinnersCard = props => {
   // console.log('props', props.winners);
 
-  let weeklyWinner = props.winners.map((player, index) => {
+  let weeklyWinner = props.winners.reverse().map((player, index) => {
     return (
       <div key={index} className="col-sm-3 mb-4">
         <div className="card h-100">
           <div className="card text-center">
             <div className={`card-header ${styles.CardHeader}`}>
-              GW {index + 1} |{' '}
+              GW {Math.abs(index - props.winners.length)} |{' '}
               <span className={styles.Score}>
                 {player[0].score}
                 pts
