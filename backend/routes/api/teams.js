@@ -1,8 +1,6 @@
 const express = require('express');
 const router = new express.Router();
 
-// Load Player Model
-const Player = require('../../models/Player');
 // Load Team Model
 const Team = require('../../models/Team');
 
