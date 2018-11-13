@@ -17,31 +17,51 @@ class LeagueResults extends Component {
 
   componentDidMount() {
     this.checkForPlayersData();
+    this.checkForStatus();
+
+    // if (this.props.players) {
+    //   console.log(this.props.players);
+    //   const scores = await this.setGameweekScores(this.props.players);
+    //   console.log(scores);
+
+    //   this.setState({
+    //     weeklyWinners: this.setWeeklyWinners(scores)
+    //   });
+    // }
   }
 
-  componentWillReceiveProps(newProps) {
-    if (newProps.players !== this.props.players) {
+  async componentDidUpdate(prevProps) {
+    let scores;
+    if (
+      prevProps.players !== this.props.players &&
+      prevProps.players === null
+    ) {
+      scores = await this.setGameweekScores(this.props.players);
       this.setState({
-        gameweekScores: this.setGameweekScores(newProps.players)
+        gameweekScores: this.setGameweekScores(this.props.players)
+      });
+      this.setState({
+        weeklyWinners: this.setWeeklyWinners(scores)
       });
     }
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (!prevState.weeklyWinners.length) {
+  checkForPlayersData = async () => {
+    if (!this.props.players) {
+      this.props.onFetchPlayers();
+    } else {
+      await this.setState({
+        gameweekScores: this.setGameweekScores(this.props.players)
+      });
       this.setState({
         weeklyWinners: this.setWeeklyWinners(this.state.gameweekScores)
       });
     }
-  }
+  };
 
-  checkForPlayersData = () => {
-    if (!this.props.players) {
-      this.props.onFetchPlayers();
-    } else {
-      this.setState({
-        gameweekScores: this.setGameweekScores(this.props.players)
-      });
+  checkForStatus = () => {
+    if (!this.props.status) {
+      this.props.onFetchStatus();
     }
   };
 
@@ -132,13 +152,15 @@ class LeagueResults extends Component {
 
 const mapStateToProps = state => {
   return {
-    players: state.players.players
+    players: state.players.players,
+    status: state.status.events
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchPlayers: () => dispatch(actions.fetchPlayersData())
+    onFetchPlayers: () => dispatch(actions.fetchPlayersData()),
+    onFetchStatus: () => dispatch(actions.fetchStatus())
   };
 };
 
