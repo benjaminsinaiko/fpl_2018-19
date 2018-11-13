@@ -27,6 +27,7 @@ class GameweekStatus extends Component {
           event.is_next === true
         );
       });
+
       cardData = currentStatusEvents.map(event => {
         return <StatusCard key={event.id} event={event} />;
       });

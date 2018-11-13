@@ -5,12 +5,10 @@ import 'moment-timezone';
 import styles from './StatusCard.module.css';
 
 const statusCard = props => {
-  // console.log('[StatusCard Props]', props);
-
   // Set Chicago timezone
   let deadlineChicago = moment(props.event.deadline_time)
     .tz('America/Chicago')
-    .format('ddd MMM do h:mm a z');
+    .format('ddd MMM Do h:mm a z');
 
   if (props.event.is_next) {
     deadlineChicago = (
