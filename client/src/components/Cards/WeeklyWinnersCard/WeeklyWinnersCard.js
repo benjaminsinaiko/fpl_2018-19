@@ -3,15 +3,18 @@ import React from 'react';
 import styles from './WeeklyWinnersCard.module.css';
 
 const weeklyWinnersCard = props => {
-  // console.log('props', props.winners);
+  const finishedWeek = props.status.filter(week => week.finished === true).pop()
+    .id;
 
-  let weeklyWinner = props.winners.reverse().map((player, index) => {
+  const finishedWinners = props.winners.slice(0, finishedWeek);
+
+  let weeklyWinner = finishedWinners.reverse().map((player, index) => {
     return (
       <div key={index} className="col-sm-3 mb-4">
         <div className="card h-100">
           <div className="card text-center">
             <div className={`card-header ${styles.CardHeader}`}>
-              GW {Math.abs(index - props.winners.length)} |{' '}
+              GW {Math.abs(index - finishedWinners.length)} |{' '}
               <span className={styles.Score}>
                 {player[0].score}
                 pts

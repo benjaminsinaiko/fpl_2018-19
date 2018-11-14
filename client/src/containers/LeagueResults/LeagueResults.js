@@ -18,16 +18,6 @@ class LeagueResults extends Component {
   componentDidMount() {
     this.checkForPlayersData();
     this.checkForStatus();
-
-    // if (this.props.players) {
-    //   console.log(this.props.players);
-    //   const scores = await this.setGameweekScores(this.props.players);
-    //   console.log(scores);
-
-    //   this.setState({
-    //     weeklyWinners: this.setWeeklyWinners(scores)
-    //   });
-    // }
   }
 
   async componentDidUpdate(prevProps) {
@@ -100,6 +90,8 @@ class LeagueResults extends Component {
   };
 
   render() {
+    // console.log('status', this.props.status);
+
     let resultsTable = <Spinner />;
     if (this.state.weeklyWinners && this.props.players) {
       resultsTable = (
@@ -112,7 +104,12 @@ class LeagueResults extends Component {
 
     let weeklyWinners = null;
     if (this.state.weeklyWinners.length) {
-      weeklyWinners = <WeeklyWinnersCard winners={this.state.weeklyWinners} />;
+      weeklyWinners = (
+        <WeeklyWinnersCard
+          winners={this.state.weeklyWinners}
+          status={this.props.status}
+        />
+      );
     }
 
     let gameweeksTable = null;
