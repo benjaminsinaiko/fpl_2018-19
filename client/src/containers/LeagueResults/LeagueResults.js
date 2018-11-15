@@ -19,6 +19,10 @@ class LeagueResults extends Component {
   componentDidMount() {
     this.checkForPlayersData();
     this.checkForStatus();
+
+    if (this.props.status) {
+      this.setFinishedGW(this.props.status);
+    }
   }
 
   async componentDidUpdate(prevProps) {
@@ -37,10 +41,7 @@ class LeagueResults extends Component {
     }
 
     if (this.props.status && this.props.status !== prevProps.status) {
-      console.log('status');
       this.setFinishedGW(this.props.status);
-    } else {
-      console.log('no status');
     }
   }
 
@@ -65,7 +66,6 @@ class LeagueResults extends Component {
 
   setFinishedGW = status => {
     const finished = status.filter(week => week.finished === true).pop().id;
-    console.log(finished);
     this.setState({ finishedGW: finished });
   };
 
@@ -110,10 +110,6 @@ class LeagueResults extends Component {
   render() {
     let resultsTable = <Spinner />;
     if (this.state.weeklyWinners.length && this.props.status) {
-      console.log(
-        'finished winners',
-        this.finishedWinners(this.state.weeklyWinners)
-      );
       resultsTable = (
         <WinningsResultsData
           players={this.props.players}
@@ -123,8 +119,7 @@ class LeagueResults extends Component {
     }
 
     let weeklyWinners = null;
-    if (this.state.weeklyWinners.length && this.props.status) {
-      console.log('finished', this.state.finishedGW);
+    if (this.state.weeklyWinners.length && this.state.finishedGW) {
       weeklyWinners = (
         <WeeklyWinnersCard
           winners={this.finishedWinners(this.state.weeklyWinners)}
