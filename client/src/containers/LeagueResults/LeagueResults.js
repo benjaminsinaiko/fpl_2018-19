@@ -117,8 +117,7 @@ class LeagueResults extends Component {
       resultsTable = (
         <WinningsResultsData
           players={this.props.players}
-          winners={this.state.weeklyWinners}
-          status={this.props.status}
+          winners={this.finishedWinners(this.state.weeklyWinners)}
         />
       );
     }
