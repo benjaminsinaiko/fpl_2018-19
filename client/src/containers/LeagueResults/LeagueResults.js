@@ -12,7 +12,8 @@ import LeagueResultsGameweekData from '../../components/LeagueResultsGameweekDat
 class LeagueResults extends Component {
   state = {
     gameweekScores: null,
-    weeklyWinners: []
+    weeklyWinners: [],
+    finishedGW: null
   };
 
   componentDidMount() {
@@ -34,6 +35,13 @@ class LeagueResults extends Component {
         weeklyWinners: this.setWeeklyWinners(scores)
       });
     }
+
+    if (this.props.status && this.props.status !== prevProps.status) {
+      console.log('status');
+      this.setFinishedGW(this.props.status);
+    } else {
+      console.log('no status');
+    }
   }
 
   checkForPlayersData = async () => {
@@ -53,6 +61,16 @@ class LeagueResults extends Component {
     if (!this.props.status) {
       this.props.onFetchStatus();
     }
+  };
+
+  setFinishedGW = status => {
+    const finished = status.filter(week => week.finished === true).pop().id;
+    console.log(finished);
+    this.setState({ finishedGW: finished });
+  };
+
+  finishedWinners = winners => {
+    return winners.slice(0, this.state.finishedGW);
   };
 
   setGameweekScores = playersData => {
@@ -90,24 +108,27 @@ class LeagueResults extends Component {
   };
 
   render() {
-    // console.log('status', this.props.status);
-
     let resultsTable = <Spinner />;
-    if (this.state.weeklyWinners && this.props.players) {
+    if (this.state.weeklyWinners.length && this.props.status) {
+      console.log(
+        'finished winners',
+        this.finishedWinners(this.state.weeklyWinners)
+      );
       resultsTable = (
         <WinningsResultsData
           players={this.props.players}
           winners={this.state.weeklyWinners}
+          status={this.props.status}
         />
       );
     }
 
     let weeklyWinners = null;
-    if (this.state.weeklyWinners.length) {
+    if (this.state.weeklyWinners.length && this.props.status) {
+      console.log('finished', this.state.finishedGW);
       weeklyWinners = (
         <WeeklyWinnersCard
-          winners={this.state.weeklyWinners}
-          status={this.props.status}
+          winners={this.finishedWinners(this.state.weeklyWinners)}
         />
       );
     }
