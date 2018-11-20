@@ -1,4 +1,4 @@
-<!-- ![FPL Tracker](./img/trackerLogo.jpg) -->
+![FPL Tracker](./img/trackerLogo.jpg)
 
 # FPL Tracker
 
