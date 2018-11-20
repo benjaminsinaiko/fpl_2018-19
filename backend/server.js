@@ -1,4 +1,3 @@
-require('dotenv').config();
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -8,7 +7,6 @@ const path = require('path');
 
 const status = require('./routes/api/status');
 const players = require('./routes/api/players');
-const teams = require('./routes/api/teams');
 const leagues = require('./routes/api/leagues');
 
 // Add cors
@@ -26,7 +24,6 @@ app.use(bodyParser.json());
 // Use Routes
 app.use('/api/status', status);
 app.use('/api/players', players);
-app.use('/api/teams', teams);
 app.use('/api/leagues', leagues);
 
 // Server static assets if in production
