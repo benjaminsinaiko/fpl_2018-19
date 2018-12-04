@@ -33,7 +33,7 @@ const leagueResultsGameweekData = props => {
     gameweekScores.push(gameweek);
   }
 
-  return <Table columns={columns} data={gameweekScores} />;
+  return <Table columns={columns} data={gameweekScores.reverse()} />;
 };
 
 export default leagueResultsGameweekData;
