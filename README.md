@@ -21,7 +21,10 @@ $ git clone https://github.com/benjaminsinaiko/fpl_2018-19
 # Go into the repository
 $ cd fpl_2018-19
 
-# Install dependencies
+# Install client dependencies
+$ npm client-install
+
+# Install backend dependencies
 $ npm install
 
 # Run the app
