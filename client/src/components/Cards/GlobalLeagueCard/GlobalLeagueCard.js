@@ -5,7 +5,7 @@ import styles from './GlobalLeagueCard.module.css';
 const globalLeagueCard = props => {
   return (
     <div className={styles.GlobalLeague}>
-      <div className="card">
+      <div className={`card ${styles.Card}`}>
         <div className={`card-header ${styles.CardHeader}`}>Global Leagues</div>
         <div className={`card-body ${styles.CardBody}`}>
           <div className="row">

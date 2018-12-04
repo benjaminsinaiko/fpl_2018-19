@@ -12,7 +12,8 @@
 
 .LeagueTable {
   background-color: ghostwhite;
-  margin: 10px 50px;
+  max-width: 1000px;
+  margin: 10px auto;
 }
 
 @media screen and (max-width: 600px) {
