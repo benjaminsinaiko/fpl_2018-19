@@ -21,14 +21,14 @@ const leagueResultsGameweekData = props => {
 
   // Set Data
   let gameweekScores = [];
-  for (let player in props.gameweekScores) {
-    let scores = props.gameweekScores[player].map(player => {
+  for (let playerName in props.gameweekScores) {
+    let scores = props.gameweekScores[playerName].map((player, index) => {
       return {
-        id: player.name,
+        id: playerName,
         [player.name]: player.score
       };
     });
-    let gameweek = Object.assign({ gameweek: `${player}` }, ...scores);
+    let gameweek = Object.assign({ gameweek: `${playerName}` }, ...scores);
 
     gameweekScores.push(gameweek);
   }

@@ -104,6 +104,7 @@ class LeagueResults extends Component {
       );
       weeklyWinners.push(winners);
     }
+    console.log(weeklyWinners);
     return weeklyWinners;
   };
 
