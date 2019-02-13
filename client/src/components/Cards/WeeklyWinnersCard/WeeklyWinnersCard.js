@@ -6,17 +6,6 @@ const weeklyWinnersCard = props => {
   // console.log(props);
 
   let weeklyWinner = props.winners.reverse().map((winners, index) => {
-    console.log(winners);
-    let winnerNames = [];
-    for (let winner of winners) {
-      winnerNames = (
-        <div className={`card-body ${styles.CardBody}`}>
-          <h5 className="card-text">{winner.team}</h5>
-          <p className="card-text">{winner.name}</p>
-        </div>
-      );
-    }
-
     return (
       <div key={index} className={`${styles.Card}`}>
         <div className="card">
@@ -36,7 +25,6 @@ const weeklyWinnersCard = props => {
                 </React.Fragment>
               ))}
             </div>
-            {/* {winnerNames} */}
           </div>
         </div>
       </div>
