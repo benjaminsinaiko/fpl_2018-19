@@ -10,6 +10,10 @@
   overflow-x: auto;
 }
 
+.CardRow::-webkit-scrollbar {
+  display: none;
+}
+
 .CardHeader {
   color: white;
   background-color: #46004b;
