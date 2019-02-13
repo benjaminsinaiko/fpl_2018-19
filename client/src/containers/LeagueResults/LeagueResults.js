@@ -108,55 +108,69 @@ class LeagueResults extends Component {
   };
 
   render() {
-    let resultsTable = <Spinner />;
+    let resultsTable = null;
     if (this.state.weeklyWinners.length && this.props.status) {
       resultsTable = (
-        <WinningsResultsData
-          players={this.props.players}
-          winners={this.finishedWinners(this.state.weeklyWinners)}
-        />
+        <div className={`row ${styles.RowSection}`}>
+          <div className="col-md-12">
+            <h4 className={styles.GroupHeader}>Overall Results</h4>
+            <div className={styles.GameweeksTable}>
+              <WinningsResultsData
+                players={this.props.players}
+                winners={this.finishedWinners(this.state.weeklyWinners)}
+              />
+            </div>
+          </div>
+        </div>
       );
     }
 
     let weeklyWinners = null;
     if (this.state.weeklyWinners.length && this.state.finishedGW) {
       weeklyWinners = (
-        <WeeklyWinnersCard
-          winners={this.finishedWinners(this.state.weeklyWinners)}
-        />
+        <div className={`row ${styles.RowSection}`}>
+          <div className="col-md-12">
+            <h4 className={styles.GroupHeader}>Weekly Winners</h4>
+            <div className={styles.WeeklyWinners}>
+              <WeeklyWinnersCard
+                winners={this.finishedWinners(this.state.weeklyWinners)}
+              />
+            </div>
+          </div>
+        </div>
       );
     }
 
     let gameweeksTable = null;
     if (this.state.gameweekScores) {
       gameweeksTable = (
-        <LeagueResultsGameweekData gameweekScores={this.state.gameweekScores} />
+        <div className={`row ${styles.RowSection}`}>
+          <div className="col-md-12">
+            <h4 className={styles.GroupHeader}>Weekly Points</h4>
+            <div className={styles.GameweeksTable}>
+              <LeagueResultsGameweekData
+                gameweekScores={this.state.gameweekScores}
+              />
+            </div>
+          </div>
+        </div>
       );
     }
+
+    let resultsView = (
+      <React.Fragment>
+        {resultsTable}
+        {weeklyWinners}
+        {gameweeksTable}
+      </React.Fragment>
+    );
 
     return (
       <div className={`container-fluid ${styles.LeagueResultsPage}`}>
         <div className="container">
           <Header page="League Results" />
         </div>
-        <div className={`row ${styles.RowSection}`}>
-          <div className="col-md-12">
-            <h4 className={styles.GroupHeader}>Overall Results</h4>
-            <div className={styles.GameweeksTable}>{resultsTable}</div>
-          </div>
-        </div>
-        <div className={`row ${styles.RowSection}`}>
-          <div className="col-md-12">
-            <h4 className={styles.GroupHeader}>Weekly Winners</h4>
-            <div className={styles.WeeklyWinners}>{weeklyWinners}</div>
-          </div>
-        </div>
-        <div className={`row ${styles.RowSection}`}>
-          <div className="col-md-12">
-            <h4 className={styles.GroupHeader}>Weekly Points</h4>
-            <div className={styles.GameweeksTable}>{gameweeksTable}</div>
-          </div>
-        </div>
+        {!resultsTable ? <Spinner /> : resultsView}
       </div>
     );
   }
