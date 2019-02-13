@@ -2,11 +2,20 @@ import React from 'react';
 import Table from '../UI/Table/Table';
 
 const leagueResultsGameweekData = props => {
+  // Get name initials
+  const getInitials = fullName => {
+    const names = fullName.split(' ');
+    const initials =
+      names[0].substring(0, 1).toUpperCase() +
+      names[1].substring(0, 1).toUpperCase();
+    return initials;
+  };
+
   // Set Columns
   const names = props.gameweekScores['1'].map(player => {
     return {
       dataField: `${player.name}`,
-      text: `${player.name}`,
+      text: `${player.team} [${getInitials(player.name)}]`,
       headerStyle: { color: 'white', backgroundColor: '#38003C' }
     };
   });

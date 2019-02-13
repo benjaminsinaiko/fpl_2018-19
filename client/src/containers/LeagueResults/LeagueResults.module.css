@@ -28,7 +28,9 @@
 .GameweeksTable {
   background-color: ghostwhite;
   margin: 10px 50px;
+  max-height: 520px;
   overflow-x: auto;
+  overflow-y: auto;
 }
 
 @media screen and (max-width: 600px) {
