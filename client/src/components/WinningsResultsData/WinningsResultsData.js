@@ -10,9 +10,13 @@ const winningsResultsData = props => {
     }`;
     let wins = 0;
     props.winners.forEach(week => {
+      // Number of winners each week
       let numOfWinners = week.length;
-      if (week[0].name.includes(fullName)) {
-        wins += 1 / numOfWinners;
+      // Calc number of wins per player
+      for (const winner of week) {
+        if (winner.name.includes(fullName)) {
+          wins += 1 / numOfWinners; // fraction of wins from ties
+        }
       }
     });
     return wins;
