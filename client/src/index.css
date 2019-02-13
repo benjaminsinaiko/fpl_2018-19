@@ -1,3 +1,8 @@
+/* Outline to check elements
+* {
+  outline: 1px solid red;
+} */
+
 @font-face {
   font-family: 'PremierSans-Bold';
   src: url('../src/font/PremierSans-Bold.ttf') format('truetype');

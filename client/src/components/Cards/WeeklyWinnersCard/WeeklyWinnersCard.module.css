@@ -7,12 +7,12 @@
 
 .CardRow {
   flex-wrap: nowrap !important;
-  overflow-x: auto;
+  /* overflow-x: auto; */
 }
 
-.CardRow::-webkit-scrollbar {
+/* .CardRow::-webkit-scrollbar {
   display: none;
-}
+} */
 
 .CardHeader {
   color: white;

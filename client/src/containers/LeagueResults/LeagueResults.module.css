@@ -35,8 +35,10 @@
   margin: 10px 50px;
   display: flex;
   overflow-y: hidden;
-  overflow-x: auto;
-  flex-wrap: nowrap !important;
+}
+
+.WeeklyWinnersCards::-webkit-scrollbar {
+  display: none;
 }
 
 .GameweeksTable {
