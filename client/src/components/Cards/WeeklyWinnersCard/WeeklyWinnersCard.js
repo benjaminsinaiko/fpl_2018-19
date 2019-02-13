@@ -3,7 +3,20 @@ import React from 'react';
 import styles from './WeeklyWinnersCard.module.css';
 
 const weeklyWinnersCard = props => {
-  let weeklyWinner = props.winners.reverse().map((player, index) => {
+  // console.log(props);
+
+  let weeklyWinner = props.winners.reverse().map((winners, index) => {
+    console.log(winners);
+    let winnerNames = [];
+    for (let winner of winners) {
+      winnerNames = (
+        <div className={`card-body ${styles.CardBody}`}>
+          <h5 className="card-text">{winner.team}</h5>
+          <p className="card-text">{winner.name}</p>
+        </div>
+      );
+    }
+
     return (
       <div key={index} className={`${styles.Card}`}>
         <div className="card">
@@ -11,14 +24,19 @@ const weeklyWinnersCard = props => {
             <div className={`card-header ${styles.CardHeader}`}>
               GW {Math.abs(index - props.winners.length)} |{' '}
               <span className={styles.Score}>
-                {player[0].score}
+                {winners[0].score}
                 pts
               </span>
             </div>
             <div className={`card-body ${styles.CardBody}`}>
-              <h5 className="card-text">{player[0].team}</h5>
-              <p className="card-text">{player[0].name}</p>
+              {winners.map((winner, index) => (
+                <React.Fragment key={index}>
+                  <h5 className="card-text">{winner.team}</h5>
+                  <p className="card-text">{winner.name}</p>
+                </React.Fragment>
+              ))}
             </div>
+            {/* {winnerNames} */}
           </div>
         </div>
       </div>
