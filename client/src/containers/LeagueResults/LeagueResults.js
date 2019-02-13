@@ -132,10 +132,13 @@ class LeagueResults extends Component {
         <div className={`row ${styles.RowSection}`}>
           <div className="col-md-12">
             <h4 className={styles.GroupHeader}>Weekly Winners</h4>
-            <div className={styles.WeeklyWinners}>
-              <WeeklyWinnersCard
-                winners={this.finishedWinners(this.state.weeklyWinners)}
-              />
+            <div />
+            <div className={styles.WeeklyWinnersBody}>
+              <div className={styles.WeeklyWinnersCards}>
+                <WeeklyWinnersCard
+                  winners={this.finishedWinners(this.state.weeklyWinners)}
+                />
+              </div>
             </div>
           </div>
         </div>

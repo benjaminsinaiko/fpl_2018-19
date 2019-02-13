@@ -5,8 +5,8 @@ import styles from './WeeklyWinnersCard.module.css';
 const weeklyWinnersCard = props => {
   let weeklyWinner = props.winners.reverse().map((player, index) => {
     return (
-      <div key={index} className="col-sm-3 mb-4">
-        <div className="card h-100">
+      <div key={index} className={`${styles.Card}`}>
+        <div className="card">
           <div className="card text-center">
             <div className={`card-header ${styles.CardHeader}`}>
               GW {Math.abs(index - props.winners.length)} |{' '}
@@ -25,7 +25,7 @@ const weeklyWinnersCard = props => {
     );
   });
 
-  return <div className="row">{weeklyWinner}</div>;
+  return <div className={`row ${styles.CardRow}`}>{weeklyWinner}</div>;
 };
 
 export default weeklyWinnersCard;

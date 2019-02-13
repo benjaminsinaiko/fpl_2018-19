@@ -12,6 +12,7 @@
 
 .RowSection {
   margin: 30px 0px;
+  display: flex;
 }
 
 .GroupHeader {
@@ -21,8 +22,21 @@
   margin: 0px 50px;
 }
 
-.WeeklyWinners {
+.WeeklyWinnersBody {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.WeeklyWinnersCards {
+  max-height: 300px;
   margin: 10px 50px;
+  display: flex;
+  overflow-y: hidden;
+  overflow-x: auto;
+  flex-wrap: nowrap !important;
 }
 
 .GameweeksTable {

@@ -1,3 +1,15 @@
+.Card {
+  min-height: 200px;
+  min-width: 250px;
+  margin: 5px;
+  padding-left: 10px;
+}
+
+.CardRow {
+  flex-wrap: nowrap !important;
+  overflow-x: auto;
+}
+
 .CardHeader {
   color: white;
   background-color: #46004b;
@@ -8,6 +20,7 @@
 .CardBody {
   color: #46004b;
   background-color: ghostwhite;
+  min-height: 150px;
 }
 
 .Score {
