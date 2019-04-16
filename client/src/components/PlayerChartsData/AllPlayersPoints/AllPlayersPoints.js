@@ -1,16 +1,27 @@
 import React from 'react'
 import LineChart from '../../UI/Charts/LineChart/LineChart'
+import * as zoom from 'chartjs-plugin-zoom'
 
 const AllPlayersPoints = props => {
-  console.log(props)
+  const colors = [
+    '#f06292',
+    '#ba68c8',
+    '#64b5f6',
+    '#4db6ac',
+    '#aed581',
+    '#fff176',
+    '#ffb74d',
+    '#ff8a65'
+  ]
 
   let labels = props.players[0].history.map(gameweek => `GW ${gameweek.event}`)
 
   let totalPoints = []
-  props.players.forEach(player => {
+  props.players.forEach((player, index) => {
     let weeklyPoints = {}
     weeklyPoints.label = player.entry.name
     weeklyPoints.type = 'line'
+    weeklyPoints.borderColor = colors[index]
     weeklyPoints.data = player.history.map(week => week.total_points)
 
     totalPoints.push(weeklyPoints)
@@ -53,6 +64,15 @@ const AllPlayersPoints = props => {
           labels: { show: true }
         }
       ]
+    },
+    pan: {
+      enabled: true,
+      mode: 'x'
+    },
+    zoom: {
+      enabled: true,
+      mode: 'x',
+      speed: 0.5
     }
   }
 
