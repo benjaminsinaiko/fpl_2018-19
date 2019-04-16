@@ -53,7 +53,16 @@ const AllPlayersPoints = props => {
     },
     elements: { line: { fill: false } },
     scales: {
-      xAxes: [{ display: true, stacked: true, gridLines: { display: false } }],
+      xAxes: [
+        {
+          display: true,
+          stacked: true,
+          gridLines: { display: false },
+          ticks: {
+            maxRotation: 0
+          }
+        }
+      ],
       yAxes: [
         {
           type: 'linear',
@@ -61,6 +70,10 @@ const AllPlayersPoints = props => {
           scaleLabel: { display: true, labelString: 'Points' },
           position: 'left',
           gridLines: { display: true },
+          ticks: {
+            min: 0,
+            max: 2500
+          },
           labels: { show: true }
         }
       ]
@@ -71,12 +84,18 @@ const AllPlayersPoints = props => {
     },
     zoom: {
       enabled: true,
-      mode: 'x',
-      speed: 0.5
+      mode: 'xy',
+      rangeMin: {
+        x: 'GW 1',
+        y: 0
+      },
+      rangeMax: {
+        x: 'GW 38',
+        y: 2500
+      },
+      speed: 0.01
     }
   }
-
-  console.log(weekPoints)
 
   return <LineChart data={data} options={options} />
 }

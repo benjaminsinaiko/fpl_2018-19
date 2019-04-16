@@ -1,22 +1,22 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-import styles from './GameweekStatus.module.css';
-import Header from '../../components/UI/Header/Header';
-import * as actions from '../../store/actions';
-import Spinner from '../../components/UI/Spinner/Spinner';
-import StatusCard from '../../components/Cards/StatusCard/StatusCard';
-import GameweekStatusData from '../../components/GameweekStatusData/GameweekStatusData';
+import styles from './GameweekStatus.module.css'
+import Header from '../../components/UI/Header/Header'
+import * as actions from '../../store/actions'
+import Spinner from '../../components/UI/Spinner/Spinner'
+import StatusCard from '../../components/Cards/StatusCard/StatusCard'
+import GameweekStatusData from '../../components/GameweekStatusData/GameweekStatusData'
 
 class GameweekStatus extends Component {
   componentDidMount() {
-    this.props.onFetchStatus();
+    this.props.onFetchStatus()
   }
 
   render() {
     // Gameweek Status
-    let cardData = <Spinner />;
-    let chartData = null;
+    let cardData = <Spinner />
+    let chartData = null
 
     if (this.props.status) {
       // Filter for Previous, Current, Next gameweeks
@@ -25,19 +25,18 @@ class GameweekStatus extends Component {
           event.is_previous === true ||
           event.is_current === true ||
           event.is_next === true
-        );
-      });
+        )
+      })
 
       cardData = currentStatusEvents.map(event => {
-        return <StatusCard key={event.id} event={event} />;
-      });
+        return <StatusCard key={event.id} event={event} />
+      })
 
       // Gameweek scores chart
       const finishedEvents = this.props.status.filter(event => {
-        return event.data_checked;
-      });
-      // console.log(finishedEvents);
-      chartData = <GameweekStatusData events={finishedEvents} />;
+        return event.data_checked
+      })
+      chartData = <GameweekStatusData events={finishedEvents} />
     }
 
     return (
@@ -58,7 +57,7 @@ class GameweekStatus extends Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 
@@ -66,16 +65,16 @@ const mapStateToProps = state => {
   return {
     status: state.status.events,
     loading: state.status.loading
-  };
-};
+  }
+}
 
 const mapDispatchToProps = dispatch => {
   return {
     onFetchStatus: () => dispatch(actions.fetchStatus())
-  };
-};
+  }
+}
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(GameweekStatus);
+)(GameweekStatus)
