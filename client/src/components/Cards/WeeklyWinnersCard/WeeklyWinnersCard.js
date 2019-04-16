@@ -1,10 +1,8 @@
-import React from 'react';
+import React from 'react'
 
-import styles from './WeeklyWinnersCard.module.css';
+import styles from './WeeklyWinnersCard.module.css'
 
 const weeklyWinnersCard = props => {
-  // console.log(props);
-
   let weeklyWinner = props.winners.reverse().map((winners, index) => {
     return (
       <div key={index} className={`${styles.Card}`}>
@@ -28,10 +26,10 @@ const weeklyWinnersCard = props => {
           </div>
         </div>
       </div>
-    );
-  });
+    )
+  })
 
-  return <div className={`row ${styles.CardRow}`}>{weeklyWinner}</div>;
-};
+  return <div className={`row ${styles.CardRow}`}>{weeklyWinner}</div>
+}
 
-export default weeklyWinnersCard;
+export default weeklyWinnersCard

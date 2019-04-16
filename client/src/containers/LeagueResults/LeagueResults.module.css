@@ -49,6 +49,13 @@
   overflow-y: auto;
 }
 
+.PlayersPointsChart {
+  background-color: ghostwhite;
+  margin: 10px 50px;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
 @media screen and (max-width: 600px) {
   .GroupHeader {
     margin: 0px 2px;
