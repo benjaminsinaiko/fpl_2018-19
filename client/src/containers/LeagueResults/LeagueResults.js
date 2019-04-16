@@ -6,7 +6,10 @@ import Header from '../../components/UI/Header/Header'
 import * as actions from '../../store/actions'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import WinningsResultsData from '../../components/WinningsResultsData/WinningsResultsData'
+<<<<<<< HEAD
 import AllPlayersPoints from '../../components/PlayerChartsData/AllPlayersPoints/AllPlayersPoints'
+=======
+>>>>>>> e795b68dfa5776a2d45860d7e60b7cccace13353
 import WeeklyWinnersCard from '../../components/Cards/WeeklyWinnersCard/WeeklyWinnersCard'
 import LeagueResultsGameweekData from '../../components/LeagueResultsGameweekData/LeagueResultsGameweekData'
 
@@ -126,6 +129,7 @@ class LeagueResults extends Component {
       )
     }
 
+<<<<<<< HEAD
     let playersRankChart = null
     if (this.props.players) {
       playersRankChart = (
@@ -140,13 +144,14 @@ class LeagueResults extends Component {
       )
     }
 
+=======
+>>>>>>> e795b68dfa5776a2d45860d7e60b7cccace13353
     let weeklyWinners = null
     if (this.state.weeklyWinners.length && this.state.finishedGW) {
       weeklyWinners = (
         <div className={`row ${styles.RowSection}`}>
           <div className="col-md-12">
             <h4 className={styles.GroupHeader}>Weekly Winners</h4>
-            <div />
             <div className={styles.WeeklyWinnersBody}>
               <div className={styles.WeeklyWinnersCards}>
                 <WeeklyWinnersCard

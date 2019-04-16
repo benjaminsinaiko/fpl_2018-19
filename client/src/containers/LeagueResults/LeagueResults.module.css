@@ -61,7 +61,11 @@
     margin: 0px 2px;
   }
   .GameweeksTable {
-    margin: 10px 2px;
+    margin: 10px -20px;
+  }
+
+  .WeeklyWinnersCards {
+    margin: 10px -20px;
   }
 }
 
