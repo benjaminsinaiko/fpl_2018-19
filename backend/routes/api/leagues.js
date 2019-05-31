@@ -3,6 +3,10 @@ const router = new express.Router();
 const request = require('request');
 const axios = require('axios');
 
+// For writing end of season response data
+const fs = require('fs');
+const path = 'client/src/finalLeagueData/writeFile.js';
+
 // @route GET api/leagues/test
 // @desc Tests leagues route
 // @access Public
@@ -16,7 +20,7 @@ router.get('/', (req, res) => {
     {
       url:
         'https://fantasy.premierleague.com/drf/leagues-classic-standings/765405',
-      method: 'GET'
+      method: 'GET',
     },
     (error, response) => {
       if (error) {
@@ -25,7 +29,7 @@ router.get('/', (req, res) => {
         const body = JSON.parse(response.body);
         res.json(body);
       }
-    }
+    },
   );
 });
 
@@ -39,19 +43,20 @@ router.get('/global', (req, res) => {
     return Promise.resolve(
       axios
         .get(
-          `https://fantasy.premierleague.com/drf/leagues-classic-standings/${leagueId}`
+          `https://fantasy.premierleague.com/drf/leagues-classic-standings/${leagueId}`,
         )
         .then(response => {
           return {
             league: response.data.league.name,
-            standings: response.data.standings.results.slice(0, 5)
+            standings: response.data.standings.results.slice(0, 5),
           };
-        })
+        }),
     );
   });
 
   Promise.all(leaguePromises)
     .then(response => {
+      // fs.writeFileSync(path, JSON.stringify(response));
       res.json(response);
     })
     .catch(error => res.json(error));
@@ -66,16 +71,17 @@ router.get('/:id', (req, res) => {
       url: `https://fantasy.premierleague.com/drf/leagues-classic-standings/${
         req.params.id
       }`,
-      method: 'GET'
+      method: 'GET',
     },
     (error, response) => {
       if (error) {
         res.json(error);
       } else {
         const body = JSON.parse(response.body);
+        // fs.writeFileSync(path, JSON.stringify(body))
         res.json(body);
       }
-    }
+    },
   );
 });
 

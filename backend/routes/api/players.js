@@ -1,11 +1,15 @@
-const express = require('express');
-const router = new express.Router();
-const axios = require('axios');
+const express = require('express')
+const router = new express.Router()
+const axios = require('axios')
+
+// For writing end of season response data
+const fs = require('fs')
+const path = 'client/src/finalLeagueData/writeFile.js'
 
 // @route GET api/players/test
 // @desc Tests players route
 // @access Public
-router.get('/test', (req, res) => res.json({ msg: 'Players works' }));
+router.get('/test', (req, res) => res.json({ msg: 'Players works' }))
 
 // @route GET api/players
 // @desc Get All League Players (API) - Sorted By Score
@@ -13,26 +17,27 @@ router.get('/test', (req, res) => res.json({ msg: 'Players works' }));
 router.get('/', async (req, res) => {
   const playerIds = await axios
     .get(
-      'https://fantasy.premierleague.com/drf/leagues-classic-standings/765405'
+      'https://fantasy.premierleague.com/drf/leagues-classic-standings/765405',
     )
     .then(response => {
-      const leagueIds = response.data.standings.results.map(team => team.entry);
-      return leagueIds;
-    });
+      const leagueIds = response.data.standings.results.map(team => team.entry)
+      return leagueIds
+    })
 
   const playerPromises = playerIds.map(playerId => {
     return Promise.resolve(
       axios
         .get(`https://fantasy.premierleague.com/drf/entry/${playerId}/history`)
-        .then(response => response.data)
-    );
-  });
+        .then(response => response.data),
+    )
+  })
 
   Promise.all(playerPromises)
     .then(response => {
-      res.json(response);
+      // fs.writeFileSync(path, JSON.stringify(response));
+      res.json(response)
     })
-    .catch(error => res.json(error));
-});
+    .catch(error => res.json(error))
+})
 
-module.exports = router;
+module.exports = router
