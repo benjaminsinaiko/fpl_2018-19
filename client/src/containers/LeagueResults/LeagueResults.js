@@ -1,69 +1,73 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
+// import { connect } from 'react-redux'
 
 import styles from './LeagueResults.module.css'
 import Header from '../../components/UI/Header/Header'
-import * as actions from '../../store/actions'
+// import * as actions from '../../store/actions'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import WinningsResultsData from '../../components/WinningsResultsData/WinningsResultsData'
 import AllPlayersPoints from '../../components/PlayerChartsData/AllPlayersPoints/AllPlayersPoints'
 import WeeklyWinnersCard from '../../components/Cards/WeeklyWinnersCard/WeeklyWinnersCard'
 import LeagueResultsGameweekData from '../../components/LeagueResultsGameweekData/LeagueResultsGameweekData'
 
+// import { league, leagueGlobal } from '../../finalLeagueData/leagues'
+import status from '../../finalLeagueData/status'
+import players from '../../finalLeagueData/players'
+
 class LeagueResults extends Component {
   state = {
     gameweekScores: null,
     weeklyWinners: [],
-    finishedGW: null
+    finishedGW: null,
   }
 
   componentDidMount() {
     this.checkForPlayersData()
-    this.checkForStatus()
+    // this.checkForStatus()
 
-    if (this.props.status) {
-      this.setFinishedGW(this.props.status)
+    if (status) {
+      this.setFinishedGW(status)
     }
   }
 
-  async componentDidUpdate(prevProps) {
-    let scores
-    if (
-      prevProps.players !== this.props.players &&
-      prevProps.players === null
-    ) {
-      scores = await this.setGameweekScores(this.props.players)
-      this.setState({
-        gameweekScores: this.setGameweekScores(this.props.players)
-      })
-      this.setState({
-        weeklyWinners: this.setWeeklyWinners(scores)
-      })
-    }
+  // async componentDidUpdate(prevProps) {
+  //   let scores
+  //   if (
+  //     prevProps.players !== this.props.players &&
+  //     prevProps.players === null
+  //   ) {
+  //     scores = await this.setGameweekScores(this.props.players)
+  //     this.setState({
+  //       gameweekScores: this.setGameweekScores(this.props.players),
+  //     })
+  //     this.setState({
+  //       weeklyWinners: this.setWeeklyWinners(scores),
+  //     })
+  //   }
 
-    if (this.props.status && this.props.status !== prevProps.status) {
-      this.setFinishedGW(this.props.status)
-    }
-  }
+  //   if (this.props.status && this.props.status !== prevProps.status) {
+  //     this.setFinishedGW(this.props.status)
+  //   }
+  // }
 
   checkForPlayersData = async () => {
-    if (!this.props.players) {
-      this.props.onFetchPlayers()
-    } else {
-      await this.setState({
-        gameweekScores: this.setGameweekScores(this.props.players)
-      })
-      this.setState({
-        weeklyWinners: this.setWeeklyWinners(this.state.gameweekScores)
-      })
-    }
+    await this.setState(
+      {
+        gameweekScores: this.setGameweekScores(players),
+      },
+      () => {
+        this.setState({
+          weeklyWinners: this.setWeeklyWinners(this.state.gameweekScores),
+        })
+      },
+    )
   }
 
-  checkForStatus = () => {
-    if (!this.props.status) {
-      this.props.onFetchStatus()
-    }
-  }
+  // checkForStatus = () => {
+  //   if (!this.props.status) {
+  //     this.props.onFetchStatus()
+  //   }
+  // }
 
   setFinishedGW = status => {
     const finished = status.filter(week => week.finished === true).pop().id
@@ -86,7 +90,7 @@ class LeagueResults extends Component {
         let gwScore = {
           team: team,
           name: name,
-          score: gw.points - gw.event_transfers_cost
+          score: gw.points - gw.event_transfers_cost,
         }
         if (!gameweekScores[`${gameweek}`]) gameweekScores[`${gameweek}`] = []
         return gameweekScores[`${gameweek}`].push(gwScore)
@@ -101,7 +105,7 @@ class LeagueResults extends Component {
       const gwScores = gameweeks[gameweek].map(week => week.score)
       const highScore = Math.max(...gwScores)
       let winners = gameweeks[gameweek].filter(
-        player => player.score === highScore
+        player => player.score === highScore,
       )
       weeklyWinners.push(winners)
     }
@@ -110,14 +114,14 @@ class LeagueResults extends Component {
 
   render() {
     let resultsTable = null
-    if (this.state.weeklyWinners.length && this.props.status) {
+    if (this.state.weeklyWinners.length && status) {
       resultsTable = (
         <div className={`row ${styles.RowSection}`}>
           <div className="col-md-12">
             <h4 className={styles.GroupHeader}>Overall Results</h4>
             <div className={styles.GameweeksTable}>
               <WinningsResultsData
-                players={this.props.players}
+                players={players}
                 winners={this.finishedWinners(this.state.weeklyWinners)}
               />
             </div>
@@ -127,13 +131,13 @@ class LeagueResults extends Component {
     }
 
     let playersRankChart = null
-    if (this.props.players) {
+    if (players) {
       playersRankChart = (
         <div className={`row ${styles.RowSection}`}>
           <div className="col-md-12">
             <h4 className={styles.GroupHeader}>Overall Points</h4>
             <div className={styles.PlayersPointsChart}>
-              <AllPlayersPoints players={this.props.players} />
+              <AllPlayersPoints players={players} />
             </div>
           </div>
         </div>
@@ -194,21 +198,18 @@ class LeagueResults extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    players: state.players.players,
-    status: state.status.events
-  }
-}
+// const mapStateToProps = state => {
+//   return {
+//     players: state.players.players,
+//     status: state.status.events,
+//   }
+// }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onFetchPlayers: () => dispatch(actions.fetchPlayersData()),
-    onFetchStatus: () => dispatch(actions.fetchStatus())
-  }
-}
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     onFetchPlayers: () => dispatch(actions.fetchPlayersData()),
+//     onFetchStatus: () => dispatch(actions.fetchStatus()),
+//   }
+// }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(LeagueResults)
+export default LeagueResults
