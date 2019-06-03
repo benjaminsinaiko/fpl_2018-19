@@ -1,98 +1,98 @@
-import React from 'react';
+import React from 'react'
 
-import Table from '../UI/Table/Table';
+import Table from '../UI/Table/Table'
 
 const winningsResultsData = props => {
   // weekly_wins
   const weeklyWins = props.players.map(player => {
     let fullName = `${player.entry.player_first_name} ${
       player.entry.player_last_name
-    }`;
-    let wins = 0;
+    }`
+    let wins = 0
     props.winners.forEach(week => {
       // Number of winners each week
-      let numOfWinners = week.length;
+      let numOfWinners = week.length
       // Calc number of wins per player
       for (const winner of week) {
         if (winner.name.includes(fullName)) {
-          wins += 1 / numOfWinners; // fraction of wins from ties
+          wins += 1 / numOfWinners // fraction of wins from ties
         }
       }
-    });
-    return wins;
-  });
+    })
+    return wins
+  })
 
   // weekly_winnings
   const weeklyWinnings = weeklyWins.map(wins => {
-    return wins * (840 / 38);
-  });
+    return wins * (850 / 38)
+  })
 
   // bonus_penalty
   const bonusPenalty = [...Array(9).keys()].map(index => {
-    let bonusPenalty = 0;
+    let bonusPenalty = 0
     if (index === 0) {
-      bonusPenalty = 900;
+      bonusPenalty = 900
     } else if (index === 1) {
-      bonusPenalty = 562.5;
+      bonusPenalty = 500
     } else if (index === 2) {
-      bonusPenalty = 150;
+      bonusPenalty = 150
     } else if (index === 7) {
-      bonusPenalty = -50;
+      bonusPenalty = -50
     } else if (index === 8) {
-      bonusPenalty = -100;
+      bonusPenalty = -100
     }
-    return bonusPenalty;
-  });
+    return bonusPenalty
+  })
 
   // Money format
   const moneyFormat = number => {
     if (number === 0) {
-      return '-';
+      return '-'
     } else if (number > 0) {
-      return `$${number.toFixed(2)}`;
+      return `$${number.toFixed(2)}`
     } else {
-      return `($${Math.abs(number.toFixed(2))})`;
+      return `($${Math.abs(number.toFixed(2))})`
     }
-  };
+  }
 
   // Set Columns
   const columns = [
     {
       dataField: 'team',
       text: 'Team',
-      headerStyle: { color: 'white', backgroundColor: '#38003C' }
+      headerStyle: { color: 'white', backgroundColor: '#38003C' },
     },
     {
       dataField: 'weekly_wins',
       text: 'Weekly Wins',
-      headerStyle: { color: 'white', backgroundColor: '#38003C' }
+      headerStyle: { color: 'white', backgroundColor: '#38003C' },
     },
     {
       dataField: 'weekly_winnings',
       text: 'Weekly $',
-      headerStyle: { color: 'white', backgroundColor: '#38003C' }
+      headerStyle: { color: 'white', backgroundColor: '#38003C' },
     },
     {
       dataField: 'total_score',
       text: 'Total Score',
-      headerStyle: { color: 'white', backgroundColor: '#38003C' }
+      headerStyle: { color: 'white', backgroundColor: '#38003C' },
     },
     {
       dataField: 'bonus_penalty',
       text: 'Bonus/Penalty',
-      headerStyle: { color: 'white', backgroundColor: '#38003C' }
+      headerStyle: { color: 'white', backgroundColor: '#38003C' },
     },
     {
       dataField: 'max_loss',
       text: 'Max Loss',
-      headerStyle: { color: 'white', backgroundColor: '#38003C' }
+      headerStyle: { color: 'white', backgroundColor: '#38003C' },
     },
     {
       dataField: 'total_pl',
       text: 'Total P/L',
-      headerStyle: { color: 'white', backgroundColor: '#38003C' }
-    }
-  ];
+      headerStyle: { color: 'white', backgroundColor: '#38003C' },
+    },
+  ]
 
   const winningsData = props.players.map((team, index) => {
     return {
@@ -103,11 +103,11 @@ const winningsResultsData = props => {
       total_score: team.history[team.history.length - 1].total_points,
       bonus_penalty: moneyFormat(bonusPenalty[index]),
       max_loss: moneyFormat(-250 + weeklyWinnings[index]),
-      total_pl: moneyFormat(-250 + weeklyWinnings[index] + bonusPenalty[index])
-    };
-  });
+      total_pl: moneyFormat(-250 + weeklyWinnings[index] + bonusPenalty[index]),
+    }
+  })
 
-  return <Table columns={columns} data={winningsData} />;
-};
+  return <Table columns={columns} data={winningsData} />
+}
 
-export default winningsResultsData;
+export default winningsResultsData
