@@ -6,7 +6,7 @@
     "axios": "^0.18.0",
     "chart.js": "^2.7.3",
     "chartjs-plugin-zoom": "^0.7.0",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "moment-timezone": "^0.5.23",
     "react": "^16.8.1",
     "react-bootstrap-table-next": "^1.4.4",
