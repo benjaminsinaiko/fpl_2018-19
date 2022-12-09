@@ -20,7 +20,7 @@
     "cors": "^2.8.5",
     "eslint-plugin-react": "^7.12.4",
     "event-stream": "^3.3.5",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "request": "^2.88.0",
     "request-promise": "^4.2.2"
   },
